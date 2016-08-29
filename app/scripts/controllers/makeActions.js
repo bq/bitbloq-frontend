@@ -15,7 +15,11 @@ angular.module('bitbloqApp')
 
             // Only allow uploading one file.
             if (fileList.length > 1) {
-                alertsService.add('make-import-project-format-error', 'error-import-project', 'warning');
+                alertsService.add({
+                    text: 'make-import-project-format-error',
+                    id: 'error-import-project',
+                    type: 'warning'
+                });
                 return false;
             }
             var file = fileList[0];
@@ -31,7 +35,11 @@ angular.module('bitbloqApp')
                     try {
                         fileParsed = JSON.parse(target.result);
                     } catch (e) {
-                        alertsService.add('make-import-project-format-error', 'error-import-project', 'warning');
+                        alertsService.add({
+                            text: 'make-import-project-format-error',
+                            id: 'error-import-project',
+                            type: 'warning'
+                        });
                         return false;
                     }
                     if (!fileParsed.defaultTheme) {
@@ -93,13 +101,21 @@ angular.module('bitbloqApp')
             projectApi.getMyProjects().then(function(projects) {
                 modalScope.projects = projects;
             }, function() {
-                alertsService.add('make-get-project-error', 'make-get-project-error', 'warning');
+                alertsService.add({
+                    text: 'make-get-project-error',
+                    id: 'make-get-project-error',
+                    type: 'warning'
+                });
             });
 
             projectApi.getMySharedProjects().then(function(sharedProjects) {
                 modalScope.sharedProjects = sharedProjects;
             }, function() {
-                alertsService.add('make-get-shared-project-error', 'make-get-shared-project-error', 'warning');
+                alertsService.add({
+                    text: 'make-get-shared-project-error',
+                    id: 'make-get-shared-project-error',
+                    type: 'warning'
+                });
             });
 
             dialog = ngDialog.open({
@@ -128,18 +144,38 @@ angular.module('bitbloqApp')
         $scope.removeProject = function(project) {
             if (project._id) {
                 $scope.common.removeProjects[project._id] = true;
-                $scope.removeAlert[project._id] = alertsService.add('make-deleted-project', 'deleted-project' + project._id, 'warning', 7000, undefined, undefined, undefined, 'undo', _undoRemoveProject, project._id, _deleteProject, {
-                    _id: project._id,
-                    imageType: project.imageType
+                $scope.removeAlert[project._id] = alertsService.add({
+                    text: 'make-deleted-project',
+                    id: 'deleted-project' + project._id,
+                    type: 'warning',
+                    time: 7000,
+                    linkText: 'undo',
+                    link: _undoRemoveProject,
+                    linkParams: project._id,
+                    closeFunction: _deleteProject,
+                    closeParams: {
+                        _id: project._id,
+                        imageType: project.imageType
+                    }
                 });
                 $location.path('projects');
             } else {
-                alertsService.add('make-delete-project-not-changed', 'deleted-project', 'ok', 5000);
+                alertsService.add({
+                    text: 'make-delete-project-not-changed',
+                    id: 'deleted-project',
+                    type: 'ok',
+                    time: 5000
+                });
             }
         };
 
         $scope.copycode = function() {
-            alertsService.add('make-code-clipboard', 'code-clipboard', 'info', 3000);
+            alertsService.add({
+                text: 'make-code-clipboard',
+                id: 'code-clipboard',
+                type: 'info',
+                time: 3000
+            });
             clipboard.copyText($scope.getCode());
         };
 
@@ -173,7 +209,11 @@ angular.module('bitbloqApp')
                     $log.log('we delete this project');
                 }, function(error) {
                     $log.log('Delete error: ', error);
-                    alertsService.add('make-delete-project-error', 'deleted-project', 'warning');
+                    alertsService.add({
+                        text: 'make-delete-project-error',
+                        id: 'deleted-project',
+                        type: 'warning'
+                    });
                 });
             }
         }

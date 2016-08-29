@@ -9,7 +9,8 @@
             </div>
             <div class="landing--howitworks-oval second">
                 <img src="../images/landing/landing-howitworks-oval-2.png" alt="">
-                <h2>{{ 'landing_howitworks_oval_2' | translate }}</h2>
+                <h2 data-ng-if="common.os !== ChromeOS">{{ 'landing_howitworks_oval_2' | translate }}</h2>
+                <h2 data-ng-if="common.os === ChromeOS">{{ 'landing_howitworks_oval_2_chromeos' | translate }}</h2>
             </div>
             <div class="landing--howitworks-oval third">
                 <img src="../images/landing/landing-howitworks-oval-3.png" alt="">
@@ -36,8 +37,13 @@
                 {{ 'landing_link_download' | translate }} Linux 32-bits
             </button>
         </a>
+        <div class="download-button" ng-if="common.os === 'ChromeOS'" ng-click="installChromeApp()">
+            <button class="btn btn--tertiary btn--medium">
+                {{ 'landing_link_download' | translate }} Chrome OS
+            </button>
+        </div>
     </div>
-    <div class="landing--downloads max-width">
+    <div class="landing--downloads max-width" ng-if="common.os !== 'ChromeOS'">
         <h2 class="medium">{{ 'landing_title_availableForAllOS' | translate }}</h2>
         <ul class="row row--inline landing--section">
             <li class="col-medium-4">

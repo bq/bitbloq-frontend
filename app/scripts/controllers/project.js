@@ -43,13 +43,25 @@ angular.module('bitbloqApp')
             }, function(response) {
                 switch (response.status) {
                     case 404:
-                        alertsService.add('no-project', 'error-project', 'warning');
+                        alertsService.add({
+                            text: 'no-project',
+                            id: 'error-project',
+                            type: 'warning'
+                        });
                         break;
                     case 401: //unauthorized
-                        alertsService.add('alert_text_errorProjectUnauthorized', 'load-project', 'warning');
+                        alertsService.add({
+                            text: 'alert_text_errorProjectUnauthorized',
+                            id: 'load-project',
+                            type: 'warning'
+                        });
                         break;
                     default:
-                        alertsService.add('alert_text_errorProjectUndefined', 'error-project', 'warning');
+                        alertsService.add({
+                            text: 'alert_text_errorProjectUndefined',
+                            id: 'error-project',
+                            type: 'warning'
+                        });
                 }
             });
         }

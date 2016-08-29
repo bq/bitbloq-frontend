@@ -60,71 +60,61 @@ angular.module('bitbloqApp')
         };
 
         /**
-         * [alert create alert message]
-         * @param  {[string, object]} text  [text to show] or object with parameters required;
-         * @param  {[string]} type [type of the alert (info, confirm, error, warning)] not required;
-         * @param  {[number]} time  [time in ms to close the alert] not required
-         * @param  {[string]} id  [Alert id] required
+         * Params
+         * @param {[type]} text           Key of translated text to show
+         * @param {[type]} id             Alert ID
+         * @param {[type]} type           Type of alert Default "info"
+         * @param {[type]} time           Time : time to autoclose the alert, default "infinite"
+         * @param {[type]} value          Value: data extra
+         * @param {[type]} preIcon
+         * @param {[type]} postIcon
+         * @param {[type]} linkText       Text in the end of the alert with link
+         * @param {[type]} link           Function to execute when click the link
+         * @param {[type]} linkParams     Params for the function in the link
+         * @param {[type]} closeFunction  Function to launch on close
+         * @param {[type]} closeParams    Params for the function in the link
+         * @param {[type]} translatedText ??
          */
-        exports.add = function(text, id, type, time, data, preIcon, postIcon, linkText, link, linkParams, closeFunction, closeParams, translatedText) {
+        //exports.add = function(text, id, type, time, value, preIcon, postIcon, linkText, link, linkParams, closeFunction, closeParams, translatedText) {
+        exports.add = function(params) {
+
             i += 1;
-            if (typeof(text) === 'object') {
-                id = text.id;
-                type = text.type;
-                time = text.time;
-                data = text.data;
-                preIcon = text.preIcon;
-                postIcon = text.postIcon;
-                linkText = text.linkText;
-                link = text.link;
-                linkParams = text.linkParams;
-                closeFunction = text.closeFunction;
-                closeParams = text.closeParams;
-                translatedText = text.translatedText;
-                text = text.text;
-            }
 
-            var domClass,
-                alert = {
-                    text: text,
-                    id: id,
-                    uid: Date.now(),
-                    type: type || 'info',
-                    time: time || 'infinite',
-                    domClass: domClass,
-                    preIcon: preIcon || false,
-                    postIcon: postIcon || false,
-                    value: data,
-                    index: i,
-                    linkText: linkText,
-                    linkAction: link,
-                    linkParams: linkParams,
-                    close: exports.close,
-                    closeFunction: closeFunction,
-                    closeParams: closeParams,
-                    translatedText: translatedText
-                };
-            //extend alert object with text if text is an object with the parameters
-            if (angular.isObject(text)) {
-                delete alert.text;
-                _.extend(alert, text);
-            }
+            var alert = {
+                id: params.id,
+                text: params.text,
+                uid: Date.now() * Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
+                type: params.type || 'info',
+                time: params.time || 'infinite',
+                domClass: null,
+                preIcon: params.preIcon || false,
+                postIcon: params.postIcon || false,
+                value: params.value,
+                index: i,
+                linkText: params.linkText,
+                linkAction: params.link,
+                linkParams: params.linkParams,
+                close: exports.close,
+                closeFunction: params.closeFunction,
+                closeParams: params.closeParams,
+                translatedText: params.translatedText
+            };
 
-            switch (type) {
+            switch (params.type) {
                 case 'info':
-                    domClass = 'alert--info';
+                    alert.domClass = 'alert--info';
                     break;
                 case 'confirm':
-                    domClass = 'alert--confirm';
+                    alert.domClass = 'alert--confirm';
                     break;
                 case 'error':
-                    domClass = 'alert--error';
+                    alert.domClass = 'alert--error';
                     break;
                 case 'warning':
-                    domClass = 'alert--warning';
+                    alert.domClass = 'alert--warning';
                     break;
                 default:
-                    domClass = 'alert--info';
+                    alert.domClass = 'alert--info';
             }
 
             _removeAlert('id', alert.id);
@@ -137,12 +127,15 @@ angular.module('bitbloqApp')
                 alertTimeout = $timeout(function() {
                     _removeAlert('uid', alert.uid);
                     if (alert.closeFunction) {
-                        alert.closeFunction(closeParams);
+                        alert.closeFunction(params.closeParams);
                     }
                 }, alert.time);
             }
 
             alerts.unshift(alert);
+            if (!$rootScope.$$phase) {
+                $rootScope.$apply();
+            }
 
             return alert.uid;
 

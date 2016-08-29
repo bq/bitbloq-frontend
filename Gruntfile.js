@@ -314,16 +314,16 @@ module.exports = function(grunt) {
                 options: {
                     collapseWhitespace: true,
                     removeComments: true
-                    // preserveLineBreaks:true,
-                    // conservativeCollapse: true,
-                    // collapseBooleanAttributes: true,
-                    // removeCommentsFromCDATA: true,
-                    // removeOptionalTags: true
+                        // preserveLineBreaks:true,
+                        // conservativeCollapse: true,
+                        // collapseBooleanAttributes: true,
+                        // removeCommentsFromCDATA: true,
+                        // removeOptionalTags: true
                 },
                 files: [{
                     expand: true,
                     cwd: 'dist',
-                    src: ['*.html', 'views/**/*.html'],
+                    src: ['*.html', 'views/**/*.html', '!google0e0d0e0b7164c58a.html'],
                     dest: 'dist'
                 }]
             }
@@ -346,7 +346,7 @@ module.exports = function(grunt) {
                 svg: {
                     viewBox: '0 0 100 100',
                     xmlns: 'http://www.w3.org/2000/svg',
-                    'xmlns:xlink':'http://www.w3.org/1999/xlink'
+                    'xmlns:xlink': 'http://www.w3.org/1999/xlink'
                 },
                 includedemo: true,
                 formatting: {
@@ -535,12 +535,12 @@ module.exports = function(grunt) {
             },
             files: {
                 src: ['app/index.html']
-                //src: ['app/**/*.html']
+                    //src: ['app/**/*.html']
             }
         },
         addTimestampToFiles: {
             dist: {
-                htmlFiles: ['dist/**/*.html', '!dist/index.html'],
+                htmlFiles: ['dist/**/*.html', '!dist/index.html', '!dist/google0e0d0e0b7164c58a.html'],
                 localeFiles: ['dist/res/locales/*.json'],
                 configFiles: ['dist/res/config/**/*.json'],
                 imageFiles: ['dist/images/**/*.{svg,png,jpg,ico}'],
@@ -678,7 +678,6 @@ module.exports = function(grunt) {
         ]);
     });
 
-
     grunt.registerTask('distGCS', function() {
         grunt.task.run([
             'clean:dist',
@@ -733,25 +732,7 @@ module.exports = function(grunt) {
         grunt.task.run([
             'clean:i18n',
             'getpoeditorfiles:38967',
-            'poeditor2bitbloq',
-            'faqs',
-            'changelog'
-        ]);
-    });
-
-    grunt.registerTask('faqs', 'generate faqs', function() {
-        grunt.task.run([
-            'clean:i18n',
-            'getpoeditorfiles:38968',
-            'poeditor2faqs'
-        ]);
-    });
-
-    grunt.registerTask('changelog', 'generate changelog script', function() {
-        grunt.task.run([
-            'clean:i18n',
-            'getpoeditorfiles:39968',
-            'poeditor2ChangeLogs'
+            'poeditor2bitbloq'
         ]);
     });
 
@@ -885,13 +866,12 @@ module.exports = function(grunt) {
                 fileContent = grunt.file.read(file);
                 grunt.file.write(file, fileContent.replace(regExp, function(stringReplace) {
                     var splitString = stringReplace.split('images/')[1].split('/')[0],
-                        stringArray = stringReplace.split(splitString+'/');
-                    return stringArray[0] + splitString +'/' + timestamp + '.' + stringArray[1];
+                        stringArray = stringReplace.split(splitString + '/');
+                    return stringArray[0] + splitString + '/' + timestamp + '.' + stringArray[1];
                 }));
             }
         });
     };
-
 
     grunt.task.registerMultiTask('addTimestampToFiles', 'Add timestamps to html, locale, config, image and static files', function() {
         grunt.log.writeln(this.target + ': ' + this.data);
@@ -909,7 +889,6 @@ module.exports = function(grunt) {
         console.log(staticFiles);
         var newName = '';
         var i;
-
 
         for (i = 0; i < htmlFiles.length; i++) {
             newName = timestamp + '.' + htmlFiles[i].name;
@@ -947,8 +926,6 @@ module.exports = function(grunt) {
     grunt.registerTask('updateAllCollections', function() {
         grunt.task.run([
             'updateCollection:bloq',
-            'updateCollection:faq',
-            'updateCollection:changelog',
             'updateCollection:property',
             'updateCollection:forumcategory'
         ]);

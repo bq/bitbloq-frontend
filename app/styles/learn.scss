@@ -1,0 +1,81 @@
+.learn {
+    padding: 30px;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    background-color: #eee;
+
+    .tutorials--title, .tutorial--list {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .tutorials--level {
+        color: $font-color-base;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: default;
+    }
+
+    .tutorial--item {
+        background-color: white;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 2px 2px 0 rgba(50, 50, 50, .35);
+        margin-top: 20px;
+        position: relative;
+
+        .contact-us {
+            width: 100%;
+            height: 133px;
+            position: absolute;
+        }
+
+        .tutorial--image--container {
+            width: 160px;
+            height: 133px;
+            display: block;
+            float: left;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .tutorial--short--info {
+            display: block;
+            width: calc(100% - 160px);
+            float: right;
+            height: 133px;
+            padding: 20px;
+
+            .tutorial--item--heading {
+                color: #373b44;
+                font-size: 16px;
+                font-weight: 700;
+                max-width: 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 100%;
+                display: block;
+            }
+
+            .tutorial--item--text {
+                color: #8c919b;
+                font-size: 12px;
+                font-weight: 400;
+                margin-top: 10px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
+    }
+    .btn--go-to-diwo{
+        max-width: 1200px;
+        margin: 25px auto 0 auto;
+    }
+}

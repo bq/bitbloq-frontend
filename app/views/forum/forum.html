@@ -1,5 +1,9 @@
-<div class="forum__main" ng-include="'views/forum/forumIndex.html'" ng-show="forum.displayedView === 'main'"></div>
-<div class="forum__main" ng-include="'views/forum/newTheme.html'" ng-if="forum.displayedView === 'new-theme'"></div>
-<div class="forum__main" ng-include="'views/forum/category.html'" ng-if="forum.displayedView === 'category'"></div>
-<div class="forum__main" ng-include="'views/forum/theme.html'" ng-if="forum.displayedView === 'theme'"></div>
-<div class="forum__main" ng-include="'views/forum/bannedUsers.html'" ng-if="forum.displayedView === 'banned-users'"></div>
+<div class="forum">
+    <div class="forum__header" ng-if="forum.displayedView === 'main' || forum.displayedView === 'category' || forum.displayedView === 'theme'" ng-include="'views/forum/forumHeader.html'"></div>
+    <div class="forum__main" ng-include="'views/forum/forumIndex.html'" ng-show="forum.displayedView === 'main'"></div>
+    <div class="forum__main" ng-include="'views/forum/newTheme.html'" ng-if="forum.displayedView === 'new-theme'"></div>
+    <div class="forum__main" ng-include="'views/forum/category.html'" ng-if="forum.displayedView === 'category'"></div>
+    <div class="forum__main" ng-include="'views/forum/theme.html'" ng-if="forum.displayedView === 'theme'"></div>
+    <div class="forum__main" ng-include="'views/forum/bannedUsers.html'" ng-if="forum.displayedView === 'banned-users'"></div>
+    <span class="forum__footer">{{'forum__footer_contactUs' | translate }} <button class="link--default" ng-click="forum.commonModals.contactModal()" data-element="forum-contact-us-link">{{'forum__footer_contactUs-ClickHere' | translate}}</button> {{'forum__footer_contactUsByEmail' | translate}} <b>soporte.bitbloq@bq.com</b></span>
+</div>

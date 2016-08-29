@@ -2,28 +2,28 @@
 @TODO: rename classes
  */
 .form--login {
-    background-image : url('../../images/common/pattern.png');
+    background-image: url('../../images/common/pattern.png');
     background-repeat: repeat;
-    background-size  : 30%;
-    width            : 100%;
-    height           : 100%;
-    position         : absolute;
-    overflow-y       : auto;
+    background-size: 30%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow-y: auto;
 
     .btn__login--submit {
         background-color: #000;
-        width           : 100%;
-        height          : 50px;
-        border-radius   : .2em;
+        width: 100%;
+        height: 50px;
+        border-radius: .2em;
     }
 
     .btn--check-user {
-        height          : 35px;
-        font-size       : 12px;
-        width           : 100%;
+        height: 35px;
+        font-size: 12px;
+        width: 100%;
         background-color: #C0C0C0;
-        color           : black;
-        border-radius   : 4px;
+        color: black;
+        border-radius: 4px;
     }
 
     .form--subtitle {
@@ -40,7 +40,7 @@
     a,
     .btn--forgot,
     .btn--forgot-error {
-        color          : #629300;
+        color: #629300;
         text-decoration: underline;
     }
 
@@ -51,56 +51,56 @@
 
     label {
         font-size: .8125em;
-        position : relative;
-        top      : -3px;
-        left     : 3px;
+        position: relative;
+        top: -3px;
+        left: 3px;
     }
 
     .btn--forgot-error {
-        color           : #cc0001;
+        color: #cc0001;
         background-color: inherit;
-        text-align      : center;
+        text-align: center;
     }
 }
 
 .separator {
-    text-align    : center;
-    position      : relative;
-    color         : #8892AC;
-    padding-top   : 1em;
+    text-align: center;
+    position: relative;
+    color: #8892AC;
+    padding-top: 1em;
     padding-bottom: 1em;
 
     span {
-        display         : inline-block;
-        padding         : 0 .5em;
+        display: inline-block;
+        padding: 0 .5em;
         background-color: #F5F3F3;
-        z-index         : 10;
-        position        : relative;
-        cursor          : default;
+        z-index: 2;
+        position: relative;
+        cursor: default;
     }
 
     &:after {
-        z-index   : 1;
-        content   : '';
-        position  : absolute;
-        height    : 2px;
+        z-index: 1;
+        content: '';
+        position: absolute;
+        height: 2px;
         border-top: 1px solid #CCCACA;
-        top       : 5px;
-        bottom    : 0;
-        left      : 0;
-        right     : 0;
-        margin    : auto;
+        top: 5px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
     }
 }
 
 .btn__login--facebook {
-    background-color                 : #4573ba;
-    -webkit-border-top-left-radius   : .2em;
+    background-color: #4573ba;
+    -webkit-border-top-left-radius: .2em;
     -webkit-border-bottom-left-radius: .2em;
-    -moz-border-radius-topleft       : .2em;
-    -moz-border-radius-bottomleft    : .2em;
-    border-top-left-radius           : .2em;
-    border-bottom-left-radius        : .2em;
+    -moz-border-radius-topleft: .2em;
+    -moz-border-radius-bottomleft: .2em;
+    border-top-left-radius: .2em;
+    border-bottom-left-radius: .2em;
 
     &:hover {
         background-color: #5386d4;
@@ -112,13 +112,13 @@
 }
 
 .btn__login--google {
-    background-color                  : #D92C32;
-    -webkit-border-top-right-radius   : .2em;
+    background-color: #D92C32;
+    -webkit-border-top-right-radius: .2em;
     -webkit-border-bottom-right-radius: .2em;
-    -moz-border-radius-topright       : .2em;
-    -moz-border-radius-bottomright    : .2em;
-    border-top-right-radius           : .2em;
-    border-bottom-right-radius        : .2em;
+    -moz-border-radius-topright: .2em;
+    -moz-border-radius-bottomright: .2em;
+    border-top-right-radius: .2em;
+    border-bottom-right-radius: .2em;
 
     &:hover {
         background-color: #f93940;
@@ -131,19 +131,19 @@
 
 .login-container {
     position: absolute;
-    display : block;
-    left    : 0;
-    right   : 0;
-    margin  : auto;
+    display: block;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .form--login__container {
     background-color: #F1F1F1;
-    border          : 1px solid #CCC;
-    padding         : 1em;
-    border-radius   : .4em;
-    text-align      : center;
-    position        : relative;
+    border: 1px solid #CCC;
+    padding: 1em;
+    border-radius: .4em;
+    text-align: center;
+    position: relative;
 
     .h3 {
         color: black;
@@ -152,16 +152,16 @@
 
 .form--login__container--transition-down {
     -webkit-animation: fadeout 500ms ease-out;
-    -moz-animation   : fadeout 500ms ease-out;
-    -o-animation     : fadeout 500ms ease-out;
-    animation        : fadeout 500ms ease-out;
+    -moz-animation: fadeout 500ms ease-out;
+    -o-animation: fadeout 500ms ease-out;
+    animation: fadeout 500ms ease-out;
 }
 
 .form--login__container--transition-up {
     -webkit-animation: fadein 1s ease-out;
-    -moz-animation   : fadein 1s ease-out;
-    -o-animation     : fadein 1s ease-out;
-    animation        : fadein 1s ease-out;
+    -moz-animation: fadein 1s ease-out;
+    -o-animation: fadein 1s ease-out;
+    animation: fadein 1s ease-out;
 }
 
 .hide-container {
@@ -173,40 +173,40 @@
 }
 
 .form--login__register {
-    color     : white;
+    color: white;
     margin-top: 1em;
-    display   : block;
+    display: block;
 
     a {
-      color     : white;
-      margin-left: 8em;
+        color: white;
+        margin-left: 8em;
     }
 }
 
 .form--login__image {
-    width  : 197px;
-    margin : 0 auto;
+    width: 197px;
+    margin: 0 auto;
     display: block;
-    fill   : white;
-    height : 110px;
+    fill: white;
+    height: 110px;
 }
 
 .form--container {
     position: relative;
-    display : block;
-    top     : 0;
-    bottom  : 0;
-    left    : 0;
-    right   : 0;
-    margin  : auto;
-    width   : 330px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 330px;
 }
 
 .form--subtitle {
-    font-size : small;
-    width     : 220px;
-    margin    : .5em auto 1em;
-    display   : block;
+    font-size: small;
+    width: 220px;
+    margin: .5em auto 1em;
+    display: block;
     text-align: left;
 }
 
@@ -216,13 +216,13 @@
 
 .social--buttons__container {
     display: block;
-    margin : 0 auto;
-    width  : 190px;
+    margin: 0 auto;
+    width: 190px;
 }
 
 .form--data--center {
-    width  : 220px;
-    margin : 0 auto;
+    width: 220px;
+    margin: 0 auto;
     display: block;
 }
 
@@ -236,73 +236,72 @@ input:-webkit-autofill {
 
 .form-control {
     margin-bottom: 1em;
-    text-align   : left;
+    text-align: left;
 }
 
 .shake {
-    animation-name           : shake;
-    animation-duration       : 250ms;
-    transform-origin         : 50% 50%;
+    animation-name: shake;
+    animation-duration: 250ms;
+    transform-origin: 50% 50%;
     animation-timing-function: linear;
 }
 
-
 .form-control {
     margin-bottom: 1em;
-    text-align   : left;
+    text-align: left;
 }
 
 .input--checkbox--error {
 
-  vertical-align: text-top;
-  position      : relative;
-  width         : 1.3em;
-  height        : 1.3em;
-  margin-right  : .5em;
+    vertical-align: text-top;
+    position: relative;
+    width: 1.3em;
+    height: 1.3em;
+    margin-right: .5em;
 
-  input {
-    background        : none;
-    width             : 1.2em !important;
-    height            : 1.2em !important;
-    -webkit-appearance: none;
-    border-radius     : .3em;
-    border            : 1px solid white;
-    background-color  : rgba(255, 51, 51, 0.2);
-    -webkit-box-shadow: 0 0 5px 2px rgba(255, 51, 51, 0.79);
-    -moz-box-shadow   : 0 0 5px 2px rgba(255, 51, 51, 0.79);
-    box-shadow        : 0 0 2px 2px rgba(255, 51, 51, 0.7);
-  }
+    input {
+        background: none;
+        width: 1.2em !important;
+        height: 1.2em !important;
+        -webkit-appearance: none;
+        border-radius: .3em;
+        border: 1px solid white;
+        background-color: rgba(255, 51, 51, 0.2);
+        -webkit-box-shadow: 0 0 5px 2px rgba(255, 51, 51, 0.79);
+        -moz-box-shadow: 0 0 5px 2px rgba(255, 51, 51, 0.79);
+        box-shadow: 0 0 2px 2px rgba(255, 51, 51, 0.7);
+    }
 }
 
 .input--checkbox {
     vertical-align: text-top;
-    position      : relative;
-    width         : 1.3em;
-    height        : 1.3em;
-    margin-right  : .5em;
+    position: relative;
+    width: 1.3em;
+    height: 1.3em;
+    margin-right: .5em;
 
     input {
-        background        : none;
-        border            : none;
-        width             : 1.2em !important;
-        height            : 1.2em !important;
+        background: none;
+        border: none;
+        width: 1.2em !important;
+        height: 1.2em !important;
         -webkit-appearance: none;
-        background-color  : white;
-        border-radius     : .3em;
-        border            : 2px solid $font-color-disabled;
+        background-color: white;
+        border-radius: .3em;
+        border: 2px solid $font-color-disabled;
 
         &:hover {
             transition: background-color 250ms;
-            border    : 2px solid $font-color-base;
+            border: 2px solid $font-color-base;
         }
 
         &:checked {
-            border             : 1px solid $font-color-base;
-            border             : none;
-            background-color   : $font-color-base;
-            background-image   : url('../images/icons/verificarmini.svg');
-            background-size    : 70%;
-            background-repeat  : no-repeat;
+            border: 1px solid $font-color-base;
+            border: none;
+            background-color: $font-color-base;
+            background-image: url('../images/icons/verificarmini.svg');
+            background-size: 70%;
+            background-repeat: no-repeat;
             background-position: center center;
         }
 
@@ -311,37 +310,37 @@ input:-webkit-autofill {
         }
 
         &:focus {
-          transition: background-color 250ms;
-          border    : 2px solid $font-color-base;
+            transition: background-color 250ms;
+            border: 2px solid $font-color-base;
         }
     }
 
     .fa {
         position: absolute;
-        top     : .1em;
-        left    : .1em;
+        top: .1em;
+        left: .1em;
 
         &:before {
-            content  : '\f00c';
-            color    : white;
-            top      : -3px;
-            position : relative;
+            content: '\f00c';
+            color: white;
+            top: -3px;
+            position: relative;
             font-size: .85em;
-            left     : 1px;
+            left: 1px;
         }
     }
 }
 
 .input--date {
-    width  : 220px;
+    width: 220px;
     display: flex;
-    height : 35px;
+    height: 35px;
 
     & input {
         &::-webkit-input-placeholder {
             font-style: italic;
         }
-float: left;
+        float: left;
     }
 }
 
@@ -349,11 +348,11 @@ float: left;
     background-color: #F1F1F1;
 
     input {
-        border       : 1px solid #dadada; //para seleccionar $font-color-base;
-        width        : 25%;
-        height       : 34px;
+        border: 1px solid #dadada; //para seleccionar $font-color-base;
+        width: 25%;
+        height: 34px;
         border-radius: .2em;
-        text-align   : center;
+        text-align: center;
 
         &:nth-child(2) {
             margin: 0 12.5%;
@@ -366,12 +365,12 @@ float: left;
 }
 
 .birthday--error {
-    background-color  : rgba(255, 51, 51, 0.2);
-    border            : 1px solid white;
+    background-color: rgba(255, 51, 51, 0.2);
+    border: 1px solid white;
     -webkit-box-shadow: 0 0 5px 2px rgba(255, 51, 51, 0.79);
-    -moz-box-shadow   : 0 0 5px 2px rgba(255, 51, 51, 0.79);
-    box-shadow        : 0 0 2px 2px rgba(255, 51, 51, 0.7);
-    color             : #cc0001;
+    -moz-box-shadow: 0 0 5px 2px rgba(255, 51, 51, 0.79);
+    box-shadow: 0 0 2px 2px rgba(255, 51, 51, 0.7);
+    color: #cc0001;
     @include placeholder(rgba(203, 15, 16, 1));
 }
 
@@ -383,67 +382,68 @@ float: left;
     width: 100%;
 
     input {
-        width : 100%;
+        width: 100%;
         cursor: text;
     }
 
-     ::-webkit-datetime-edit,
+    ::-webkit-datetime-edit,
     ::-webkit-datetime-edit-fields-wrapper {
-        width     : 100%;
+        width: 100%;
         min-height: 41px;
         font-style: italic;
     }
 
-     ::-webkit-datetime-edit-text {
-        position        : relative;
-        top             : 10px;
+    ::-webkit-datetime-edit-text {
+        position: relative;
+        top: 10px;
         background-color: transparent;
-        color           : #B9BDC8;
+        color: #B9BDC8;
     }
 }
 
- ::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-day-field,
 ::-webkit-datetime-edit-month-field,
 ::-webkit-datetime-edit-year-field {
-    position        : relative;
-    top             : 10px;
-    left            : 3px;
+    position: relative;
+    top: 10px;
+    left: 3px;
     background-color: transparent;
-    padding         : 8px 22px;
-    color           : #B9BDC8;
+    padding: 8px 22px;
+    color: #B9BDC8;
 }
 
- ::-webkit-calendar-picker-indicator,
+::-webkit-calendar-picker-indicator,
 ::-webkit-inner-spin-button,
 ::-webkit-clear-button {
     display: none;
 }
+
 /* Webkit, Chrome and Safari */
 @-webkit-keyframes fadeout {
     0% {
-        opacity          : 1;
+        opacity: 1;
         -webkit-transform: translate3d(0, 0, 0);
     }
 
     100% {
-        opacity          : 0;
+        opacity: 0;
         -webkit-transform: translate3d(0, 15%, 0);
     }
 }
 
 @-webkit-keyframes fadein {
     0% {
-        opacity          : 0;
+        opacity: 0;
         -webkit-transform: translate3d(0, 15%, 0);
     }
 
     50% {
-        opacity          : 0;
+        opacity: 0;
         -webkit-transform: translate3d(0, 15%, 0);
     }
 
     100% {
-        opacity          : 1;
+        opacity: 1;
         -webkit-transform: translate3d(0, 0, 0);
     }
 }

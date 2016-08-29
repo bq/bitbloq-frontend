@@ -28,6 +28,11 @@ angular.module('bitbloqApp')
             });
         }
 
+        $scope.translateGuest = function(language){
+            $translate.use(language);
+            localStorage.guestLanguage = language;
+        };
+
         $scope.closeMenu = function($event) {
             if ($scope.menuVisible && !angular.element($event.target).hasClass('icon-wrapper')) {
                 $scope.toggleMenu();

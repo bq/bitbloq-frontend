@@ -36,173 +36,180 @@ angular
         'angular-clipboard',
         'angularUtils.directives.dirPagination'
     ]).config(['$provide', '$routeProvider', '$httpProvider', '$translateProvider', '$authProvider', '$logProvider', 'envData',
-        function($provide, $routeProvider, $httpProvider, $translateProvider, $authProvider, $logProvider, envData) {
+    function($provide, $routeProvider, $httpProvider, $translateProvider, $authProvider, $logProvider, envData) {
 
-            if (envData.config.env === 'production') {
-                $logProvider.debugEnabled(false);
-            }
-
-            $routeProvider
-                .when('/', {
-                    templateUrl: 'views/landing/landing.html',
-                    controller: 'LandingCtrl'
-                })
-                .when('/account', {
-                    templateUrl: 'views/account.html',
-                    controller: 'AccountCtrl'
-                })
-                .when('/bloqsproject/:id?', {
-                    templateUrl: 'views/bloqsproject/bloqsproject.html',
-                    controller: 'BloqsprojectCtrl',
-                    reloadOnSearch: false
-                })
-                .when('/explore:params?', {
-                    templateUrl: 'views/explore.html',
-                    controller: 'ExploreCtrl',
-                    reloadOnSearch: false
-                })
-                .when('/login:params?', {
-                    templateUrl: 'views/login.html',
-                    controller: 'LoginCtrl',
-                    islogin: true
-                })
-                .when('/register', {
-                    templateUrl: 'views/login.html',
-                    controller: 'LoginCtrl',
-                    islogin: false
-                })
-                .when('/resetpassword', {
-                    templateUrl: 'views/login.html',
-                    controller: 'LoginCtrl',
-                    islogin: false
-                })
-                .when('/offline', {
-                    templateUrl: 'views/landing/landing-offline.html',
-                    controller: 'LandingCtrl'
-                })
-                .when('/projects', {
-                    templateUrl: 'views/projects.html',
-                    controller: 'ProjectsCtrl'
-                })
-                .when('/styleguide', {
-                    templateUrl: 'views/styleguide.html',
-                    controller: 'StylesCtrl'
-                })
-                .when('/cookies', {
-                    templateUrl: 'views/cookies.html',
-                    controller: 'CookiesCtrl'
-                })
-                .when('/terms', {
-                    templateUrl: 'views/terms.html',
-                    controller: 'TermsCtrl'
-                })
-                .when('/account', {
-                    templateUrl: 'views/account.html',
-                    controller: 'AccountCtrl',
-                    authenticate: true
-                })
-                .when('/project/:id', {
-                    templateUrl: 'views/project.html',
-                    controller: 'ProjectCtrl'
-                })
-                .when('/help/:section?/:forumsection?/:forumresource?', {
-                    templateUrl: 'views/help/help.html',
-                    controller: 'HelpCtrl',
-                    reloadOnSearch: false
-                })
-                .when('/404', {
-                    templateUrl: '404.html'
-                })
-                .when('/maintenance', {
-                    templateUrl: 'maintenance.html'
-                })
-                .when('/recovery/:token', {
-                    templateUrl: 'views/resetPassword.html',
-                    controller: 'ResetPasswordCtrl'
-                })
-                .when('/unsupported/:id', {
-                    templateUrl: 'views/unsupported.html',
-                    controller: 'UnsupportedCtrl'
-                })
-                // .when('/user/:id?', {
-                //     templateUrl: 'views/user.html',
-                //     controller: 'UserCtrl'
-                // })
-                .when('/features', {
-                    templateUrl: 'views/landing/landing-features.html',
-                    controller: 'LandingCtrl'
-                })
-                .when('/downloads', {
-                    templateUrl: 'views/landing/landing-downloads.html',
-                    controller: 'LandingCtrl'
-                })
-                .when('/aboutus', {
-                    templateUrl: 'views/landing/landing-aboutus.html',
-                    controller: 'LandingCtrl'
-                })
-                .when('/howitworks', {
-                    templateUrl: 'views/landing/landing-howitworks.html',
-                    controller: 'LandingCtrl'
-                })
-                .when('/codeproject/:id?', {
-                    templateUrl: 'views/code.html',
-                    controller: 'CodeCtrl',
-                    reloadOnSearch: false
-                })
-                .when('/bitbloq-help/', {
-                    templateUrl: 'views/landing/landing-help.html',
-                    controller: 'LandingCtrl'
-                })
-                .otherwise({
-                    redirectTo: '/404'
-                });
-
-            $authProvider.loginRedirect = null;
-
-            // Google
-            $authProvider.google({
-                clientId: envData.google.clientId,
-                apiKey: envData.google.apikey,
-                scope: envData.google.scope,
-                apis: envData.google.apis,
-                responseType: 'token',
-                visibleActions: envData.google.visibleActions,
-                display: 'popup',
-                popupOptions: {
-                    width: 580,
-                    height: 400
-                }
-            });
-
-            // Facebook
-            $authProvider.facebook({
-                clientId: envData.facebook.clientId,
-                authorizationEndpoint: 'https://www.facebook.com/dialog/oauth',
-                scope: envData.facebook.scope,
-                responseType: 'token',
-                display: 'popup',
-                version: envData.facebook.version,
-                popupOptions: {
-                    width: envData.facebook.popupOptions.width,
-                    height: envData.facebook.popupOptions.height
-                }
-            });
-
-            // $httpProvider.interceptors.push('httpInterceptor');
-            $httpProvider.interceptors.push('authInterceptor');
-            delete $httpProvider.defaults.headers.common['X-Requested-With'];
-            $translateProvider.useStaticFilesLoader({
-                prefix: 'res/locales/',
-                suffix: '.json'
-            });
-
-            //indicamos el idioma inicial
-            $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
-            $translateProvider.preferredLanguage(envData.config.defaultLang);
-            $translateProvider.fallbackLanguage('en-GB');
-
+        if (envData.config.env === 'production') {
+            $logProvider.debugEnabled(false);
         }
-    ])
+
+        $routeProvider
+            .when('/', {
+                templateUrl: 'views/landing/landing.html',
+                controller: 'LandingCtrl'
+            })
+            .when('/account', {
+                templateUrl: 'views/account.html',
+                controller: 'AccountCtrl'
+            })
+            .when('/bloqsproject/:id?', {
+                templateUrl: 'views/bloqsproject/bloqsproject.html',
+                controller: 'BloqsprojectCtrl',
+                reloadOnSearch: false
+            })
+            .when('/explore:params?', {
+                templateUrl: 'views/explore.html',
+                controller: 'ExploreCtrl',
+                reloadOnSearch: false
+            })
+            .when('/login:params?', {
+                templateUrl: 'views/login.html',
+                controller: 'LoginCtrl',
+                islogin: true
+            })
+            .when('/register', {
+                templateUrl: 'views/login.html',
+                controller: 'LoginCtrl',
+                islogin: false
+            })
+            .when('/resetpassword', {
+                templateUrl: 'views/login.html',
+                controller: 'LoginCtrl',
+                islogin: false
+            })
+            .when('/offline', {
+                templateUrl: 'views/landing/landing-offline.html',
+                controller: 'LandingCtrl'
+            })
+            .when('/projects', {
+                templateUrl: 'views/projects.html',
+                controller: 'ProjectsCtrl'
+            })
+            .when('/styleguide', {
+                templateUrl: 'views/styleguide.html',
+                controller: 'StylesCtrl'
+            })
+            .when('/cookies', {
+                templateUrl: 'views/cookies.html',
+                controller: 'CookiesCtrl'
+            })
+            .when('/terms', {
+                templateUrl: 'views/terms.html',
+                controller: 'TermsCtrl'
+            })
+            .when('/account', {
+                templateUrl: 'views/account.html',
+                controller: 'AccountCtrl',
+                authenticate: true
+            })
+            .when('/project/:id', {
+                templateUrl: 'views/project.html',
+                controller: 'ProjectCtrl'
+            })
+            .when('/learn', {
+                templateUrl: 'views/learn.html',
+                controller: 'LearnCtrl'
+            })
+            .when('/forum/:forumsection?/:forumresource?', {
+                templateUrl: 'views/forum/forum.html',
+                controller: 'ForumCtrl as forum',
+                reloadOnSearch: false
+            })
+            .when('/help/forum/:forumsection?/:forumresource?', {
+                redirectTo: '/forum/:forumsection?/:forumresource?'
+            })
+            .when('/404', {
+                templateUrl: '404.html'
+            })
+            .when('/maintenance', {
+                templateUrl: 'maintenance.html'
+            })
+            .when('/recovery/:token', {
+                templateUrl: 'views/resetPassword.html',
+                controller: 'ResetPasswordCtrl'
+            })
+            .when('/unsupported/:id', {
+                templateUrl: 'views/unsupported.html',
+                controller: 'UnsupportedCtrl'
+            })
+            // .when('/user/:id?', {
+            //     templateUrl: 'views/user.html',
+            //     controller: 'UserCtrl'
+            // })
+            .when('/features', {
+                templateUrl: 'views/landing/landing-features.html',
+                controller: 'LandingCtrl'
+            })
+            .when('/downloads', {
+                templateUrl: 'views/landing/landing-downloads.html',
+                controller: 'LandingCtrl'
+            })
+            .when('/aboutus', {
+                templateUrl: 'views/landing/landing-aboutus.html',
+                controller: 'LandingCtrl'
+            })
+            .when('/howitworks', {
+                templateUrl: 'views/landing/landing-howitworks.html',
+                controller: 'LandingCtrl'
+            })
+            .when('/codeproject/:id?', {
+                templateUrl: 'views/code.html',
+                controller: 'CodeCtrl',
+                reloadOnSearch: false
+            })
+            .when('/bitbloq-help/', {
+                templateUrl: 'views/landing/landing-help.html',
+                controller: 'LandingCtrl'
+            })
+            .otherwise({
+                redirectTo: '/404'
+            });
+
+        $authProvider.loginRedirect = null;
+
+        // Google
+        $authProvider.google({
+            clientId: envData.google.clientId,
+            apiKey: envData.google.apikey,
+            scope: envData.google.scope,
+            apis: envData.google.apis,
+            responseType: 'token',
+            visibleActions: envData.google.visibleActions,
+            display: 'popup',
+            popupOptions: {
+                width: 580,
+                height: 400
+            }
+        });
+
+        // Facebook
+        $authProvider.facebook({
+            clientId: envData.facebook.clientId,
+            authorizationEndpoint: 'https://www.facebook.com/dialog/oauth',
+            scope: envData.facebook.scope,
+            responseType: 'token',
+            display: 'popup',
+            version: envData.facebook.version,
+            popupOptions: {
+                width: envData.facebook.popupOptions.width,
+                height: envData.facebook.popupOptions.height
+            }
+        });
+
+        // $httpProvider.interceptors.push('httpInterceptor');
+        $httpProvider.interceptors.push('authInterceptor');
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'res/locales/',
+            suffix: '.json'
+        });
+
+        //indicamos el idioma inicial
+        $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+        $translateProvider.preferredLanguage(envData.config.defaultLang);
+        $translateProvider.fallbackLanguage('en-GB');
+
+    }
+])
     .config(function(AnalyticsProvider, envData) {
         // initial configuration
         /* For more information about provider configuration: https://github.com/revolunet/angular-google-analytics#example */

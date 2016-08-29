@@ -138,5 +138,13 @@
         "description": "",
         "section": "forum_section_4_language",
         "order": 11
+    },
+    {
+        "_id" : "forum_category_faqs",
+        "name" : "Preguntas frecuentes",
+        "description" : "¿Tienes una duda? Puede que esté entre nuestras preguntas frecuentes.",
+        "section" : "forum_section_1_main",
+        "order" : 3.0,
+        "__v" : 0.0
     }
 ]

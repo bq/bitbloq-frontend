@@ -8,7 +8,7 @@
  * Service in the bitbloqApp.
  */
 angular.module('bitbloqApp')
-    .service('utils', function(_, $q, $window) {
+    .service('utils', function(_, $q, $window, $translate) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         var exports = {};
         var defaultDiacriticsRemovalap = [{
@@ -281,8 +281,8 @@ angular.module('bitbloqApp')
 
         exports.removeDiacritics = function(str, config, defaultName) {
             var configDefault = config || {
-                        spaces: true
-                    },
+                    spaces: true
+                },
                 newStr;
             newStr = str.replace(/[^\u0000-\u007E]/g, function(a) {
                 return diacriticsMap[a] || a;
@@ -304,9 +304,9 @@ angular.module('bitbloqApp')
             blob = new Blob([data], {
                 type: type
             });
-            if(window.navigator.msSaveOrOpenBlob){
+            if (window.navigator.msSaveOrOpenBlob) {
                 window.navigator.msSaveOrOpenBlob(blob, fileName);
-            }else{
+            } else {
                 // Read blob.
                 url = window.URL.createObjectURL(blob);
 
@@ -390,10 +390,14 @@ angular.module('bitbloqApp')
 
             if (file.type.match(/image.*/)) {
                 if (properties.without && file.type.match(properties.without)) {
-                    defered.reject({error: 'no-image'});
+                    defered.reject({
+                        error: 'no-image'
+                    });
                 } else {
                     if (fileSize > 1000000) {
-                        defered.reject({error: 'heavy'});
+                        defered.reject({
+                            error: 'heavy'
+                        });
                     } else {
                         var reader = new FileReader();
 
@@ -408,13 +412,19 @@ angular.module('bitbloqApp')
                             img.onload = function() {
                                 // access image size here
                                 if ((properties.minWidth && properties.minHeight) && (this.width < properties.minWidth || this.height < properties.minHeight)) {
-                                    defered.reject({error: 'small'});
+                                    defered.reject({
+                                        error: 'small'
+                                    });
                                 } else {
                                     if (properties.containerDest) {
                                         var dest = document.getElementById(properties.containerDest);
                                         $(dest)[0].src = img.src;
                                     }
-                                    defered.resolve({blob: blob, img: img, file: file});
+                                    defered.resolve({
+                                        blob: blob,
+                                        img: img,
+                                        file: file
+                                    });
                                 }
                             };
                         };
@@ -422,7 +432,9 @@ angular.module('bitbloqApp')
                     }
                 }
             } else {
-                defered.reject({error: 'no-image'});
+                defered.reject({
+                    error: 'no-image'
+                });
             }
             angular.element('.main-image--input').val(null);
 
@@ -443,17 +455,100 @@ angular.module('bitbloqApp')
             return pretty;
         };
 
-        exports.getOs = function(){
+        exports.getOs = function() {
 
-            if (navigator.platform.indexOf('Win') !== -1) {
+            if ($window.navigator.platform.indexOf('Win') !== -1) {
                 return 'Windows';
-            } else if (navigator.platform.indexOf('Mac') !== -1) {
-                return 'Mac';
-            } else if (navigator.platform.indexOf('Linux') !== -1) {
-                return 'Linux';
+            } else if ($window.navigator.platform.indexOf('Mac') !== -1) {
+                return 'ChromeOS'; //Mac
+            } else if ($window.navigator.userAgent.indexOf('CrOS') !== -1) {
+                return 'ChromeOS';
             } else {
-                return 'Linux';
+                return 'Linux'; //Linux
             }
+        };
+
+        exports.parseCompileError = function(errors) {
+            var translatedErrors = [],
+                line = $translate.instant('line').toUpperCase(),
+                column = $translate.instant('column').toUpperCase(),
+                error = $translate.instant('error').toUpperCase(),
+                translatedError;
+
+            for (var i = 0; i < errors.length; i++) {
+                translatedError = error + ': ' + errors[i].error + ' ' +
+                    line + ': ' + errors[i].line + ' ';
+                if (errors[i].column) {
+                    translatedError += column + ': ' + errors[i].column;
+                }
+                translatedErrors.push(translatedError);
+            }
+
+            return translatedErrors.join('<br>');
+        };
+
+        exports.clone = function(object) {
+            return JSON.parse(JSON.stringify(object));
+        };
+
+        exports.getPortsPrettyNames = function(ports, boards) {
+            var boardFound = -1,
+                j;
+            for (var i = 0; i < ports.length; i++) {
+                j = 0;
+                boardFound = exports.getBoardByPort(ports[i], boards);
+
+                if (boardFound) {
+                    ports[i].portName = boardFound.name.toUpperCase() + '(' + ports[i].comName + ')';
+                } else {
+                    ports[i].portName = ports[i].comName;
+                }
+            }
+            return ports;
+        };
+
+        exports.getBoardByPort = function(port, boards) {
+            var boardFound,
+                board,
+                j = 0;
+            while (!board && (j < boards.length)) {
+                boardFound = exports.portOwnBoard(port, boards[j]);
+                if (boardFound !== -1) {
+                    board = boards[j];
+                }
+                j++;
+            }
+            return board;
+        };
+
+        exports.getPortByBoard = function(ports, board) {
+            var portFound,
+                port,
+                i = 0;
+            while (!port && (i < ports.length)) {
+                portFound = exports.portOwnBoard(ports[i], board);
+                if (portFound !== -1) {
+                    port = ports[i];
+                }
+                i++;
+            }
+            return port;
+        };
+
+        exports.portOwnBoard = function(port, board) {
+            console.log('portOwnBoard');
+            console.log(port.comName, port.productId, port.vendorId);
+            console.log(board.name, board.productIds, board.vendorIds);
+            var result;
+            result = board.vendorIds.indexOf(port.vendorId);
+            console.log('result', result);
+
+            if (result !== -1) {
+                result = board.productIds.indexOf(port.productId);
+            }
+
+            console.log('result', result);
+            return result;
         };
 
         return exports;

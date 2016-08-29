@@ -42,13 +42,25 @@ angular.module('bitbloqApp')
             }).catch(function(response) {
                 switch (response.error) {
                     case 'heavy':
-                        alertsService.add('info-tab-image-heavy-error', 'info-tab-image', 'warning');
+                        alertsService.add({
+                            text: 'info-tab-image-heavy-error',
+                            id: 'info-tab-image',
+                            type: 'warning'
+                        });
                         break;
                     case 'small':
-                        alertsService.add('info-tab-image-small-error', 'info-tab-image', 'warning');
+                        alertsService.add({
+                            text: 'info-tab-image-small-error',
+                            id: 'info-tab-image',
+                            type: 'warning'
+                        });
                         break;
                     case 'no-image':
-                        alertsService.add('info-tab-image-read-error', 'info-tab-image', 'warning');
+                        alertsService.add({
+                            text: 'info-tab-image-read-error',
+                            id: 'info-tab-image',
+                            type: 'warning'
+                        });
                         break;
                 }
             });

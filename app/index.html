@@ -35,7 +35,7 @@
     <meta name="twitter:creator" content="@bqreaders">
     <meta name="twitter:title" content="bitbloq">
     <meta name="twitter:description" content="¿Quieres programar el mundo? Aprende a programar jugando y crea todo lo que te imagines: robots, juegos electrónicos ¡y hasta tus propios inventos!">
-    <meta name="twitter:image:src" content="images/common/twitter-card.jpg">
+    <meta name="twitter:image" content="images/common/twitter_card.jpg">
     <!-- Open Graph data -->
     <meta property="og:title" content="bitbloq">
     <meta property="og:type" content="website">
@@ -57,10 +57,9 @@
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
     <link rel="stylesheet" href="bower_components/bloqs/dist/bloqs.css" />
     <!-- endbower -->
-
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ddpdpmibfdhifigignfdiggfbcmfblfj">
 </head>
 
 <body data-ng-app="bitbloqApp" class="body" data-ng-class="{'show--header':isHeader()}" data-ng-controller="BodyCtrl" oncontextmenu="return false;">
@@ -149,11 +148,13 @@
     <!-- build:js({.tmp,app}) scripts/main.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/HubsApi.js"></script>
+    <script src="scripts/constants/hardware.js"></script>
     <script src="scripts/factories/WSHubsAPI.js"></script>
     <script src="scripts/factories/lodash.js"></script>
     <script src="scripts/factories/bloqs.js"></script>
     <script src="scripts/factories/jsplumbutil.js"></script>
     <script src="scripts/factories/jsplumb.js"></script>
+    <script src="scripts/factories/jszip.js"></script>
     <script src="scripts/services/alerts.js"></script>
     <script src="scripts/services/authInterceptor.js"></script>
     <script src="scripts/services/common.js"></script>
@@ -161,12 +162,10 @@
     <script src="scripts/services/userApi.js"></script>
     <script src="scripts/services/projectApi.js"></script>
     <script src="scripts/services/imageApi.js"></script>
-    <script src="scripts/services/faqsApi.js"></script>
-    <script src="scripts/services/changeLogsApi.js"></script>
     <script src="scripts/services/forumApi.js"></script>
-    <script src="scripts/services/resource.js"></script>
     <script src="scripts/services/web2boardV1.js"></script>
     <script src="scripts/services/web2boardV2.js"></script>
+    <script src="scripts/services/resource.js"></script>
     <script src="scripts/services/bloqsApi.js"></script>
     <script src="scripts/services/utils.js"></script>
     <script src="scripts/services/hw2bloqs.js"></script>
@@ -174,6 +173,9 @@
     <script src="scripts/services/commonModals.js"></script>
     <script src="scripts/services/openWindow.js"></script>
     <script src="scripts/services/robotFirmwareApi.js"></script>
+    <script src="scripts/services/chromeAppApi.js"></script>
+    <script src="scripts/services/compilerApi.js"></script>
+    <script src="scripts/services/web2boardOnline.js"></script>
     <script src="scripts/directives/beautyCode.js"></script>
     <script src="scripts/directives/bitbloqBloqCreator.js"></script>
     <script src="scripts/directives/commonDropdown.js"></script>
@@ -199,7 +201,7 @@
     <script src="scripts/controllers/terms.js"></script>
     <script src="scripts/controllers/alerts.js"></script>
     <script src="scripts/controllers/project.js"></script>
-    <script src="scripts/controllers/help.js"></script>
+    <script src="scripts/controllers/learn.js"></script>
     <script src="scripts/controllers/user.js"></script>
     <script src="scripts/controllers/unsupported.js"></script>
     <script src="scripts/controllers/code.js"></script>

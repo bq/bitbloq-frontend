@@ -26,7 +26,12 @@ angular.module('bitbloqApp')
                         }, {
                             newPassword: password
                         }, function() {
-                            alertsService.add('recovery-create-password-ok', 'password', 'ok', 5000);
+                            alertsService.add({
+                                text: 'recovery-create-password-ok',
+                                id: 'password',
+                                type: 'ok',
+                                time: 5000
+                            });
                             $location.path('login');
                         }, function() {
                             common.setUser(null);

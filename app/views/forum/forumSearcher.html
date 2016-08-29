@@ -1,0 +1,10 @@
+<div ng-if="!forum.themeCategory" class="forum__bigsearch" ng-class="{'searching':forum.results.show}">
+    <span class="form--input">
+        <svg class="svg-icon--search">
+            <use xlink:href="#lupa"></use>
+        </svg>
+        <input type="search" name="search--normal" id="search--normal" placeholder="{{'find'|translate}}"
+               ng-model="forum.searchText" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }"
+               ng-change="forum.refreshSearchLayout()">
+    </span>
+</div>

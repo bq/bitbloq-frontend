@@ -1,30 +1,16 @@
-<div class="forum__header">
-    <div class="forum__breadcrumb" data-element="forum-header-breadcrumb"
-         ng-class="{'in-category':forum.currentCategory, 'in-theme':forum.themeCategory}">
-        <h2><a href="#/help/forum">{{'help_title_forum' | translate}}</a></h2>
+<div class="forum__main forum__header">
+    <div class="forum__breadcrumb" data-element="forum-header-breadcrumb" ng-class="{'in-category':forum.currentCategory, 'in-theme':forum.themeCategory}">
+        <h2><a href="#/forum">{{'help_title_forum' | translate}}</a></h2>
         <span ng-if="!forum.themeCategory">{{forum.currentCategory}}</span>
-        <a ng-if="forum.themeCategory"
-           ng-href="#/help/forum/{{forum.themeCategory | encode}}">{{forum.themeCategory}}</a>
+        <a ng-if="forum.themeCategory" ng-href="#/forum/{{forum.themeCategory | encode}}">{{forum.themeCategory}}</a>
     </div>
-    <button ng-if="!forum.themeCategory" data-element="forum-new-topic-button" class="btn btn--primary btn--small"
-            ng-click="forum.goForumSection('new-theme')">
+    <button ng-if="!forum.themeCategory" data-element="forum-new-topic-button" class="btn btn--primary btn--small" ng-click="forum.goForumSection('new-theme')">
         <svg class="svg-icon">
             <use xlink:href="#plus"></use>
         </svg>
         <span>{{'forum_button_newTheme' | translate}}</span>
     </button>
-    <button ng-if="!forum.themeCategory && forum.isAdmin()" data-element="forum-new-topic-button"
-            class="btn btn--secondary btn--small btn--ban-user" ng-click="forum.goForumSection('banned-users')">
+    <button ng-if="!forum.themeCategory && forum.isAdmin()" data-element="forum-new-topic-button" class="btn btn--secondary btn--small btn--ban-user" ng-click="forum.goForumSection('banned-users')">
         <span>{{'forum_button_bannedUsers' | translate}}</span>
     </button>
-</div>
-<div ng-if="!forum.themeCategory" class="forum__bigsearch" ng-class="{'searching':forum.results.show}">
-    <span class="form--input">
-        <svg class="svg-icon--search">
-            <use xlink:href="#lupa"></use>
-        </svg>
-        <input type="search" name="search--normal" id="search--normal" placeholder="{{'find'|translate}}"
-               ng-model="forum.searchText" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }"
-               ng-change="forum.refreshSearchLayout()">
-    </span>
 </div>

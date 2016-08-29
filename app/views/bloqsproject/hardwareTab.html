@@ -1,5 +1,6 @@
 <div class="hardware-tab tab--make" ng-controller="hardwareTabCtrl">
     <div class="protocanvas" droppable drop="drop" drop-offset-left="70" drop-offset-top="offsetTop" ng-click="detectElement($event)" data-ng-keydown="onKeyPress($event)">
+        <div ng-show="firstComponent && (!common.user || !common.user.hasFirstComponent)" data-ng-include="'views/componentInteraction.html' "></div>
         <div class="name--container">
             <div class="component-name__container" ng-class="{opaque:componentSelected}">
                 <span class="form--input form--input--reset">
@@ -24,7 +25,7 @@
         </div>
         <div id="robotSchema" class="robot" ng-class="{'robot--present':project.hardware.robot , 'robot--selected':robotSelected, 'opaque':project.hardware.robot}"></div>
     </div>
-    <div class="hw-toolbox-container tab--make__block" data-ng-include="'views/bloqsproject/hardwareToolbox.html'"></div>
+    <div class="hw-toolbox-container tab--make__block"  data-ng-include="'views/bloqsproject/hardwareToolbox.html'"></div>
     <div id="component-context-menu" class="hw-context-menu">
         <ul class="menu">
             <li class="menu__item">

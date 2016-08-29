@@ -8,11 +8,17 @@
     <li class="actions__menu__item">
         <button ng-class="{'actions__menu__button':true, 'actions__menu--selected':dropdown === 'file'}" ng-click="dropdownHandler('file')" data-element="menu-file">{{'file' | translate}}</button>
         <ul ng-class="{actions__menu__dropdown:true, hidden:dropdown !== 'file', 'actions__menu--selected':dropdown === 'file'}">
-            <li ng-if="common.section === 'bloqsproject'" class="dropdown__item">
+            <li class="dropdown__item">
                 <a href="#/bloqsproject/" target="_blank" data-element="menu-newproject">
                     <svg class="svg-icon svg-icon--text svg-icon--menu">
                         <use xlink:href="#nuevoProyecto"></use>
                     </svg>{{'create-new-project' | translate}}</a>
+            </li>
+            <li class="dropdown__item">
+                <a href="#/codeproject/" target="_blank">
+                    <svg class="svg-icon svg-icon--text svg-icon--menu">
+                        <use xlink:href="#codigo"></use>
+                    </svg>{{'create-new-code-project' | translate}}</a>
             </li>
             <li data-tooltips="{{!common.user}}" data-tooltip="{{(!common.user?'need-to-be-logged':'') | translate}}" data-tooltip-position="right">
                 <div class="dropdown__item" data-ng-disabled="!common.user" data-ng-click="openProject()" data-element="menu-openproject">
@@ -28,7 +34,7 @@
                 </svg>
                 {{'open-project-from-file' | translate}}
             </li>
-            <li ng-if="common.section === 'bloqsproject'" class="dropdown__item--separator"></li>
+            <li class="dropdown__item--separator"></li>
             <li data-tooltips="{{!common.user}}" data-tooltip="{{(!common.user?'need-to-be-logged':'') | translate}}" data-tooltip-position="right">
                 <div class="dropdown__item" data-ng-disabled="!common.user" data-ng-click="commonModals.renameProject(project)" data-element="menu-changename">
                     <svg class="svg-icon svg-icon--text svg-icon--menu">
@@ -130,12 +136,12 @@
                     {{'show-console' | translate}}
                 </div>
                 <!--<div class="dropdown__item" data-ng-click="chartMonitor()" data-ng-disabled="isWeb2BoardInProgress()" data-element="makeactions-menuview-console">-->
-                    <!--<svg class="svg-icon svg-icon&#45;&#45;text svg-icon&#45;&#45;menu">-->
-                        <!--<use xlink:href="#Ver_verSerialMonitor"></use>-->
-                    <!--</svg>-->
-                    <!--Chart monitor-->
+                <!--<svg class="svg-icon svg-icon&#45;&#45;text svg-icon&#45;&#45;menu">-->
+                <!--<use xlink:href="#Ver_verSerialMonitor"></use>-->
+                <!--</svg>-->
+                <!--Chart monitor-->
                 <!--</div>-->
-                <div class="dropdown__item" data-ng-click="showWeb2boardSettings()" data-ng-disabled="isWeb2BoardInProgress()" data-element="makeactions-menuview-console">
+                <div class="dropdown__item" data-ng-click="showWeb2boardSettings()" data-ng-if="!isChromebook()" data-ng-disabled="isWeb2BoardInProgress()" data-element="makeactions-menuview-console">
                     <svg class="svg-icon svg-icon--text svg-icon--menu">
                         <use xlink:href="#web2board"></use>
                     </svg>
@@ -187,10 +193,10 @@
         <button data-ng-class="{'actions__menu__button':true, 'actions__menu--selected':dropdown === 'help'}" data-ng-click="dropdownHandler('help')" data-element="makeactions-menuhelp">{{'help' | translate}}</button>
         <ul data-ng-class="{actions__menu__dropdown:true, 'actions--file':help, hidden:dropdown !== 'help', 'actions__menu--selected':dropdown === 'help'}">
             <li class="dropdown__item" data-element="makeactions-menuhelp-faq">
-                <a href="#/help" target="_blank">{{'faq' | translate}}</a>
+                <a href="#/forum/Preguntas%20frecuentes" target="_blank">{{'faq' | translate}}</a>
             </li>
             <li class="dropdown__item" data-element="makeactions-menuhelp-tutorial">
-                <a href="#/help/tutorial" target="_blank">{{'basic-tutorials' | translate}}</a>
+                <a href="#/learn" target="_blank">{{'basic-tutorials' | translate}}</a>
             </li>
             <li class="dropdown__item--separator"></li>
             <li class="dropdown__item">
@@ -209,7 +215,7 @@
             </li>
             <li class="dropdown__item--separator"></li>
             <li class="dropdown__item" data-element="makeactions-menuhelp-forum">
-                <a href="#/help/forum" target="_blank">
+                <a href="#/forum" target="_blank">
                     <svg class="svg-icon svg-icon--text svg-icon--menu">
                         <use xlink:href="#Ayuda_IrAlForoDeBitbloq"></use>
                     </svg>
@@ -261,4 +267,4 @@
         </button>
     </li>
 </ul>
-<input id="uploadProject" class="hide" type="file" name="uploadProject" onchange="angular.element(this).scope().uploadProjectSelected(this.files)" data-element="makeactions-input-upload-file" />
+<input id="uploadProject" class="hide" type="file" accept=".json, .bitbloq" name="uploadProject" onchange="angular.element(this).scope().uploadProjectSelected(this.files)" data-element="makeactions-input-upload-file" />

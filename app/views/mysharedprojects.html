@@ -58,13 +58,15 @@
                     <a data-ng-href="#/{{project.codeProject? 'codeproject/' : 'bloqsproject/'}}{{project._id}}" target="_blank">
                         <h3 class="h3 project__info--title" data-element="projects-project-name">{{project.name}}</h3>
                     </a>
-
                     <div ng-if="itemsLayout === 'list'" class="project__info--description">{{project.description}}</div>
-                    <div class="project__info__header__data">
-                        <p>{{ 'explore-created-by' | translate }}
+                    <div class="project__info__header__data shared-project">
+                        <p class="shared-project__into__username">{{ 'explore-created-by' | translate }}
                             <span>{{project.creator.username}}</span>
                         </p>
-                        <time class="text--secondary project__info--time">{{ project.updatedAt | amDateFormat:'DD/MM/YY - HH:mm[h]' }}</time>
+                        <p class="shared-project__into__intro-date">
+                            {{project._acl['user:'+ common.user._id].properties.date ? 'sharedProject_date_shareAt' : '' | translate}}
+                        </p>
+                        <time class="text--secondary project__info--time">{{ project._acl['user:'+ common.user._id].properties.date | amDateFormat:'DD/MM/YY - HH:mm[h]' }}</time>
                         <div class="project__info__header__icons">
                             <svg class="svg-icon" ng-if="project._acl.ALL">
                                 <use xlink:href="#Compartir_publicarEnExplora"></use>
@@ -73,11 +75,6 @@
                     </div>
                 </div>
             </div>
-            <!--<span class="project--item--trash" ng-click="removeProject(project)">
-                <svg class="svg-icon"  data-element="eliminate-myproject">
-                    <use xlink:href="#remove"></use>
-                </svg>
-            </span>-->
             <span ng-if="project.codeProject" class="project--item--code" data-tooltip-position="right" data-tooltip="{{ 'my-project_placeholder_code-project' | translate }}">
                 <svg class="svg-icon">
                     <use xlink:href="#codigo"></use>

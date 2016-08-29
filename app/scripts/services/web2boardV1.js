@@ -8,8 +8,8 @@
  * Service in the bitbloqApp.
  */
 angular.module('bitbloqApp')
-    .factory('web2board', function ($rootScope, $websocket, $log, $q, ngDialog, _, $timeout, common, envData,
-                                    web2boardV2, alertsService, $location, commonModals, projectApi) {
+    .factory('web2board', function($rootScope, $websocket, $log, $q, ngDialog, _, $timeout, common, envData,
+        web2boardV2, alertsService, $location, commonModals, projectApi) {
 
         /** Variables */
 
@@ -19,7 +19,11 @@ angular.module('bitbloqApp')
             versionPromise = $q.defer(),
             libVersionPromise = $q.defer(),
             isWeb2boardV2Flag = null,
-            firstFunctionCalled = {name: '', args: [], alertServiceTag: ''},
+            firstFunctionCalled = {
+                name: '',
+                args: [],
+                alertServiceTag: ''
+            },
             inProgress,
             TIME_FOR_WEB2BOARD_TO_START = 1500, //ms
             TIMES_TRY_TO_START_W2B = 7;
@@ -60,7 +64,7 @@ angular.module('bitbloqApp')
             }
             var parent = $rootScope,
                 modalOptions = parent.$new(),
-                viewAllLink = function () {
+                viewAllLink = function() {
                     modalObj.close();
                     $location.path('/downloads');
                 };
@@ -115,14 +119,13 @@ angular.module('bitbloqApp')
             _.extend(modalOptions, {
                 contentTemplate: '/views/modals/web2boardErrors.html',
                 backAction: showWeb2BoardDownloadModal,
-                sendCommentsModal: function () {
+                sendCommentsModal: function() {
                     modalObj.close();
                     commonModals.sendCommentsModal();
                 }
             });
 
             modalOptions.envData = envData;
-
 
             modalObj = ngDialog.open({
                 template: '/views/modals/modal.html',
@@ -133,8 +136,12 @@ angular.module('bitbloqApp')
         }
 
         function showNecessaryToUpdate() {
-            var startingAlert = alertsService.add('web2board_toast_startApp', 'web2board', 'loading');
-            web2board._openCommunication(function () {
+            var startingAlert = alertsService.add({
+                text: 'web2board_toast_startApp',
+                id: 'web2board',
+                type: 'loading'
+            });
+            web2board._openCommunication(function() {
                 showWeb2BoardUploadModal();
                 alertsService.close(startingAlert);
             });
@@ -154,14 +161,14 @@ angular.module('bitbloqApp')
          * @param  {[object]} config [{port:myport,host:myhost}]
          * @return {[boolean]}        [Is connection OK?]
          */
-        web2board._connect = function () {
+        web2board._connect = function() {
 
             var dfd = $q.defer();
 
             if (!ws || ws.readyState !== 1) { // It's already connected
 
                 ws = $websocket('ws://' + web2board.config.wsHost + ':' + web2board.config.wsPort);
-                ws.onOpen(function (evt) {
+                ws.onOpen(function(evt) {
                     if (ws.readyState === 1) {
                         $log.debug('web2board:connected');
                         dfd.resolve(evt);
@@ -171,28 +178,34 @@ angular.module('bitbloqApp')
                 });
 
                 //Socket events handlers
-                ws.onClose(function (evt) {
+                ws.onClose(function(evt) {
                     web2board._notify(evt);
                     // clear V2 flag if closed due to external reason not due to version changing
                     if (!isWeb2boardV2Flag) {
                         isWeb2boardV2Flag = null;
                     }
                 });
-                ws.onMessage(function (evt) {
+                ws.onMessage(function(evt) {
                     if (isWeb2boardV2Flag === null) {
                         if (isEvtForNewVersionJson(evt.data)) {
                             rootWeb2boardToNewVersion();
                             return;
                         } else {
-                            alertUpdate = alertsService.add('alert-web2board-exitsNewVersion', 'web2board', 'warning', 5000,
-                                undefined, undefined, undefined, 'download', showWeb2BoardUploadModal);
+                            alertUpdate = alertsService.add({
+                                text: 'alert-web2board-exitsNewVersion',
+                                id: 'web2board',
+                                type: 'warning',
+                                time: 5000,
+                                linkText: 'download',
+                                link: showWeb2BoardUploadModal
+                            });
                             isWeb2boardV2Flag = false;
                         }
                     }
 
                     web2board._notify(evt);
                 });
-                ws.onError(function (evt) {
+                ws.onError(function(evt) {
                     dfd.reject(evt);
                 });
 
@@ -204,24 +217,24 @@ angular.module('bitbloqApp')
             return dfd.promise;
         };
 
-        web2board._send = function (message) {
+        web2board._send = function(message) {
             $log.debug('web2board:send::', message);
             return ws.send(message);
         };
 
-        web2board._setBoard = function (boardMCU) {
+        web2board._setBoard = function(boardMCU) {
             boardReadyPromise = $q.defer();
             var defaultBoard = boardMCU || 'uno';
             this._send('setBoard ' + defaultBoard);
             return boardReadyPromise.promise;
         };
 
-        web2board._disconnect = function () {
+        web2board._disconnect = function() {
             $log.error('web2board disconnected');
             return ws.close();
         };
 
-        web2board._notify = function (evt) {
+        web2board._notify = function(evt) {
 
             $log.debug('web2board:response::', evt.type);
 
@@ -244,52 +257,52 @@ angular.module('bitbloqApp')
                     $log.debug('MSG: ', msgParsed);
                 }
                 switch (msgDecoded[0]) {
-                case 'SETTING BOARD':
-                    $rootScope.$emit('web2board:settingBoard');
-                    break;
-                case 'SETTING PORT':
-                    var ports = JSON.parse(msgParsed);
-                    if (ports.length > 0) {
-                        web2board.serialPort = ports[0];
-                        $log.debug('web2board', web2board.serialPort);
-                    }
-                    $rootScope.$emit('web2board:boardReady', msgParsed);
-                    break;
-                case 'COMPILING':
-                    $rootScope.$emit('web2board:compiling');
-                    break;
-                case 'COMPILED':
-                    $log.debug('compiled?:', evt.data.indexOf('KO'));
-                    if (evt.data.indexOf('KO') !== -1) {
-                        $rootScope.$emit('web2board:compile-error', msgParsed);
-                    } else {
-                        $rootScope.$emit('web2board:compile-verified', msgParsed);
-                    }
-                    break;
-                case 'UPLOADING':
-                    $rootScope.$emit('web2board:uploading', web2board.serialPort);
-                    break;
-                case 'UPLOADED':
-                    if (evt.data.indexOf('KO') !== -1) {
-                        $rootScope.$emit('web2board:upload-error', msgParsed);
-                    } else {
-                        $rootScope.$emit('web2board:code-uploaded', msgParsed);
-                    }
-                    break;
-                case 'NO PORT FOUND':
-                    $rootScope.$emit('web2board:no-port-found');
-                    break;
-                case 'VERSION':
-                    $rootScope.$emit('web2board:version', msgParsed);
-                    break;
-                case 'SERIALMONITOROPENED':
-                    $rootScope.$emit('web2board:serial-monitor-opened', msgParsed);
-                    break;
-                case 'SETTED VERSION':
-                    $rootScope.$emit('web2board:bitbloqlibs-setted', msgParsed);
-                    break;
-                default:
-                    throw 'WTF?!? ' + evt.data;
+                    case 'SETTING BOARD':
+                        $rootScope.$emit('web2board:settingBoard');
+                        break;
+                    case 'SETTING PORT':
+                        var ports = JSON.parse(msgParsed);
+                        if (ports.length > 0) {
+                            web2board.serialPort = ports[0];
+                            $log.debug('web2board', web2board.serialPort);
+                        }
+                        $rootScope.$emit('web2board:boardReady', msgParsed);
+                        break;
+                    case 'COMPILING':
+                        $rootScope.$emit('web2board:compiling');
+                        break;
+                    case 'COMPILED':
+                        $log.debug('compiled?:', evt.data.indexOf('KO'));
+                        if (evt.data.indexOf('KO') !== -1) {
+                            $rootScope.$emit('web2board:compile-error', msgParsed);
+                        } else {
+                            $rootScope.$emit('web2board:compile-verified', msgParsed);
+                        }
+                        break;
+                    case 'UPLOADING':
+                        $rootScope.$emit('web2board:uploading', web2board.serialPort);
+                        break;
+                    case 'UPLOADED':
+                        if (evt.data.indexOf('KO') !== -1) {
+                            $rootScope.$emit('web2board:upload-error', msgParsed);
+                        } else {
+                            $rootScope.$emit('web2board:code-uploaded', msgParsed);
+                        }
+                        break;
+                    case 'NO PORT FOUND':
+                        $rootScope.$emit('web2board:no-port-found');
+                        break;
+                    case 'VERSION':
+                        $rootScope.$emit('web2board:version', msgParsed);
+                        break;
+                    case 'SERIALMONITOROPENED':
+                        $rootScope.$emit('web2board:serial-monitor-opened', msgParsed);
+                        break;
+                    case 'SETTED VERSION':
+                        $rootScope.$emit('web2board:bitbloqlibs-setted', msgParsed);
+                        break;
+                    default:
+                        throw 'WTF?!? ' + evt.data;
                 }
 
             } else if (evt.type === 'close') {
@@ -301,18 +314,18 @@ angular.module('bitbloqApp')
             return true;
         };
 
-        web2board._checkVersion = function () {
+        web2board._checkVersion = function() {
             web2board._send('version');
             return versionPromise.promise;
         };
 
-        web2board._checkLibVersion = function () {
+        web2board._checkLibVersion = function() {
             var version = common.properties.bitbloqLibsVersion || '0.0.1';
             web2board._send('setBitbloqLibsVersion ' + version);
             return libVersionPromise.promise;
         };
 
-        web2board._openCommunication = function (instructions, showUpdateModalFlag, tryCount) {
+        web2board._openCommunication = function(instructions, showUpdateModalFlag, tryCount) {
             tryCount = tryCount || 0;
             instructions = instructions || angular.noop();
             tryCount++;
@@ -320,12 +333,12 @@ angular.module('bitbloqApp')
             showUpdateModalFlag = showUpdateModalFlag === true && tryCount >= TIMES_TRY_TO_START_W2B;
             //It is not mandatory to have a board connected to verify the code
             web2board._connect()
-                .then(function () {
-                    web2board._checkLibVersion().then(function () {
+                .then(function() {
+                    web2board._checkLibVersion().then(function() {
                         instructions();
                     });
                 })
-                .catch(function () {
+                .catch(function() {
                     if (showUpdateModalFlag) {
                         inProgress = false;
                         showWeb2BoardDownloadModal();
@@ -334,7 +347,7 @@ angular.module('bitbloqApp')
                             // we only need to start web2board once and after save to prevent "leave without saving" warning dialog
                             projectApi.getSavePromise().then(startWeb2board);
                         }
-                        $timeout(function () {
+                        $timeout(function() {
                             web2board._openCommunication(instructions, true, tryCount);
                         }, TIME_FOR_WEB2BOARD_TO_START);
                     }
@@ -345,7 +358,7 @@ angular.module('bitbloqApp')
          * $on listeners
          */
 
-        $rootScope.$on('web2board:boardReady', function (evt, data) {
+        $rootScope.$on('web2board:boardReady', function(evt, data) {
             var dataParsed = [];
             if (data) {
                 dataParsed = JSON.parse(data);
@@ -361,21 +374,21 @@ angular.module('bitbloqApp')
             }
         });
 
-        $rootScope.$on('web2board:code-verified', function (evt, data) {
+        $rootScope.$on('web2board:code-verified', function(evt, data) {
             $log.debug(evt.name);
             if (data && data.charAt(0) === '{') {
                 $log.debug(JSON.parse(data));
             }
         });
 
-        $rootScope.$on('web2board:code-uploaded', function (evt, data) {
+        $rootScope.$on('web2board:code-uploaded', function(evt, data) {
             $log.debug(evt.name);
             if (data && data.charAt(0) === '{') {
                 $log.debug(JSON.parse(data));
             }
         });
 
-        $rootScope.$on('web2board:version', function (evt, data) {
+        $rootScope.$on('web2board:version', function(evt, data) {
             if (parseInt(data.replace(/\./g, ''), 10) < parseInt(common.properties.web2boardVersion.replace(/\./g, ''), 10)) {
                 versionPromise.reject();
                 var parent = $rootScope,
@@ -399,26 +412,26 @@ angular.module('bitbloqApp')
             }
         });
 
-        $rootScope.$on('web2board:bitbloqlibs-setted', function (evt, data) {
+        $rootScope.$on('web2board:bitbloqlibs-setted', function(evt, data) {
             $log.debug(evt.name + data);
             libVersionPromise.resolve();
         });
 
         /** Public functions */
 
-        web2board.verify = function (code) {
+        web2board.verify = function(code) {
             if (isWeb2boardV2Flag === null) {
                 firstFunctionCalled.name = 'verify';
                 firstFunctionCalled.args = [code];
                 firstFunctionCalled.alertServiceTag = 'compile';
             }
             //It is not mandatory to have a board connected to verify the code
-            web2board._openCommunication(function () {
+            web2board._openCommunication(function() {
                 return web2board._send('compile ' + code);
             });
         };
 
-        web2board.upload = function (board, code) {
+        web2board.upload = function(board, code) {
             if (isWeb2boardV2Flag === null) {
                 firstFunctionCalled.name = 'upload';
                 firstFunctionCalled.args = [board.mcu, code];
@@ -429,27 +442,27 @@ angular.module('bitbloqApp')
                 return false;
             }
             //It is not mandatory to have a board connected to verify the code
-            web2board._openCommunication(function () {
-                return web2board._setBoard(board.mcu).then(function () {
+            web2board._openCommunication(function() {
+                return web2board._setBoard(board.mcu).then(function() {
                     web2board._send('upload ' + code);
                 });
             });
         };
 
-        web2board.serialMonitor = function (board) {
+        web2board.serialMonitor = function(board) {
             if (isWeb2boardV2Flag === null) {
                 firstFunctionCalled.name = 'serialMonitor';
                 firstFunctionCalled.args = [board];
                 firstFunctionCalled.alertServiceTag = 'serialmonitor';
             }
-            web2board._openCommunication(function () {
-                return web2board._setBoard(board.mcu).then(function () {
+            web2board._openCommunication(function() {
+                return web2board._setBoard(board.mcu).then(function() {
                     web2board._send('SerialMonitor ' + web2board.serialPort);
                 });
             });
         };
 
-        web2board.chartMonitor = function (board) {
+        web2board.chartMonitor = function(board) {
             if (isWeb2boardV2Flag === null) {
                 firstFunctionCalled.name = 'chartMonitor';
                 firstFunctionCalled.args = [board];
@@ -458,7 +471,7 @@ angular.module('bitbloqApp')
             showNecessaryToUpdate();
         };
 
-        web2board.version = function () {
+        web2board.version = function() {
             if (isWeb2boardV2Flag === null) {
                 firstFunctionCalled.name = 'verify';
                 firstFunctionCalled.args = [];
@@ -466,22 +479,22 @@ angular.module('bitbloqApp')
             web2board._openCommunication();
         };
 
-        web2board.isWeb2boardV2 = function () {
+        web2board.isWeb2boardV2 = function() {
             return isWeb2boardV2Flag;
         };
 
-        web2board.isInProcess = function () {
+        web2board.isInProcess = function() {
             if (isWeb2boardV2Flag) {
                 return web2boardV2.isInProcess();
             }
             return inProgress;
         };
 
-        web2board.setInProcess = function (value) {
+        web2board.setInProcess = function(value) {
             inProgress = value;
         };
 
-        web2board.showSettings = function () {
+        web2board.showSettings = function() {
             if (isWeb2boardV2Flag === null) {
                 firstFunctionCalled.name = 'showSettings';
                 firstFunctionCalled.args = [];
@@ -490,7 +503,7 @@ angular.module('bitbloqApp')
             showNecessaryToUpdate();
         };
 
-        web2board.uploadHex = function (hex, boardMcu) {
+        web2board.uploadHex = function(hex, boardMcu) {
             if (isWeb2boardV2Flag === null) {
                 firstFunctionCalled.name = 'uploadHex';
                 firstFunctionCalled.args = [hex, boardMcu];
@@ -500,7 +513,6 @@ angular.module('bitbloqApp')
         };
 
         web2board.showWeb2BoardUploadModal = showWeb2BoardUploadModal;
-
 
         return web2board;
     });

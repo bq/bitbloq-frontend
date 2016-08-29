@@ -80,7 +80,7 @@
     span {
         margin-right: .5em;
         display: inline-block;
-        button{
+        button {
             color: white;
             margin-left: 0.5em;
             text-decoration: underline;
@@ -110,12 +110,12 @@
             fill: #f23333;
         }
     }
-    .alert--content{
-      width: 90%;
-      .alert--text {
-        with:100%;
-        word-break: break-word;
-      }
+    .alert--content {
+        width: 90%;
+        .alert--text {
+            with: 100%;
+            word-break: break-word;
+        }
     }
     .alert--close {
         display: inline-block;
@@ -134,12 +134,10 @@
             }
         }
     }
-
     .alert--action {
-      display: inline-block;
-      line-height: inherit;
-      margin-left: 5px;
-      color: white;
-      text-decoration: underline;
+        display: inline-block;
+        line-height: inherit;
+        color: white;
+        text-decoration: underline;
     }
 }

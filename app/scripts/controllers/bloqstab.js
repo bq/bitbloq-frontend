@@ -8,7 +8,9 @@
  * Controller of the bitbloqApp
  */
 angular.module('bitbloqApp')
-    .controller('BloqstabCtrl', function($rootScope, $scope, $timeout, $translate, $window, common, bloqsUtils, bloqs, bloqsApi, $http, envData, $log, $document, _, $localStorage, ngDialog, $location, userApi, alertsService, web2board, robotFirmwareApi) {
+    .controller('BloqstabCtrl', function($rootScope, $scope, $timeout, $translate, $window, common, bloqsUtils,
+        bloqs, bloqsApi, $http, envData, $log, $document, _, ngDialog, $location, userApi, alertsService, web2board,
+        robotFirmwareApi, web2boardOnline) {
 
         $scope.goToCodeModal = function() {
             $scope.common.session.bloqTab = true;
@@ -85,7 +87,7 @@ angular.module('bitbloqApp')
                         bloq = bloqs.bloqs[$document[0].activeElement.attributes['data-bloq-id'].value];
                         var position = bloq.$bloq[0].getBoundingClientRect();
                         if (bloq.bloqData.type !== 'group') {
-                            $localStorage.bloqInClipboard = angular.toJson({
+                            localStorage.bloqInClipboard = angular.toJson({
                                 structure: bloq.getBloqsStructure(),
                                 top: position.top,
                                 left: position.left
@@ -95,8 +97,8 @@ angular.module('bitbloqApp')
                     break;
                 case 86:
                     //$log.debug('ctrl + v');
-                    if (event.ctrlKey && $localStorage.bloqInClipboard) {
-                        copyBloq(JSON.parse($localStorage.bloqInClipboard));
+                    if (event.ctrlKey && localStorage.bloqInClipboard) {
+                        copyBloq(JSON.parse(localStorage.bloqInClipboard));
                     }
                     break;
                 case 89:
@@ -316,16 +318,24 @@ angular.module('bitbloqApp')
             }
         };
 
-        $scope.performFactoryReset = function () {
+        $scope.performFactoryReset = function() {
             var robot = $scope.project.hardware.robot,
-                version  = common.properties.robotsFirmwareVersion[robot];
-            robotFirmwareApi.getFirmware(robot, version).then(function (result){
-                web2board.uploadHex('uno', result.data);
-            }, function () {
+                version = common.properties.robotsFirmwareVersion[robot];
+            robotFirmwareApi.getFirmware(robot, version).then(function(result) {
+                if (common.os === 'ChromeOS') {
+                    web2boardOnline.upload({
+                        hex: result.data,
+                        board: {
+                            mcu: 'uno'
+                        }
+                    });
+                } else {
+                    web2board.uploadHex('uno', result.data);
+                }
+            }, function() {
                 // alert("Error"); todo: add toast
             });
         };
-
 
         function checkInputLength() {
             setScrollsDimension();
@@ -493,7 +503,11 @@ angular.module('bitbloqApp')
                     if (bloqsLoadTimes < 2) {
                         loadBloqs();
                     } else {
-                        alertsService.add('make_infoError_bloqsLoadError', 'loadBloqs', 'warning');
+                        alertsService.add({
+                            text: 'make_infoError_bloqsLoadError',
+                            id: 'loadBloqs',
+                            type: 'warning'
+                        });
                     }
                 });
         }

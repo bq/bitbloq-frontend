@@ -3,7 +3,6 @@
         <div ng-repeat="alert in alerts.getAlerts()" class="test">
             <div class="alert {{alert.domClass}}" id="{{alert.id}}">
                 <span>{{alert.text}}</span>
-
                 <div class="alert--close" ng-click="alerts.close(alert.uid, $event)">
                     <svg class="svg-icon">
                         <use xlink:href="#icon-close"></use>
@@ -16,27 +15,19 @@
         <h1 class="h2">Texto</h1>
         <!-- COLORES TEXTO-->
         <h1 class="h1">Fabio me exige, sin tapujos, que añada cerveza al whisky. </h1>
-
         <h2 class="h2">Fabio me exige, sin tapujos, que añada cerveza al whisky. </h2>
-
         <h3 class="h3">Fabio me exige, sin tapujos, que añada cerveza al whisky. </h3>
-
         <p class="text--strong">Fabio me exige, sin tapujos, que añada cerveza al whisky. </p>
-
         <p class="text--primary">Fabio me exige, sin tapujos, que añada cerveza al whisky. </p>
-
         <p class="text--secondary">Fabio me exige, sin tapujos, que añada cerveza al whisky. </p>
-
         <p class="text--disabled">Fabio me exige, sin tapujos, que añada cerveza al whisky. </p>
         <a href="">Fabio me exige, sin tapujos, que añada cerveza al whisky. </a>
-
         <p>
             <small>Fabio me exige, sin tapujos, que añada cerveza al whisky.</small>
     </div>
     <div class="row">
         <div class="col-mobile-6">
             <h1 class="h2">Campos de texto</h1>
-
             <div class="separator-10"></div>
             <!-- Disabled Input -->
             <div class="sample--item">
@@ -45,9 +36,9 @@
                         <label for="disabled" class="sample--label">Deshabilitado</label>
                     </div>
                     <div class="col-mobile-7">
-                    <span class="form--input">
-                        <input type="text" name="disabled" id="disabled" placeholder="Disable" disabled>
-                    </span>
+                        <span class="form--input">
+                            <input type="text" name="disabled" id="disabled" placeholder="Disable" disabled>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -58,9 +49,9 @@
                         <label for="normal" class="sample--label">Normal</label>
                     </div>
                     <div class="col-mobile-7">
-                    <span class="form--input">
-                        <input type="text" name="normal" id="normal" placeholder="Normal">
-                    </span>
+                        <span class="form--input">
+                            <input type="text" name="normal" id="normal" placeholder="Normal">
+                        </span>
                     </div>
                 </div>
             </div>
@@ -71,9 +62,9 @@
                         <label for="onfocus" class="sample--label">En el foco</label>
                     </div>
                     <div class="col-mobile-7">
-                    <span class="form--input input--focused">
-                        <input type="text" name="onfocus" id="onfocus" placeholder="Focused">
-                    </span>
+                        <span class="form--input input--focused">
+                            <input type="text" name="onfocus" id="onfocus" placeholder="Focused">
+                        </span>
                     </div>
                 </div>
             </div>
@@ -84,13 +75,12 @@
                         <label for="error" class="sample--label">Error</label>
                     </div>
                     <div class="col-mobile-7">
-                    <span class="form--input input--error">
-                        <input type="text" name="error" id="error" value="My input is an error"
-                               placeholder="Error input">
-                    </span>
-                    <span class="form--error">
-                        <small>Error triggered</small>
-                    </span>
+                        <span class="form--input input--error">
+                            <input type="text" name="error" id="error" value="My input is an error" placeholder="Error input">
+                        </span>
+                        <span class="form--error">
+                            <small>Error triggered</small>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -101,13 +91,12 @@
                         <label for="search--normal" class="sample--label">Buscador off</label>
                     </div>
                     <div class="col-mobile-7">
-                    <span class="form--input">
-                        <svg class="svg-icon--search">
-                            <use xlink:href="#lupa"></use>
-                        </svg>
-                        <input type="search" name="search--normal" id="search--normal"
-                               placeholder="{{'find'|translate}}">
-                    </span>
+                        <span class="form--input">
+                            <svg class="svg-icon--search">
+                                <use xlink:href="#lupa"></use>
+                            </svg>
+                            <input type="search" name="search--normal" id="search--normal" placeholder="{{'find'|translate}}">
+                        </span>
                     </div>
                 </div>
             </div>
@@ -118,24 +107,21 @@
                         <label for="normal" class="sample--label">Validating - OK</label>
                     </div>
                     <div class="col-mobile-7">
-                    <span class="form--input">
-                        <input ng-click="validate($event)" type="text" name="normal" id="normal"
-                               placeholder="Escribe aquí">
-                        <svg ng-show="validating"
-                             class="svg-icon icon--form--loading icon--form--validating icon--animated--spin">
-                            <use xlink:href="#loading"></use>
-                        </svg>
-                        <svg ng-show="validationOk" class="svg-icon icon--form--validating icon--form--validated ">
-                            <use xlink:href="#ok"></use>
-                        </svg>
-                    </span>
+                        <span class="form--input">
+                            <input ng-click="validate($event)" type="text" name="normal" id="normal" placeholder="Escribe aquí">
+                            <svg ng-show="validating" class="svg-icon icon--form--loading icon--form--validating icon--animated--spin">
+                                <use xlink:href="#loading"></use>
+                            </svg>
+                            <svg ng-show="validationOk" class="svg-icon icon--form--validating icon--form--validated ">
+                                <use xlink:href="#ok"></use>
+                            </svg>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-mobile-6">
             <h1 class="h2">Desplegables</h1>
-
             <div class="separator-10"></div>
             <div class="sample--item">
                 <div class="row">
@@ -143,7 +129,7 @@
                         <label for="select">Deshabilitado</label>
                     </div>
                     <div class="col-mobile-7">
-                        <common-dropdown options="test" disabled="true"/>
+                        <common-dropdown options="test" disabled="true" />
                     </div>
                 </div>
             </div>
@@ -153,38 +139,38 @@
                         <label for="select">Normal</label>
                     </div>
                     <div class="col-mobile-7">
-                        <common-dropdown options="test" options-click="mifuncion"/>
+                        <common-dropdown options="test" options-click="mifuncion" />
                     </div>
                 </div>
             </div>
             <h1 class="h2">Radio buttons - Checkboxes</h1>
-        <span class="input input--checkbox">
-            <input type="checkbox" name="sample--checkbox" id="sample--checkbox">
-            <label for="sample--checkbox">
-                <span>Checkbox</span>
-            </label>
-        </span>
+            <span class="input input--checkbox">
+                <input type="checkbox" name="sample--checkbox" id="sample--checkbox">
+                <label for="sample--checkbox">
+                    <span>Checkbox</span>
+                </label>
+            </span>
             <br>
-        <span class="input input--checkbox">
-            <input type="checkbox" name="sample--checkbox" id="sample--checkbox" disabled checked>
-            <label for="sample--checkbox">
-                <span>Checkbox</span>
-            </label>
-        </span>
+            <span class="input input--checkbox">
+                <input type="checkbox" name="sample--checkbox" id="sample--checkbox" disabled checked>
+                <label for="sample--checkbox">
+                    <span>Checkbox</span>
+                </label>
+            </span>
             <br>
-        <span class="input input--radio">
-            <input type="radio" name="sample--radio" value="sample--radio">
-            <label for="sample--radio">
-                <span>Radio</span>
-            </label>
-        </span>
+            <span class="input input--radio">
+                <input type="radio" name="sample--radio" value="sample--radio">
+                <label for="sample--radio">
+                    <span>Radio</span>
+                </label>
+            </span>
             <br>
-        <span class="input input--radio">
-            <input type="radio" name="sample--radio1" value="sample--radio1" disabled checked>
-            <label for="sample--radio">
-                <span>Disabled radio</span>
-            </label>
-        </span>
+            <span class="input input--radio">
+                <input type="radio" name="sample--radio1" value="sample--radio1" disabled checked>
+                <label for="sample--radio">
+                    <span>Disabled radio</span>
+                </label>
+            </span>
         </div>
     </div>
     <div class="row">
@@ -224,24 +210,17 @@
     <div class="row">
         <div class="col-mobile-12">
             <h1 class="h2">Alerts</h1>
-            <button class="btn btn--primary btn--small"
-                     ng-click="alertsService.add('Info Alert', 'infoalert', 'info', 300000)">Trigger Info Alert
+            <button class="btn btn--primary btn--small" ng-click="alertsService.add({text:'Info Alert', id:'infoalert', type:'info', time:300000})">Trigger Info Alert
             </button>
-            <button class="btn btn--primary btn--small"
-                     ng-click="alertsService.add('Ok Alert', 'infoalert', 'ok', 300000)">Trigger ok Alert
+            <button class="btn btn--primary btn--small" ng-click="alertsService.add({text:'Ok Alert', id:'infoalert', type:'ok', time:300000})">Trigger ok Alert
             </button>
-            <button class="btn btn--primary btn--small"
-                     ng-click="alertsService.add('Confirm Alert', 'confirmalert', 'confirm', 300000)">Trigger Confirm
-                Alert
+            <button class="btn btn--primary btn--small" ng-click="alertsService.add({text:'Confirm Alert', id:'confirmalert', type:'confirm', time:300000})">Trigger Confirm Alert
             </button>
-            <button class="btn btn--primary btn--small"
-                     ng-click="alertsService.add('Warning Alert', 'warning', 'warning')">Trigger Warning Alert
+            <button class="btn btn--primary btn--small" ng-click="alertsService.add({text:'Warning Alert', id:'warning', type:'warning'})">Trigger Warning Alert
             </button>
-            <button class="btn btn--primary btn--small"
-                     ng-click="alertsService.add('Loading Alert', 'loading', 'loading', 300000)">Trigger loading Alert
+            <button class="btn btn--primary btn--small" ng-click="alertsService.add({text:'Loading Alert', id:'loading', type:'loading', time:300000})">Trigger loading Alert
             </button>
-            <button class="btn btn--primary btn--small"
-                     ng-click="alertsService.add('Error Alert', 'error', 'error', 300000)">Trigger Error Alert
+            <button class="btn btn--primary btn--small" ng-click="alertsService.add({text:'Error Alert', id:'error', type:'error', time:300000})">Trigger Error Alert
             </button>
         </div>
     </div>
@@ -259,8 +238,7 @@
         </div>
     </div>
     <div>
-        <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="3:1" md-row-height="4:3"
-                      md-gutter="8px" md-gutter-gt-sm="4px">
+        <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="3:1" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="4px">
             <md-grid-tile ng-repeat="tile in userProjects" md-rowspan="0" md-colspan="1" md-colspan-sm="1" ng-class="">
                 <div class="posi">
                     <h3>{{tile.name}}</h3>

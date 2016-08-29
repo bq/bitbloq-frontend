@@ -1,4 +1,4 @@
-<div ng-include="'views/forum/forumHeader.html'"></div>
+<div ng-include="'views/forum/forumSearcher.html'"></div>
 <div class="forum__categories" ng-if="!forum.results.show">
     <div class="forum__table-title">
         <div class="col-vsmall-4">
@@ -20,8 +20,8 @@
             <div class="col-vsmall-4">
                 <ul class="forum__block__list">
                     <li class="forum__block__item">
-                        <a ng-href="{{'#/help/forum/' + category.name}}">
-                            <h2 class="block__item__title" data-element="forum-category-button">{{category.name}}</h2>
+                        <a ng-href="{{'#/forum/' + category.name}}">
+                            <h2 class="block__item__title" data-element="{{'forum-category-' + category.name}}">{{category.name}}</h2>
                         </a>
                         <span class="block__item__description">{{category.description}}</span>
                     </li>
@@ -30,7 +30,7 @@
             <div class="col-vsmall-2">
                 <ul class="forum__block__list">
                     <li class="forum__block__item">
-                        <span>{{category.numberOfThreads}}</span>
+                        <span data-element="{{'forum-threads-counter-' + category.name}}">{{category.numberOfThreads}}</span>
                     </li>
                 </ul>
             </div>
@@ -44,7 +44,7 @@
             <div class="col-vsmall-4">
                 <ul class="forum__block__list" ng-if="category.numberOfThreads !== 0">
                     <li class="forum__block__item">
-                        <a href="#/help/forum/{{category.name | encode}}/{{category.lastThread._id}}">
+                        <a href="#/forum/{{category.name | encode}}/{{category.lastThread._id}}">
                             <h3 class="block__last-theme__title">{{category.lastThread.title}}</h3>
                         </a>
                         <span class="block__username">{{'by' | translate}}
@@ -62,7 +62,7 @@
         <div dir-paginate="result in forum.results.data | itemsPerPage: forum.itemsPerPage track by $index" current-page="forum.currentPage" total-items="forum.results.totalSize">
             <ul class="forum__block__list">
                 <li class="forum__search__item">
-                    <a ng-href="{{'#/help/forum/' + result.category._id + '/' + result._id}}">
+                    <a ng-href="{{'#/forum/' + result.category._id + '/' + result._id}}">
                         <h2 class="block__item__title">{{result.title}}</h2>
                     </a>
                 <span class="block__item__description">{{'by' | translate}}

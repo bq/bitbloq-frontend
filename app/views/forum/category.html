@@ -1,4 +1,4 @@
-<div ng-include="'views/forum/forumHeader.html'"></div>
+<div ng-include="'views/forum/forumSearcher.html'"></div>
 <div class="forum__category" ng-if="!forum.results.show">
     <div class="forum__table-title">
         <div class="col-vsmall-6">
@@ -19,7 +19,7 @@
             <div class="col-vsmall-6">
                 <ul class="forum__block__list">
                     <li class="forum__block__item">
-                        <a ng-href="{{'#/help/forum/' + forum.currentCategory + '/' + thread._id}}">
+                        <a ng-href="{{'#/forum/' + forum.currentCategory + '/' + thread._id}}">
                             <h2 class="block__item__title" data-element="forum-category-theme-title">{{thread.title}}</h2>
                         </a>
                         <span class="block__item__description">{{'by' | translate}}
@@ -61,7 +61,7 @@
         <div dir-paginate="result in forum.results.data | filter:{title: forum.searchText} | itemsPerPage: '10' track by $index">
             <ul class="forum__block__list">
                 <li class="forum__search__item">
-                    <a ng-href="{{'#/help/forum/' + result.categoryName + '/' + result._id}}">
+                    <a ng-href="{{'#/forum/' + result.categoryName + '/' + result._id}}">
                         <h2 class="block__item__title">{{result.title}}</h2>
                     </a>
                 <span class="block__item__description">{{'by' | translate}}

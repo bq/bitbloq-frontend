@@ -20,9 +20,9 @@
         "Laura del Río <laura.delrio@bq.com>",
         "Diego Segura <diego.segura@bq.com>",
         "Tom Calvo <tomas.calvo@bq.com>",
+        "Natalia Gómez <natalia.gomez@bq.com>",
         "Sergio Morcuende <sergio.morcuende@bq.com> (http://smorcuend.es)",
         "Luis Antonio Gonzalez <luisantonio.gonzalez@bq.com>",
-        "Natalia Gómez <natalia.gomez@bq.com>",
         "Alvaro Sanchez <alvaro.sanchez@bq.com>"
     ],
     "repository": {
@@ -82,7 +82,6 @@
     "scripts": {
         "clean": "rm -rf node_modules app/bower_components",
         "reinstall": "npm run clean && npm install",
-        "postinstall": "bower install --allow-root --force-latest",
         "getbloqs": "bower uninstall bloqs --save && bower install bloqs --save && grunt getbloqs"
     },
     "dependencies": {},

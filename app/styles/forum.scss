@@ -1,5 +1,8 @@
-.forum__view {
+.forum {
     height: 100%;
+    background-color: #eee;
+    overflow: hidden;
+    overflow-y: auto;
     .section__heading {
         color: #8c919b;
         font-size: 16px;
@@ -7,9 +10,17 @@
         padding: 10px 20px;
         border-bottom: 1px solid #eee;
     }
+    .forum__footer {
+        display: block;
+        margin: 0 30px 30px 30px;
+        padding: 18px;
+        text-align: center;
+        background-color: #e1e1e1;
+    }
     .forum__header {
+        background-color: white;
         position: relative;
-        height: 35px;
+        height: 93px;
         margin-bottom: 30px;
         .btn {
             float: right;
@@ -69,6 +80,8 @@
     }
     .forum__main {
         padding: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
         & > h1 {
             padding-bottom: 30px;
             color: #8c919b;
@@ -221,7 +234,8 @@
                         color: #82ad3a;
                     }
                 }
-                &:not(:last-child) {}
+                &:not(:last-child) {
+                }
             }
         }
     }
@@ -313,7 +327,8 @@
                     color: #82ad3a;
                     text-decoration: none;
                 }
-                time {}
+                time {
+                }
             }
         }
     }
@@ -454,7 +469,6 @@
     overflow: hidden;
 }
 
-
 /* add generic styling for the editor */
 
 .ta-root.focussed > .ta-scroll-window.form-control {
@@ -492,7 +506,6 @@
 .ta-editor:focus {
     user-select: text;
 }
-
 
 /* add the styling for the awesomness of the resizer */
 
@@ -556,7 +569,6 @@
     cursor: se-resize;
     background-color: white;
 }
-
 
 /* copy the popover code from bootstrap so this will work even without it */
 
@@ -670,7 +682,7 @@ text-angular {
         padding: 10px;
         .btn-group {
             clear: both;
-            display: inline-block!important;
+            display: inline-block !important;
             vertical-align: top;
             margin-bottom: 10px;
             &:nth-child(2) {
@@ -686,14 +698,14 @@ text-angular {
                 width: 38px;
                 background-color: white;
                 transition: background-color 120ms;
-                display: inline-block!important;
+                display: inline-block !important;
                 &[disabled] {
                     background-color: #f0f0f0 !important;
                     box-shadow: none;
                 }
                 &:hover {
                     cursor: pointer;
-                    background-color: #f0f0f0!important;
+                    background-color: #f0f0f0 !important;
                 }
             }
             :first-child {
@@ -713,7 +725,7 @@ text-angular {
 }
 
 .popover {
-    display: none!important;
+    display: none !important;
 }
 
 .ta-bind,

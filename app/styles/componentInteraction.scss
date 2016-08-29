@@ -1,0 +1,52 @@
+.component-interaction {
+    width: 317px;
+    height: 268px;
+    border: 2px solid #373b44;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+    position: absolute;
+    top: 50px;
+    left: 17px;
+    &:after {
+        content: '';
+        position: absolute;
+        background-color: transparent;
+        right: -15px;
+        top: 8px;
+        bottom: 0;
+        border-right: 5px solid transparent;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid #373b44;
+    }
+
+    .component-interaction__head {
+        height: 38px;
+        background-color: #373b44;
+        color: white;
+        padding: 8px 11px;
+        .component-interaction__title {
+            display: inline;
+        }
+        .component-interaction__close {
+            cursor: pointer;
+            display: inline;
+            float: right;
+            line-height: 30px;
+            svg {
+                fill: white;
+                height: 15px;
+                width: 15px;
+            }
+        }
+    }
+
+    .component-interaction__content {
+        img {
+            height: 226px;
+            width: 100%;
+        }
+    }
+}

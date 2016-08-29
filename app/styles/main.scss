@@ -56,12 +56,13 @@
 @import "projects";
 @import "account";
 @import "project";
-@import "help";
+@import "learn";
 @import "unsupported";
 @import "toolbox";
 @import "statictexts";
 @import "forum";
 @import "web2board-settings";
+@import "componentInteraction";
 // Components: hwTab
 @import "hardwaretab";
 // Components: Draggable
@@ -74,3 +75,5 @@
 @import "adminUser";
 // Banners
 @import "banners/campamentos2016";
+//modals
+@import "modals/_serialMonitor.scss";

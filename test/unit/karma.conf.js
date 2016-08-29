@@ -38,7 +38,7 @@ module.exports = function(config) {
             '../bower_components/js-beautify/js/lib/beautify.js',
             '../bower_components/js-beautify/js/lib/beautify-css.js',
             '../bower_components/js-beautify/js/lib/beautify-html.js',
-            '../bower_components/jsplumb/dist/js/jsPlumb-2.1.4.js',
+            '../bower_components/jsplumb/dist/js/jsPlumb-2.0.5.js',
             '../bower_components/jsrsasign/jsrsasign-latest-all-min.js',
             '../bower_components/lodash/lodash.js',
             '../bower_components/mobile-detect/mobile-detect.js',

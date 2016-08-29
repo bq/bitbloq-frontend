@@ -13,7 +13,7 @@
             <div class="section">
                 <h3>{{ 'community' | translate}}</h3>
                 <ul>
-                    <li><a href="/#/help/forum" target="_blank">{{ 'forum' | translate}}</a></li>
+                    <li><a href="/#/forum" target="_blank">{{ 'forum' | translate}}</a></li>
                     <li><a href="/#/explore" target="_blank">{{ 'explore' | translate}}</a></li>
                     <li><a href="http://diwo.bq.com" target="_blank">DIWO</a></li>
                     <li><a href="https://github.com/bq/?utf8=%E2%9C%93&query=bitbloq-" target="_blank">{{ 'footer_bitbloqongithub' | translate}}</a></li>
@@ -23,15 +23,15 @@
                 <h3>{{ 'help' | translate}}</h3>
                 <ul>
                     <li><a href="/#/bitbloq-help" target="_blank">{{ 'contact' | translate}}</a></li>
-                    <li><a href="/#/help/faqs" target="_blank">{{ 'help_faqs' | translate}}</a></li>
-                    <li><a href="/#/help/tutorial" target="_blank">{{ 'tutorials' | translate}}</a></li>
+                    <li><a href="/#/forum/Preguntas%20frecuentes" target="_blank">{{ 'help_faqs' | translate}}</a></li>
+                    <li><a href="/#/learn" target="_blank">{{ 'tutorials' | translate}}</a></li>
                 </ul>
             </div>
         </div>
         <div class="language">
             <div class="dropdown_box num-items-{{envData.config.supportedLanguages.length}}" data-ng-class="{'open': showDropdown}" data-element="landing-language-dropdown">
                 <ul class="dropdown_list" data-ng-click="showDropdown = false">
-                    <li data-ng-repeat="language in envData.config.supportedLanguages" data-ng-click="translate.use(language)" data-element="landing-language-{{language}}">
+                    <li data-ng-repeat="language in envData.config.supportedLanguages" data-ng-click="translateGuest(language)" data-element="landing-language-{{language}}">
                         <svg class="svg-icon">
                             <use xlink:href="" ng-attr-xlink:href="{{'#flag_' + language}}"></use>
                         </svg>{{ language | translate }}

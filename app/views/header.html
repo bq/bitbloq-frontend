@@ -36,24 +36,16 @@
                         <span>{{ 'explore' | translate }}</span>
                     </a>
                 </li>
-                <li ng-class="{'nav__menu__item':true, 'nav__menu__item--selected':common.section === 'learn'}">
-                    <a class="nav__menu__link" data-element="nav-learn" href="{{diwoURLCourse}}" target="_blank">
+                <li data-element="nav-learn" ng-class="{'nav__menu__item':true, 'nav__menu__item--selected':common.section === 'learn'}">
+                    <a class="nav__menu__link" href="#/learn">
                         <svg class="svg-icon svg-icon--text">
                             <use xlink:href="#Aprende"></use>
                         </svg>
                         <span data-element="header-menu-learn">{{ 'learn' | translate }}</span>
                     </a>
                 </li>
-                <li data-element="nav-help" ng-class="{'nav__menu__item':true, 'nav__menu__item--selected':common.section === 'help'}">
-                    <a class="nav__menu__link" href="#/help">
-                        <svg class="svg-icon svg-icon--text">
-                            <use xlink:href="#Ayuda"></use>
-                        </svg>
-                        <span>{{ 'help' | translate }}</span>
-                    </a>
-                </li>
                 <li data-element="nav-forum" ng-class="{'nav__menu__item':true, 'nav__menu__item--selected':common.section === 'forum'}">
-                    <a class="nav__menu__link" href="#/help/forum">
+                    <a class="nav__menu__link" href="#/forum">
                         <svg class="svg-icon svg-icon--text">
                             <use xlink:href="#Forum"></use>
                         </svg>

@@ -8,7 +8,8 @@
  * Controller of the bitbloqApp
  */
 angular.module('bitbloqApp')
-    .controller('ProjectsCtrl', function($rootScope, $log, $scope, $q, projectApi, $location, alertsService, $localStorage, $window, $timeout, ngDialog, commonModals, utils, _, moment) {
+    .controller('ProjectsCtrl', function($rootScope, $log, $scope, $q, projectApi, $location, alertsService, $window,
+        $timeout, ngDialog, commonModals, utils, _, moment, JSZip) {
 
         $scope.sortProjects = function(type) {
             $log.debug('sortProject', type);
@@ -81,9 +82,19 @@ angular.module('bitbloqApp')
 
         $scope.removeProject = function(project) {
             $scope.common.removeProjects[project._id] = true;
-            $scope.removeAlert[project._id] = alertsService.add('make-deleted-project', 'deleted-project' + project._id, 'warning', 7000, undefined, undefined, undefined, 'undo', _undoRemoveProject, project._id, _deleteProject, {
-                _id: project._id,
-                imageType: project.imageType
+            $scope.removeAlert[project._id] = alertsService.add({
+                text: 'make-deleted-project',
+                id: 'deleted-project' + project._id,
+                type: 'warning',
+                time: 7000,
+                linkText: 'undo',
+                link: _undoRemoveProject,
+                linkParams: project._id,
+                closeFunction: _deleteProject,
+                closeParams: {
+                    _id: project._id,
+                    imageType: project.imageType
+                }
             });
         };
 
@@ -97,7 +108,6 @@ angular.module('bitbloqApp')
         };
 
         $scope.downloadAllProjects = function() {
-            /*global JSZip:false */
             var zip = new JSZip(),
                 currentProject,
                 currentProjectName,
@@ -138,7 +148,11 @@ angular.module('bitbloqApp')
             }).catch(function() {
                 $scope.common.isLoading = false;
                 $scope.common.setUser();
-                alertsService.add('projects-need-tobe-logged', 'projects-need-tobe-logged', 'error');
+                alertsService.add({
+                    text: 'projects-need-tobe-logged',
+                    id: 'projects-need-tobe-logged',
+                    type: 'error'
+                });
                 $location.path('/login');
             });
         };
@@ -157,15 +171,31 @@ angular.module('bitbloqApp')
             var projectEmptyName = $scope.common.translate('new-project');
             if (!project.name || project.name === projectEmptyName) {
                 if (!project.description) {
-                    alertsService.add('publishProject__alert__nameDescriptionError' + type, 'publishing-project', 'warning');
+                    alertsService.add({
+                        text: 'publishProject__alert__nameDescriptionError' + type,
+                        id: 'publishing-project',
+                        type: 'warning'
+                    });
                 } else {
-                    alertsService.add('publishProject__alert__nameError' + type, 'publishing-project', 'warning');
+                    alertsService.add({
+                        text: 'publishProject__alert__nameError' + type,
+                        id: 'publishing-project',
+                        type: 'warning'
+                    });
                 }
             } else if (!project.description) {
-                alertsService.add('publishProject__alert__descriptionError' + type, 'publishing-project', 'warning');
+                alertsService.add({
+                    text: 'publishProject__alert__descriptionError' + type,
+                    id: 'publishing-project',
+                    type: 'warning'
+                });
             } else if (!project.codeProject) {
                 if (_.isEqual(softwareProjectDefault, project.software)) {
-                    alertsService.add('publishProject__alert__bloqsProjectEmpty' + type, 'publishing-project', 'warning');
+                    alertsService.add({
+                        text: 'publishProject__alert__bloqsProjectEmpty' + type,
+                        id: 'publishing-project',
+                        type: 'warning'
+                    });
                 } else {
                     $scope.publishProjectError = false;
                     if (type === 'Social') {
@@ -189,7 +219,11 @@ angular.module('bitbloqApp')
                     $log.log('we delete this project');
                 }, function(error) {
                     $log.log('Delete error: ', error);
-                    alertsService.add('make-delete-project-error', 'deleted-project', 'warning');
+                    alertsService.add({
+                        text: 'make-delete-project-error',
+                        id: 'deleted-project',
+                        type: 'warning'
+                    });
                 });
             }
         }
@@ -199,7 +233,11 @@ angular.module('bitbloqApp')
                 $scope.userProjects = _.clone(response);
             }).catch(function() {
                 $scope.common.setUser();
-                alertsService.add('projects-need-tobe-logged', 'projects-need-tobe-logged', 'error');
+                alertsService.add({
+                    text: 'projects-need-tobe-logged',
+                    id: 'projects-need-tobe-logged',
+                    type: 'error'
+                });
                 $location.path('/login');
             });
         }
@@ -259,7 +297,6 @@ angular.module('bitbloqApp')
             }
         };
 
-
         $scope.renameProject = function(project) {
             commonModals.renameProject(project).then(function() {
                 projectApi.update(project._id, project).then(function() {
@@ -274,8 +311,8 @@ angular.module('bitbloqApp')
             $scope.$apply(function() {
                 $scope.timestamp = Date.now();
             });
-            if ($localStorage.projectsChange && $scope.common.itsUserLoaded()) {
-                $localStorage.projectsChange = false;
+            if (localStorage.projectsChange && $scope.common.itsUserLoaded()) {
+                localStorage.projectsChange = false;
                 $scope.refreshProjects();
             }
         };

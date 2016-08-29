@@ -47,8 +47,6 @@ angular.module('bitbloqApp')
 
         exports.removeProjects = [];
 
-        exports.refreshTokenPromise = null;
-
         exports.oldVersionMasthead = false;
 
         exports.urlImage = envData.config.gCloudUrl + '/images/';
@@ -90,7 +88,7 @@ angular.module('bitbloqApp')
                 loadedUserPromise = $q.defer();
             }
             if (user !== null && typeof user === 'object') {
-                var lng = user.language || navigatorLang || 'es-ES';
+                var lng = user.language || localStorage.guestLanguage || navigatorLang || 'es-ES';
                 $translate.use(lng);
                 if (user.cookiePolicyAccepted) {
                     $sessionStorage.cookiesAccepted = true;
@@ -100,7 +98,7 @@ angular.module('bitbloqApp')
                 loadedUserPromise.resolve();
             } else {
                 exports.user = null;
-                $translate.use(navigatorLang);
+                $translate.use(localStorage.guestLanguage || navigatorLang);
                 $cookieStore.remove('token');
                 loadedUserPromise.reject();
             }
@@ -223,9 +221,18 @@ angular.module('bitbloqApp')
                 userApi.update({
                     language: newLang
                 }).then(function() {
-                    alertsService.add('account-saved', 'saved-user', 'ok', 5000);
+                    alertsService.add({
+                        text: 'account-saved',
+                        id: 'saved-user',
+                        type: 'ok',
+                        time: 5000
+                    });
                 }, function() {
-                    alertsService.add('account-saved-error', 'saved-user', 'warning');
+                    alertsService.add({
+                        text: 'account-saved-error',
+                        id: 'saved-user',
+                        type: 'warning'
+                    });
                 });
             }
         };

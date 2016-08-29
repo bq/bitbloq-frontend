@@ -9,7 +9,7 @@
  * Controller of the bitbloqApp
  */
 angular.module('bitbloqApp')
-    .controller('AccountCtrl', function($scope, $rootScope, $localStorage, $timeout, $translate, $location, $q, $auth, User, envData, imageApi, userApi, _, alertsService, ngDialog, utils, common) {
+    .controller('AccountCtrl', function($scope, $rootScope, $timeout, $translate, $location, $q, $auth, User, envData, imageApi, userApi, _, alertsService, ngDialog, utils, common) {
         $scope.authenticate = function(prov) {
             $auth.authenticate(prov).then(function(response) {
                 var options = {
@@ -25,35 +25,14 @@ angular.module('bitbloqApp')
                         $scope.common.setUser(user);
                     });
                 }, function(err) {
-                    alertsService.add('social-networks-error-has-identity', 'social-network-user', 'warning');
+                    alertsService.add({
+                        text: 'social-networks-error-has-identity',
+                        id: 'social-network-user',
+                        type: 'warning'
+                    });
                     console.log('ERROR ADDING SOCIAL NETWORK: ', err);
                 });
-            }).catch(function() {
             });
-            //     userApi.getSocialProfile(provider, response.access_token).success(function(userData) {
-            //         userApi.addSocialNetwork({...}).then(function() {
-            //             alertsService.add('social-networks-add', 'social-network-user', 'ok', 5000);
-            //             $scope.avatarUpdate = false;
-            //             getSocialNetwork();
-            //         }, function(error) {
-            //             if (error.status === 409) {
-            //                 if (error.data.error === 'oauth_service_duplicated') {
-            //                     alertsService.add('social-networks-error-has-identity', 'social-network-user', 'warning');
-            //                     getSocialNetwork();
-            //                 }
-            //                 if (error.data.error === 'identity_exists') {
-            //                     alertsService.add('social-networks-error-exist', 'social-network-user', 'warning');
-            //                 }
-            //             } else {
-            //                 alertsService.add('social-networks-error', 'social-network-user', 'warning');
-            //             }
-            //         });
-            //     }, function() {
-            //         alertsService.add('social-networks-error', 'social-network-user', 'warning');
-            //     });
-            // }, function() {
-            //     alertsService.add('social-networks-error', 'social-network-user', 'warning');
-            // });
         };
 
         function _isUserName(username) {
@@ -68,11 +47,19 @@ angular.module('bitbloqApp')
         $scope.validateProfile = function() {
             if (usernameBackup !== $scope.common.user.username) {
                 if (!_isUserName($scope.common.user.username)) {
-                    alertsService.add('account-change-username-alphanumeric-numeric-error', 'saved-user', 'error');
+                    alertsService.add({
+                        text: 'account-change-username-alphanumeric-numeric-error',
+                        id: 'saved-user',
+                        type: 'error'
+                    });
                 } else {
                     userApi.validateUserName($scope.common.user.username).then(function(res) {
                         if (res.status === 200) {
-                            alertsService.add('account-change-username-repeated', 'saved-user', 'error');
+                            alertsService.add({
+                                text: 'account-change-username-repeated',
+                                id: 'saved-user',
+                                type: 'error'
+                            });
                         } else {
                             $scope.saveProfile();
                         }
@@ -87,7 +74,12 @@ angular.module('bitbloqApp')
         $scope.saveProfile = function() {
             var defered = $q.defer();
 
-            alertsService.add('account-saving', 'saved-user', 'info', 5000);
+            alertsService.add({
+                text: 'account-saving',
+                id: 'saved-user',
+                type: 'info',
+                time: 5000
+            });
             if ($scope.tempAvatar.size && $scope.tempAvatar.type !== 'google' && $scope.tempAvatar.type !== 'facebook') {
                 $scope.common.user.imageType = $scope.tempAvatar.type;
             }
@@ -98,18 +90,36 @@ angular.module('bitbloqApp')
                 if ($scope.tempAvatar.size && $scope.tempAvatar.type !== 'google' && $scope.tempAvatar.type !== 'facebook') {
                     imageApi.save($scope.common.user._id, $scope.tempAvatar, 'avatar').success(function() {
                         $scope.common.oldTempAvatar = $scope.tempAvatar;
-                        alertsService.add('account-saved', 'saved-user', 'ok', 5000);
+                        alertsService.add({
+                            text: 'account-saved',
+                            id: 'saved-user',
+                            type: 'ok',
+                            time: 5000
+                        });
                         defered.resolve();
                     }).error(function(error) {
-                        alertsService.add('account-saved-error', 'saved-user', 'warning');
+                        alertsService.add({
+                            text: 'account-saved-error',
+                            id: 'saved-user',
+                            type: 'warning'
+                        });
                         defered.reject(error);
                     });
                 } else {
-                    alertsService.add('account-saved', 'saved-user', 'ok', 5000);
+                    alertsService.add({
+                        text: 'account-saved',
+                        id: 'saved-user',
+                        type: 'ok',
+                        time: 5000
+                    });
                     defered.resolve();
                 }
             }, function(error) {
-                alertsService.add('account-saved-error', 'saved-user', 'warning');
+                alertsService.add({
+                    text: 'account-saved-error',
+                    id: 'saved-user',
+                    type: 'warning'
+                });
                 defered.reject(error);
             });
             return defered.promise;
@@ -144,13 +154,25 @@ angular.module('bitbloqApp')
             }).catch(function(response) {
                 switch (response.error) {
                     case 'heavy':
-                        alertsService.add('account-image-heavy-error', 'user-avatar', 'warning');
+                        alertsService.add({
+                            text: 'account-image-heavy-error',
+                            id: 'user-avatar',
+                            type: 'warning'
+                        });
                         break;
                     case 'small':
-                        alertsService.add('account-image-small-error', 'user-avatar', 'warning');
+                        alertsService.add({
+                            text: 'account-image-small-error',
+                            id: 'user-avatar',
+                            type: 'warning'
+                        });
                         break;
                     case 'no-image':
-                        alertsService.add('account-image-read-error', 'user-avatar', 'warning');
+                        alertsService.add({
+                            text: 'account-image-read-error',
+                            id: 'user-avatar',
+                            type: 'warning'
+                        });
                         break;
                 }
             });
@@ -164,10 +186,19 @@ angular.module('bitbloqApp')
                         if (form.passwordMain.$modelValue === form.passwordRepeat.$modelValue) {
                             var newPassword = form.passwordMain.$modelValue;
                             userApi.changePasswordAuthenticated(newPassword).then(function() {
-                                alertsService.add('reset-password-saved', 'saved-password', 'ok', 5000);
+                                alertsService.add({
+                                    text: 'reset-password-saved',
+                                    id: 'saved-password',
+                                    type: 'ok',
+                                    time: 5000
+                                });
                                 dialog.close();
                             }, function() {
-                                alertsService.add('reset-password-saved-error', 'error-password', 'warning');
+                                alertsService.add({
+                                    text: 'reset-password-saved-error',
+                                    id: 'error-password',
+                                    type: 'warning'
+                                });
                             });
                         } else {
                             modalScope.errorPassword = true;
@@ -230,7 +261,11 @@ angular.module('bitbloqApp')
             });
 
         }, function() {
-            alertsService.add('view-need-tobe-logged', 'login', 'warning');
+            alertsService.add({
+                text: 'view-need-tobe-logged',
+                id: 'login',
+                type: 'warning'
+            });
             $location.path('/login');
         });
 

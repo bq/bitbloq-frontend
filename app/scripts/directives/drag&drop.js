@@ -34,7 +34,9 @@
                 e.dataTransfer.setData('dragcategory', attrs.dragcategory);
                 e.dataTransfer.setData('dragid', attrs.dragid);
 
+                /*jshint validthis:true */
                 this.classList.add('dragging');
+                /*jshint validthis:false */
 
                 return false;
             }

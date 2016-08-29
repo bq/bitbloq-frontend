@@ -8,9 +8,10 @@
      * Controller of the bitbloqApp
      */
     angular.module('bitbloqApp')
-        .controller('ForumCtrl', function forumCtrl($log, $routeParams, userApi, $location, $route, $scope, common, forumApi, alertsService, utils, _, imageApi, $rootScope, ngDialog) {
+        .controller('ForumCtrl', function forumCtrl($log, $routeParams, userApi, $location, $route, $scope, common, forumApi, alertsService, utils, _, imageApi, $rootScope, ngDialog, commonModals) {
             var forum = this;
             forum.displayedView = 'main';
+            forum.commonModals = commonModals;
             forum.bannedUserPerPage = 10;
             forum.categoryThemesPerPage = 10;
             forum.banUser = userApi.banUser;
@@ -27,6 +28,7 @@
                 totalSize: 0
             };
 
+            forum.disabledNewTopic = false;
             forum.currentPage = 1;
             forum.itemsPerPage = 10; //might be modified by the server
 
@@ -48,16 +50,29 @@
                         forum.themeAnswers.splice(index, 1);
                     }
                 }, function() {
-                    alertsService.add('forumAdmin_alert_deletedAnswerError', 'deleteAnswer', 'error');
+                    alertsService.add({
+                        text: 'forumAdmin_alert_deletedAnswerError',
+                        id: 'deleteAnswer',
+                        type: 'error'
+                    });
                 });
             };
 
             forum.deleteThread = function(themeId) {
                 forumApi.deleteThread(themeId).then(function() {
-                    alertsService.add('forumAdmin_alert_deletedTheme', 'deleteThread', 'warning', 5000);
-                    $location.url('/help/forum/' + forum.themeCategory);
+                    alertsService.add({
+                        text: 'forumAdmin_alert_deletedTheme',
+                        id: 'deleteThread',
+                        type: 'warning',
+                        time: 5000
+                    });
+                    $location.url('/forum/' + forum.themeCategory);
                 }).catch(function() {
-                    alertsService.add('forumAdmin_alert_deletedThemeError', 'deleteThread', 'error');
+                    alertsService.add({
+                        text: 'forumAdmin_alert_deletedThemeError',
+                        id: 'deleteThread',
+                        type: 'error'
+                    });
                 });
             };
 
@@ -69,10 +84,19 @@
                             forumApi.moveThread(themeId, modalOptions.dropdown.option).then(function() {
                                 forum.themeCategory = modalOptions.dropdown.option;
                                 $route.current.pathParams.forumsection = modalOptions.dropdown.option;
-                                $location.url('/help/forum/' + $route.current.pathParams.forumsection + '/' + $route.current.pathParams.forumresource);
-                                alertsService.add($scope.common.translate('forumAdmin_alert_MoveThemeTo') + ' "' + modalOptions.dropdown.option + '"', 'moveTheme', 'ok', 5000);
+                                $location.url('/forum/' + $route.current.pathParams.forumsection + '/' + $route.current.pathParams.forumresource);
+                                alertsService.add({
+                                    text: $scope.common.translate('forumAdmin_alert_MoveThemeTo') + ' "' + modalOptions.dropdown.option + '"',
+                                    id: 'moveTheme',
+                                    type: 'ok',
+                                    time: 5000
+                                });
                             }).catch(function() {
-                                alertsService.add('forumAdmin_alert_MoveThemeToError', 'moveTheme', 'error');
+                                alertsService.add({
+                                    text: 'forumAdmin_alert_MoveThemeToError',
+                                    id: 'moveTheme',
+                                    type: 'error'
+                                });
                             });
                         }
                     },
@@ -119,7 +143,11 @@
                                 if (!common.user.bannedInForum) {
                                     _goToSection(section);
                                 } else {
-                                    alertsService.add('forum_alert_accessBannedUser', 'bannedUser', 'error');
+                                    alertsService.add({
+                                        text: 'forum_alert_accessBannedUser',
+                                        id: 'bannedUser',
+                                        type: 'error'
+                                    });
                                 }
                             }).catch(function() {
                                 var url = $location.url();
@@ -145,7 +173,7 @@
                             _goToSection(section);
                     }
                 } else {
-                    $location.url('/help/forum/');
+                    $location.url('/forum/');
                     forum.displayedView = 'main';
                 }
             };
@@ -204,9 +232,17 @@
                 }).catch(function(err) {
                     $log.debug('Error:', err);
                     if (err.status === 401) {
-                        alertsService.add('forum_alert_accessBannedUser', 'creatingAnswer', 'error');
+                        alertsService.add({
+                            text: 'forum_alert_accessBannedUser',
+                            id: 'creatingAnswer',
+                            type: 'error'
+                        });
                     } else {
-                        alertsService.add('forum_alert_NewAnswerError', 'creatingAnswer', 'error');
+                        alertsService.add({
+                            text: 'forum_alert_NewAnswerError',
+                            id: 'creatingAnswer',
+                            type: 'error'
+                        });
                     }
                 });
             };
@@ -226,7 +262,9 @@
                         content: '<p>' + forum.textEditorContent.htmlContent + '</p>',
                         main: true
                     };
-                    forum.textEditorContent.htmlContent = '';
+                    //forum.textEditorContent.htmlContent = '';
+
+                    forum.disabledNewTopic = true;
 
                     forumApi.createThread(thread, answer).then(function(response) {
                         answer._id = response.data.answer._id;
@@ -238,7 +276,12 @@
                                 imageId = answer._id + '-' + index;
                                 images.push(imageId);
                                 imageApi.save(imageId, value, 'forum').then(function() {
-                                    alertsService.add('forum_alert_NewTheme', 'createdTheme', 'ok', 5000);
+                                    alertsService.add({
+                                        text: 'forum_alert_NewTheme',
+                                        id: 'createdTheme',
+                                        type: 'ok',
+                                        time: 5000
+                                    });
                                     if (index === forum.answer.images.length - 1) {
                                         answer.images = images;
                                         forumApi.updateAnswer(answer).then(function() {
@@ -249,13 +292,25 @@
                                 });
                             });
                         } else {
-                            alertsService.add('forum_alert_NewTheme', 'createdTheme', 'ok', 5000);
+                            alertsService.add({
+                                text: 'forum_alert_NewTheme',
+                                id: 'createdTheme',
+                                type: 'ok',
+                                time: 5000
+                            });
                             forum.goForumSection(forum.textEditorContent.category + '/' + response.data.thread._id);
                         }
 
                     }).catch(function(err) {
                         $log.debug('Error creating post:', err);
-                        alertsService.add('forum_alert_NewThemeError', 'creatingTheme', 'error', 5000);
+                        alertsService.add({
+                            text: 'forum_alert_NewThemeError',
+                            id: 'creatingTheme',
+                            type: 'error',
+                            time: 5000
+                        });
+                    }).finally(function() {
+                        forum.disabledNewTopic = false;
                     });
                 } else {
                     $log.debug('fill inputs');
@@ -282,10 +337,18 @@
                 }).catch(function(response) {
                     switch (response.error) {
                         case 'heavy':
-                            alertsService.add('info-tab-image-heavy-error', 'info-tab-image', 'warning');
+                            alertsService.add({
+                                text: 'info-tab-image-heavy-error',
+                                id: 'info-tab-image',
+                                type: 'warning'
+                            });
                             break;
                         case 'no-image':
-                            alertsService.add('info-tab-image-read-error', 'info-tab-image', 'warning');
+                            alertsService.add({
+                                text: 'info-tab-image-read-error',
+                                id: 'info-tab-image',
+                                type: 'warning'
+                            });
                             break;
                     }
                 });
@@ -293,10 +356,19 @@
 
             forum.allowUser = function(user) {
                 userApi.unbanUser(user._id).then(function() {
-                    alertsService.add('forumAdmin_alert_allowUser', 'banUser', 'ok', 5000);
+                    alertsService.add({
+                        text: 'forumAdmin_alert_allowUser',
+                        id: 'banUser',
+                        type: 'ok',
+                        time: 5000
+                    });
                     _.remove(forum.bannedUsers, user);
                 }).catch(function() {
-                    alertsService.add('forumAdmin_alert_allowUserError', 'banUser', 'error');
+                    alertsService.add({
+                        text: 'forumAdmin_alert_allowUserError',
+                        id: 'banUser',
+                        type: 'error'
+                    });
                 });
             };
 
@@ -319,7 +391,7 @@
 
             function setForumRoute() {
                 if ($routeParams.forumresource !== '"undefined"' && $routeParams.forumresource) {
-                    $location.url('/help/forum/' + $routeParams.forumsection + '/' + $routeParams.forumresource);
+                    $location.url('/forum/' + $routeParams.forumsection + '/' + $routeParams.forumresource);
                     forum.displayedView = 'theme';
                     goForumTheme($routeParams.forumresource, $routeParams.forumsection);
                 } else if ($routeParams.forumsection !== '"undefined"' && $routeParams.forumsection) {
@@ -345,7 +417,7 @@
                     }
 
                     $route.current.pathParams.forumsection = section;
-                    $location.url('/help/forum/' + section);
+                    $location.url('/forum/' + section);
                 }
             }
 
@@ -360,7 +432,11 @@
                                 if (!common.user.bannedInForum) {
                                     forum.goForumSection('new-theme');
                                 } else {
-                                    alertsService.add('forum_alert_accessBannedUser', 'bannedUser', 'error');
+                                    alertsService.add({
+                                        text: 'forum_alert_accessBannedUser',
+                                        id: 'bannedUser',
+                                        type: 'error'
+                                    });
                                 }
                             }, function() {
                                 $location.path('/login');
@@ -429,7 +505,7 @@
 
             function _goToSection(section) {
                 $route.current.pathParams.forumsection = section;
-                $location.url('/help/forum/' + section);
+                $location.url('/forum/' + section);
                 forum.displayedView = section;
             }
 
