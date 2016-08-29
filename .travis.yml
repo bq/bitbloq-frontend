@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "node"
-
-npm install
-grunt jshint
+install:
+  - npm install
+  - npm install -g grunt-cli
+script:
+  - grunt jshint
