@@ -14,15 +14,15 @@
     <div ng-if="type==='form'" class="input-list row">
         <div class="row">
             <label for="centerName" class="col-vsmall-4">{{'centerMode_modal_createCenter-centerName' | translate }}</label>
-            <input type="text" id="centerName" name="centerName" class="col-vsmall-8" ng-class="{'input--error': errors && !center.name}" data-ng-model="center.name" autofocus>
+            <input type="text" id="centerName" name="centerName" class="col-vsmall-8" ng-class="{'input--error': errors && !center.name}" data-ng-model="center.name" autofocus data-element="modals-center-name">
         </div>
         <div class="row">
             <label for="centerLocation" class="col-vsmall-4">{{'centerMode_modal_createCenter-location' | translate }}</label>
-            <input type="text" id="centerLocation" name="centerLocation" class="col-vsmall-8" ng-class="{'input--error': errors && !center.location}" data-ng-model="center.location" autofocus>
+            <input type="text" id="centerLocation" name="centerLocation" class="col-vsmall-8" ng-class="{'input--error': errors && !center.location}" data-ng-model="center.location" autofocus data-element="modals-center-location">
         </div>
         <div class="row">
             <label for="centerTelephone" class="col-vsmall-4">{{'centerMode_modal_createCenter-telephone' | translate }}</label>
-            <input type="number" id="centerTelephone" name="centerTelephone" class="col-vsmall-8" ng-class="{'input--error': errors && !center.telephone}" data-ng-model="center.telephone" autofocus>
+            <input type="number" id="centerTelephone" name="centerTelephone" class="col-vsmall-8" ng-class="{'input--error': errors && !center.telephone}" data-ng-model="center.telephone" autofocus data-element="modals-center-telephone">
         </div>
     </div>
 </div>
