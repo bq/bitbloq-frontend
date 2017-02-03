@@ -10,8 +10,11 @@
                 </a>
             </li>
             <li class="nav__menu__item project--title">
-                <h1 data-element="project-name" id="currentproject" class="h3 make__project--name" ng-click="currentProjectService.rename()">{{currentProject.name || 'new-project' | translate}}
-                    <span></span>
+                <h1 id="currentproject" class="h3">
+                    <button class="project--name project--name--editable" ng-if="common.section==='exercise'" ng-click="currentProjectService.rename()" data-element="exercise-name">
+                        <span>{{currentProject.name || 'new-exercise' | translate}}</span>
+                    </button>
+                    <span class="project--name" ng-if="common.section==='task'">{{currentProject.name || 'new-project' | translate}}</span>
                 </h1>
                 <span class="make--saving" data-element="project-save-label-{{currentProjectService.getSavingStatusIdLabel()}}">{{ currentProjectService.getSavingStatusIdLabel() | translate }}</span>
             </li>
@@ -29,7 +32,7 @@
                     </svg>
                 </button>
             </li>
-            <li class="nav__menu__item nav__item--white right" data-tooltips="true" data-tooltip="{{(!onTime()[0]?'centerMode_send_initDateError': !onTime()[1]?'centerMode_send_endDateError' : 'send') | translate}}" data-tooltip-position="bottom">
+            <li class="nav__menu__item nav__item--white right" data-tooltips="true" data-tooltip="{{(currentProject.status!=='pending'?'centerMode_deliveredExercise': !onTime()[0]?'centerMode_send_initDateError': !onTime()[1]?'centerMode_send_endDateError' : 'send-to-teacher') | translate}}" data-tooltip-position="bottom">
                 <button class="nav__menu__btn btn" data-ng-click="sendTask()" data-ng-disabled="currentProject.status!=='pending' || !onTime()[0] || !onTime()[1]" data-ng-class="{'btn--make--disabled':currentProject.status!=='pending'}" data-walkthrough="upload">
                     <svg class="svg-icon">
                         <use xlink:href="#airplane"></use>

@@ -461,10 +461,14 @@ angular.module('bitbloqApp')
 
                 if (exports.project._id) {
                     if (!exports.project._acl || (exports.project._acl['user:' + common.user._id] && exports.project._acl['user:' + common.user._id].permission === 'ADMIN')) {
-                        return projectApi.update(exports.project._id, exports.getCleanProject()).then(function() {
-                            exports.saveStatus = 2;
-                            exports.saveOldProject();
-                            localStorage.projectsChange = true;
+                        return projectApi.update(exports.project._id, exports.getCleanProject()).then(function(response) {
+                            if (response.status === 200) {
+                                exports.saveStatus = 2;
+                                exports.saveOldProject();
+                                localStorage.projectsChange = true;
+                            } else {
+                                exports.saveStatus = 3;
+                            }
                             if (exports.tempImage.file) {
                                 imageApi.save(exports.project._id, exports.tempImage.file).then(function() {
                                     exports.tempImage = {};

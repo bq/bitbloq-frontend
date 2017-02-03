@@ -27,43 +27,6 @@ angular.module('bitbloqApp')
         var scope = $rootScope.$new();
         scope.exercise = exports.exercise;
 
-        exports.editDate = function() {
-        };
-
-        exports.rename = function() {
-            commonModals.rename(exports.exercise, 'exercise').then(exports.startAutosave);
-        };
-
-        exports.clone = function() {
-            exports.completedExercise();
-            commonModals.clone(exports.exercise, true, 'exercise');
-        };
-
-        exports.completedExercise = function() {
-            if (exports.bloqs.varsBloq) {
-                exports.exercise.software = {
-                    vars: exports.bloqs.varsBloq.getBloqsStructure(),
-                    setup: exports.bloqs.setupBloq.getBloqsStructure(),
-                    loop: exports.bloqs.loopBloq.getBloqsStructure()
-                };
-            }
-
-            _updateHardwareSchema();
-            _updateHardwareTags();
-            exports.exercise.code = exports.getCode();
-        };
-
-        exports.download = function(exercise, type) {
-            exercise = exports.getCleanExercise(exercise || exports.exercise, true);
-            type = type || 'json';
-            if (type === 'arduino') {
-                _downloadIno(exercise);
-            } else {
-                _downloadJSON(exercise);
-            }
-
-        };
-
         exports.assignGroup = function(project, teacherId, oldGroups, centerId, onlyEdit) {
             var defered = $q.defer();
             oldGroups = _.groupBy(oldGroups, '_id');
@@ -183,6 +146,44 @@ angular.module('bitbloqApp')
                 });
             });
             return defered.promise;
+        };
+
+        exports.clone = function() {
+            exports.completedExercise();
+            commonModals.clone(exports.exercise, true, 'exercise');
+        };
+
+        exports.completedExercise = function() {
+            if (exports.bloqs.varsBloq) {
+                exports.exercise.software = {
+                    vars: exports.bloqs.varsBloq.getBloqsStructure(),
+                    setup: exports.bloqs.setupBloq.getBloqsStructure(),
+                    loop: exports.bloqs.loopBloq.getBloqsStructure()
+                };
+            }
+
+            _updateHardwareSchema();
+            _updateHardwareTags();
+            exports.exercise.code = exports.getCode();
+        };
+
+        exports.download = function(exercise, type) {
+            exercise = exports.getCleanExercise(exercise || exports.exercise, true);
+            type = type || 'json';
+            if (type === 'arduino') {
+                _downloadIno(exercise);
+            } else {
+                _downloadJSON(exercise);
+            }
+
+        };
+
+        exports.saveInMyProjects = function() {
+            exerciseApi.taskToProject().then();
+        };
+
+        exports.rename = function() {
+            commonModals.rename(exports.exercise, 'exercise').then(exports.startAutosave);
         };
 
         /**

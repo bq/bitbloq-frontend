@@ -279,30 +279,36 @@ $leftBarWidth: 70px;
             .h3 {
                 text-align: left;
                 color: #3a3d42;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                line-height: 70px;
                 margin-left: 1em;
                 font-style: italic;
+                font-weight: bold;
                 max-width: 65%;
                 position: relative;
                 padding-right: 30px;
-                &:hover {
-                    // font-family: Roboto;
-                    cursor: pointer;
-                    :after {
-                        content: '';
-                        color: #82a445;
-                        font-size: .7em;
-                        position: absolute;
-                        margin-left: 1em;
-                        width: 2em;
-                        height: 2em;
-                        background-image: url('../images/icons/pencil.svg');
-                        top: 26px;
-                        background-repeat: no-repeat;
-                        right: -8px;
+                .project--name {
+                    line-height: 70px;
+                    font-style: italic;
+                    font-weight: bold;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 100%;
+                    overflow: hidden;
+                    padding-right: 3px;
+                    &.project--name--editable:hover {
+                        cursor: pointer;
+                        :after {
+                            content: '';
+                            color: #82a445;
+                            font-size: .7em;
+                            position: absolute;
+                            margin-left: 1em;
+                            width: 2em;
+                            height: 2em;
+                            background-image: url('../images/icons/pencil.svg');
+                            top: 26px;
+                            background-repeat: no-repeat;
+                            right: -8px;
+                        }
                     }
                 }
             }

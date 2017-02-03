@@ -16,8 +16,10 @@
                 </a>
             </li>
             <li class="nav__menu__item project--title">
-                <h1 data-element="project-name" id="currentproject" class="h3 make__project--name" ng-click="currentProjectService.rename()">{{currentProject.name || 'new-project' | translate}}
-                    <span></span>
+                <h1 id="currentproject" class="h3" data-element="project-name">
+                    <button class="project--name project--name--editable" ng-click="currentProjectService.rename()" data-element="project-name">
+                        <span>{{currentProject.name || 'new-project' | translate}}</span>
+                    </button>
                 </h1>
                 <span class="make--saving" data-element="project-save-label-{{currentProjectService.getSavingStatusIdLabel()}}">{{ currentProjectService.getSavingStatusIdLabel() | translate }}</span>
             </li>

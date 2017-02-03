@@ -43,6 +43,9 @@ angular.module('bitbloqApp')
                     name: 'groupName',
                     placeholder: 'centerMode_modal_createGroupPlaceholder'
                 },
+                condition: function() {
+                    return this.input.value;
+                },
                 confirmButton: 'centerMode_button_createGroup',
                 rejectButton: 'modal-button-cancel',
                 confirmAction: confirmAction,

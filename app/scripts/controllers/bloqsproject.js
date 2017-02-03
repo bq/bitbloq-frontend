@@ -618,7 +618,6 @@ angular.module('bitbloqApp')
             return result;
         }
 
-
         function uploadWithWeb2board(code) {
             if (web2board.isWeb2boardV2()) {
                 uploadW2b2(code);
@@ -707,6 +706,18 @@ angular.module('bitbloqApp')
 
         /* ****** */
 
+        function _resetDropdown(element, list) {
+            if (list[0]) {
+                element.dataset.reference = list[0].uid;
+                element.dataset.value = list[0].name;
+                element.value = list[0].name;
+            } else {
+                delete element.dataset.reference;
+                delete element.dataset.value;
+            }
+            element.selectedIndex = 0;
+        }
+
         $scope.updateBloqs = function() {
 
             if (projectService.bloqs.varsBloq) {
@@ -727,18 +738,13 @@ angular.module('bitbloqApp')
 
                     bloqsUtils.drawDropdownOptions($(element), list);
 
-                    if (element.dataset.reference && element.dataset.value && componentRef) {
-
+                    if (componentRef) {
                         element.value = componentRef.name;
                         element.dataset.reference = componentRef.uid;
                         element.dataset.value = componentRef.name;
-
                     } else {
                         $log.debug('dropdown not selected or reference was lost');
-                        element.dataset.reference = '';
-                        element.dataset.value = '';
-
-                        element.selectedIndex = 0;
+                        _resetDropdown(element, list);
                     }
                 };
                 var bloqCanvasEl = null;

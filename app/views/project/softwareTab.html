@@ -27,25 +27,29 @@
                                 <div class="form-control">
                                     <label for="name">{{ 'consumer-key' | translate }}</label>
                                     <span class="form--input" data-ng-class="{'form--input':true, 'input--focused':focus === 'consumer-key'}">
-                                        <input aria-invalid="false" data-element="consumer-key" data-ng-blur="focus = false" data-ng-focus="focus = 'consumer-key'" data-ng-model-options="{ debounce: { 'default': 2000, 'blur': 0 } }" data-ng-model="common.user.twitterApp.consumerKey" id="consumer-key" name="consumer-key" placeholder="{{'consumer-key' | translate}}" tabindex="0" type="text">
+                                        <input aria-invalid="false" data-element="consumer-key" data-ng-blur="focus = false" data-ng-focus="focus = 'consumer-key'" data-ng-model-options="{ debounce: { 'default': 2000, 'blur': 0 } }" data-ng-model="common.user.twitterApp.consumerKey" id="consumer-key" name="consumer-key"
+                                               placeholder="{{'consumer-key' | translate}}" tabindex="0" type="text">
                                     </span>
                                 </div>
                                 <div class="form-control">
                                     <label for="name">{{ 'consumer-secret' | translate }}</label>
                                     <span class="form--input" data-ng-class="{'form--input':true, 'input--focused':focus === 'consumer-secret'}">
-                                        <input aria-invalid="false" data-element="consumer-secret" data-ng-blur="focus = false" data-ng-focus="focus = 'consumer-secret'" data-ng-model-options="{ debounce: { 'default': 2000, 'blur': 0 } }" data-ng-model="common.user.twitterApp.consumerSecret" id="consumer-secret" name="consumer-secret" placeholder="{{'consumer-secret' | translate}}" tabindex="0" type="text">
+                                        <input aria-invalid="false" data-element="consumer-secret" data-ng-blur="focus = false" data-ng-focus="focus = 'consumer-secret'" data-ng-model-options="{ debounce: { 'default': 2000, 'blur': 0 } }" data-ng-model="common.user.twitterApp.consumerSecret" id="consumer-secret"
+                                               name="consumer-secret" placeholder="{{'consumer-secret' | translate}}" tabindex="0" type="text">
                                     </span>
                                 </div>
                                 <div class="form-control">
                                     <label for="name">{{ 'access-token' | translate }}</label>
                                     <span class="form--input" data-ng-class="{'form--input':true, 'input--focused':focus === 'access-token'}">
-                                        <input aria-invalid="false" data-element="access-token" data-ng-blur="focus = false" data-ng-focus="focus = 'access-token'" data-ng-model-options="{ debounce: { 'default': 2000, 'blur': 0 } }" data-ng-model="common.user.twitterApp.accessToken" id="access-token" name="access-token" placeholder="{{'access-token' | translate}}" tabindex="0" type="text">
+                                        <input aria-invalid="false" data-element="access-token" data-ng-blur="focus = false" data-ng-focus="focus = 'access-token'" data-ng-model-options="{ debounce: { 'default': 2000, 'blur': 0 } }" data-ng-model="common.user.twitterApp.accessToken" id="access-token" name="access-token"
+                                               placeholder="{{'access-token' | translate}}" tabindex="0" type="text">
                                     </span>
                                 </div>
                                 <div class="form-control">
                                     <label for="name">{{ 'access-token-secret' | translate }}</label>
                                     <span class="form--input" data-ng-class="{'form--input':true, 'input--focused':focus === 'access-token-secret'}">
-                                        <input aria-invalid="false" data-element="access-token-secret" data-ng-blur="focus = false" data-ng-focus="focus = 'access-token-secret'" data-ng-model-options="{ debounce: { 'default': 2000, 'blur': 0 } }" data-ng-model="common.user.twitterApp.accessTokenSecret" id="access-token-secret" name="access-token-secret" placeholder="{{'access-token-secret' | translate}}" tabindex="0" type="text">
+                                        <input aria-invalid="false" data-element="access-token-secret" data-ng-blur="focus = false" data-ng-focus="focus = 'access-token-secret'" data-ng-model-options="{ debounce: { 'default': 2000, 'blur': 0 } }" data-ng-model="common.user.twitterApp.accessTokenSecret" id="access-token-secret"
+                                               name="access-token-secret" placeholder="{{'access-token-secret' | translate}}" tabindex="0" type="text">
                                     </span>
                                 </div>
                             </div>
@@ -86,7 +90,7 @@
         </div>
     </div>
     <div class="software--tab" ng-show="softTab==='code'">
-        <button class="software__edit-code" data-ng-click="goToCodeModal()" data-element="software-edit-code">
+        <button ng-if="common.section !== 'exercise' && common.section !== 'task'" class="software__edit-code" data-ng-click="goToCodeModal()" data-element="software-edit-code">
             <svg class="svg-icon svg-icon--text svg-icon--menu">
                 <use xlink:href="#pencil"></use>
             </svg>
