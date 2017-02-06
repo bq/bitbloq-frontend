@@ -175,7 +175,12 @@ $hw_toolbox: 210px;
             fill: #7b0754
         }
     }
-    .toolbox-mbot {
+    .toolbox-mbot,
+    .toolbox-rangerlandraider,
+    .toolbox-rangerraptor,
+    .toolbox-rangernervousbird,
+    .toolbox-startertank,
+    .toolbox-starterthreewheels {
         background-color: #0059B4;
         &.selected--tab .btn-svg .svg-icon {
             fill: #0059B4

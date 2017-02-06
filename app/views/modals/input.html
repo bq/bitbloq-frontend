@@ -2,9 +2,9 @@
     <p>{{ mainText | translate }}</p>
     <p ng-if="secondaryText" class="modal_input_secondaryText">{{ secondaryText | translate }}</p>
     
-    <form id="inputForm" ng-if="modalInput">
+    <form id="inputForm" ng-if="modalInput" ng-submit="confirmAction(input.value || groups) && closeThisDialog()">
         <span class="form--input" ng-class="{'input--error' : input.showError}">
-            <input ng-if="!changeName" type="text" id="{{input.id}}" name="{{input.name}}" placeholder="{{input.placeholder | translate }}" data-ng-model="input.value" ng-focus="input.showError = false" autofocus>
+            <input ng-if="!changeName" type="text" id="{{input.id}}" name="{{input.name}}" placeholder="{{input.placeholder | translate }}" data-ng-model="input.value" ng-focus="input.showError = false" required autofocus>
             <input ng-if="changeName" type="text" name="os" id="os" ng-model="project.name" ng-pattern="/[^\s\\]/" placeholder="{{ 'modal-change-project-name-placeholder' | translate }}" data-ng-focus="focus = 'changeName'" data-ng-class="{'input--focused':focus === 'changeName'}" data-ng-blur="focus = false"
                    data-element="modal-change-name-input" required autofocus>
         </span>

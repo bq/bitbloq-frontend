@@ -3,65 +3,65 @@ common-dropdown {
 }
 
 .dropdown__icon {
-    width       : 10px;
-    height      : 10px;
-    fill        : $font-color-secondary;
+    width: 10px;
+    height: 10px;
+    fill: $font-color-secondary;
     margin-right: .5em;
-    margin-left : 1em;
-    right       : 2px;
-    position    : absolute;
-    top         : 12px;
+    margin-left: 1em;
+    right: 2px;
+    position: absolute;
+    top: 12px;
 }
 
 .dropdown--bottom {
-    display    : flex;
-    flex       : 1;
-    flex-flow  : row wrap;
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
     align-items: center;
-    position   :relative;
+    position: relative;
 }
 
 .dropwdown__menu {
-    z-index                           : 8;
-    flex                              : 1 100%;
-    display                           : flex;
-    flex-flow                         : row wrap;
-    border-right                      : 1px solid #cfcfcf;
-    border-left                       : 1px solid #cfcfcf;
-    background-color                  : white;
-    max-height                        : 275px;
-    overflow-y                        : scroll;
-    overflow-x                        : hidden;
+    z-index: 8;
+    flex: 1 100%;
+    display: flex;
+    flex-flow: row wrap;
+    border-right: 1px solid #cfcfcf;
+    border-left: 1px solid #cfcfcf;
+    background-color: white;
+    max-height: 275px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .dropdown__menu__down {
-  border-bottom                     : 1px solid #cfcfcf;
-  -webkit-border-bottom-right-radius: .3em;
-  -webkit-border-bottom-left-radius : .3em;
-  -moz-border-radius-bottomright    : .3em;
-  -moz-border-radius-bottomleft     : .3em;
-  border-bottom-right-radius        : .3em;
-  border-bottom-left-radius         : .3em;
+    border-bottom: 1px solid #cfcfcf;
+    -webkit-border-bottom-right-radius: .3em;
+    -webkit-border-bottom-left-radius: .3em;
+    -moz-border-radius-bottomright: .3em;
+    -moz-border-radius-bottomleft: .3em;
+    border-bottom-right-radius: .3em;
+    border-bottom-left-radius: .3em;
 }
 
 .dropdown__menu__up {
-  border-top                        : 1px solid #cfcfcf;
-  -webkit-border-top-right-radius   : .3em;
-  -webkit-border-top-left-radius    : .3em;
-  -moz-border-radius-topright       : .3em;
-  -moz-border-radius-topleft        : .3em;
-  border-top-right-radius           : .3em;
-  border-top-left-radius            : .3em;
-  position                          : absolute;
-  left                              : 0px;
-  width                             : 100%;
+    border-top: 1px solid #cfcfcf;
+    -webkit-border-top-right-radius: .3em;
+    -webkit-border-top-left-radius: .3em;
+    -moz-border-radius-topright: .3em;
+    -moz-border-radius-topleft: .3em;
+    border-top-right-radius: .3em;
+    border-top-left-radius: .3em;
+    position: absolute;
+    left: 0px;
+    width: 100%;
 }
 
 .dropdown__menu__item {
-    flex         : 1 100%;
-    padding-left : 1em;
+    flex: 1 100%;
+    padding-left: 1em;
     border-bottom: 1px solid #e4e4e4;
-    color        : $font-color-base;
+    color: $font-color-base;
 
     &:last-child {
         border-bottom: 0;
@@ -69,70 +69,68 @@ common-dropdown {
 
     &:hover {
         background-color: #ebebeb;
-        cursor          : pointer;
+        cursor: pointer;
     }
 
     button {
         min-height: 34px;
-        width     : 100%;
+        width: 100%;
         text-align: left;
     }
 }
 
-.dropdown--small{
-    .dropwdown__menu  {
+.dropdown--small {
+    .dropwdown__menu {
         max-height: 175px;
     }
 }
 
 .dropdown--disabled {
     background-color: #ebebeb;
-    pointer-events  : none;
+    pointer-events: none;
 }
 
-.dropdown_box{
-    $box-height : 40px;
+.dropdown_box {
+    $box-height: 40px;
     cursor: pointer;
     cursor: hand;
     position: relative;
 
-
-    .dropdown_list{
-        position:absolute;
+    .dropdown_list {
+        position: absolute;
         bottom: $box-height;
         top: 0;
         background-color: #FFFFFF;
         overflow: hidden;
         border: 1px solid #d7dae0;
         border-bottom: none;
-        width:100%;
+        width: 100%;
         transition: top 0.5s ease-in-out;
-        li{
+        li {
             margin: 0 auto;
             width: 90%;
             border-bottom: 1px solid #d7dae0;
             height: $box-height;
         }
     }
-    .svg-icon{
+    .svg-icon {
         width: 20px;
         height: 11px;
         margin-left: 14px;
         margin-right: 10px;
         margin-top: 12px;
     }
-    .dropdown_selected{
+    .dropdown_selected {
         background-color: #FFFFFF;
         width: 200px;
         height: 40px;
         border: 1px solid #d7dae0;
         line-height: $box-height;
 
-
-        .language--name{
+        .language--name {
             @include textGenerator(14px, 400, $font-color-heading, auto, 100%, false);
         }
-        .arrow{
+        .arrow {
             color: $font-color-base;
             font-size: 23px;
             font-weight: 700;
@@ -146,7 +144,7 @@ common-dropdown {
     *   To create the effect i need the number of elements
     *
     */
-    &.open{
+    &.open {
         @for $i from 0 through 25 {
             &.num-items-#{$i} {
                 .dropdown_list {
@@ -154,7 +152,7 @@ common-dropdown {
                 }
             }
         }
-        .arrow{
+        .arrow {
             transform: rotate(180deg);
         }
     }

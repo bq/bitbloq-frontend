@@ -179,7 +179,18 @@ angular.module('bitbloqApp')
         };
 
         exports.saveInMyProjects = function() {
-            exerciseApi.taskToProject().then();
+            exerciseApi.taskToProject(exports.exercise._id).then(function(newProjectId) {
+                alertsService.add({
+                    text: 'make-cloned-project',
+                    id: 'clone-project',
+                    type: 'ok',
+                    time: 5000
+                });
+                if (newProjectId.data) {
+                    var newtab = $window.open('', '_blank');
+                    newtab.location = '#/bloqsproject/' + newProjectId.data;
+                }
+            });
         };
 
         exports.rename = function() {

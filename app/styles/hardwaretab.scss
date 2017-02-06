@@ -8,7 +8,6 @@ $hw_toolbox: 210px;
     pointer-events: auto;
     padding: 10px;
     margin-left: 1em;
-
     .name {
         padding: 5px;
         font-weight: lighter;
@@ -23,17 +22,14 @@ $hw_toolbox: 210px;
     height: calc(90% - 54px);
     background-color: #fff;
     overflow: auto;
-
     .sidebar-filter-title {
         padding: 0.5em;
         text-align: left;
         padding: 1em 0 1em 20px;
         border-bottom: 1px solid #edf1f2;
     }
-
     .sidebar-filter-element {
         margin: 1em;
-
         .name {
             font-weight: lighter;
         }
@@ -43,15 +39,12 @@ $hw_toolbox: 210px;
 .hw-toolbox-container {
     width: #{$hw_toolbox};
     float: right;
-
     .components-list {
         .component-container {
             @extend .container-default;
-
             .component-image {
                 max-width: 60%;
             }
-
             .component-image--device {
                 filter: grayscale(60%);
                 opacity: 0.5;
@@ -64,21 +57,17 @@ $hw_toolbox: 210px;
             }
         }
     }
-
     .boards-list {
         .board-container {
             @extend .container-default;
-
             .board-image {
                 width: 80%;
             }
         }
     }
-
     .robots-list {
         .robot-container {
             @extend .container-default;
-
             .board-image {
                 width: 80%;
             }
@@ -93,7 +82,6 @@ $hw_toolbox: 210px;
     top: 0;
     left: 0;
     z-index: 8;
-
     &.open {
         display: block;
     }
@@ -124,7 +112,6 @@ $hw_toolbox: 210px;
     justify-content: center;
     flex-direction: column;
     z-index: 1;
-
     &.dragging-over {
         &.dragging-component {
             .name--container {
@@ -214,7 +201,6 @@ $hw_toolbox: 210px;
                     }
                 }
             }
-
             &.noborder {
                 border-right: none;
             }
@@ -243,7 +229,6 @@ $hw_toolbox: 210px;
             align-self: baseline;
         }
     }
-
     .board,
     .component__container,
     .board,
@@ -284,12 +269,31 @@ $hw_toolbox: 210px;
             background-color: transparent;
             height: 50%;
         }
-        &.mranger {
-            background-image: url("/images/robots/mranger.svg");
+        &.rangerlandraider {
+            background-image: url("/images/robots/rangerlandraider.svg");
             background-color: transparent;
             height: 50%;
         }
-
+        &.rangerraptor {
+            background-image: url("/images/robots/rangerraptor.svg");
+            background-color: transparent;
+            height: 50%;
+        }
+        &.rangernervousbird {
+            background-image: url("/images/robots/rangernervousbird.svg");
+            background-color: transparent;
+            height: 50%;
+        }
+        &.startertank {
+            background-image: url("/images/robots/startertank.svg");
+            background-color: transparent;
+            height: 50%;
+        }
+        &.starterthreewheels {
+            background-image: url("/images/robots/starterthreewheels.svg");
+            background-color: transparent;
+            height: 50%;
+        }
         &.robot--selected {
             outline: 4px solid $color !important;
             background-color: transparent;
@@ -439,45 +443,34 @@ $hw_toolbox: 210px;
         }
     }
     .bitbloqconnect {
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        height: 113px;
+        .bitbloqconnect-icon {
+            &:focus {
+                box-shadow: 0 0 0 2px $color;
+            }
+        }
+        &:hover {
+            .bitbloqconnect--badge {
+                display: block;
+            }
+        }
+        .bitbloqconnect--badge {
+            display: none;
             position: absolute;
             top: 10%;
             left: 10%;
-            height: 113px;
-
-            .bitbloqconnect-icon {
-                &:focus {
-                    box-shadow: 0 0 0 2px $color;
-                }
-            }
-
+            width: 140px;
+            margin-left: -24px;
+            margin-top: 96px;
             &:hover {
-                .bitbloqconnect--badge {
-                    display: block;
-                }
-            }
-
-            .bitbloqconnect--badge {
-                display: none;
-                position: absolute;
-                top: 10%;
-                left: 10%;
-                width: 140px;
-                margin-left: -24px;
-                margin-top: 96px;
-
-                &:hover {
-                    display: block;
-                }
+                display: block;
             }
         }
     }
-
-
-
-
-
-
-
+}
 
 .first-component--device {
     .component-interaction {

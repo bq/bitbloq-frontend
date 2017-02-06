@@ -1477,10 +1477,31 @@ angular.module('bitbloqApp')
             "width": 75,
             "height": 86
         }, {
-            "id": "mranger",
-            "name": "mRanger",
+            "id": "rangerlandraider",
+            "name": "mRanger Land Raider",
             "board": "Arduino MEGA 2560",
             "underDevelopment": true,
+            "width": 75,
+            "height": 86
+        }, {
+            "id": "rangerraptor",
+            "name": "mRanger Raptor",
+            "board": "Arduino MEGA 2560",
+            "underDevelopment": true,
+            "width": 75,
+            "height": 86
+        }, {
+            "id": "rangernervousbird",
+            "name": "mRanger Nervous bird",
+            "board": "Arduino MEGA 2560",
+            "underDevelopment": true,
+            "width": 75,
+            "height": 86
+        }, {
+            "id": "startertank",
+            "name": "Starter kit Modo tanke",
+            "underDevelopment": true,
+            "board": "Arduino UNO",
             "width": 75,
             "height": 86
         }, {
