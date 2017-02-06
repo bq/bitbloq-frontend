@@ -323,7 +323,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'dist',
-                    src: ['*.html', 'views/**/*.html', '!google0e0d0e0b7164c58a.html'],
+                    src: ['*.html', 'views/{,*}{,*/}*.html', '!google0e0d0e0b7164c58a.html'],
                     dest: 'dist'
                 }]
             }
@@ -394,7 +394,7 @@ module.exports = function(grunt) {
                         '*.{ico,png,txt}',
                         '.htaccess',
                         '*.html',
-                        'views/{,*/}*.html',
+                        'views/{,*}{,*/}*.html',
                         'styles/ajax-loader.gif',
                         'styles/fonts/{,*/}*.*',
                         'res/locales/*.*',
@@ -535,12 +535,12 @@ module.exports = function(grunt) {
             },
             files: {
                 src: ['app/index.html']
-                    //src: ['app/**/*.html']
+                //src: ['app/**/*.html']
             }
         },
         addTimestampToFiles: {
             dist: {
-                htmlFiles: ['dist/**/*.html', '!dist/index.html', '!dist/google0e0d0e0b7164c58a.html'],
+                htmlFiles: ['dist/{,*}{,*/}*.html', '!dist/index.html', '!dist/google0e0d0e0b7164c58a.html'],
                 localeFiles: ['dist/res/locales/*.json'],
                 configFiles: ['dist/res/config/**/*.json'],
                 imageFiles: ['dist/images/**/*.{svg,png,jpg,ico}'],
