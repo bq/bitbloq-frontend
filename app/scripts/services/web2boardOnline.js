@@ -168,6 +168,18 @@ angular.module('bitbloqApp')
             return compileAndUploadDefer.promise;
         }
 
+        function getReadableErrorMessage(error) {
+            var message = '';
+            if (error.error.indexOf('timeout') >= 0) {
+                message = $translate.instant('modal-inform-error-textarea-placeholder') + ': ' + $translate.instant(JSON.stringify(error.error));
+            } else {
+                message = $translate.instant('modal-inform-error-textarea-placeholder') + ': ' + $translate.instant(JSON.stringify(error.error));
+            }
+            //stk500 timeout.
+
+            return message;
+        }
+
         function upload(params, defer) {
             var uploadDefer = defer || $q.defer();
             if (params.viewer) {
@@ -216,7 +228,7 @@ angular.module('bitbloqApp')
                     if (error.error.search('no Arduino') !== -1) {
                         text = 'alert-web2board-no-port-found';
                     } else {
-                        text = $translate.instant('modal-inform-error-textarea-placeholder') + ': ' + $translate.instant(JSON.stringify(error));
+                        text = getReadableErrorMessage(error);
                     }
                     alertsService.add({
                         text: text,

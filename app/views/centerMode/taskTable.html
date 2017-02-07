@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="table__block">
-            <div class="table__block__list row" ng-repeat="task in tasks | orderBy:'orderInstance'">
+            <div class="table__block__list table__block__hover row" ng-repeat="task in tasks | orderBy:'orderInstance'">
                 <div class="table__block__item col-vsmall-5">
                     <h2 class="block__item__title">
                         {{(task.firstName? task.firstName + ' ' + task.lastName : task.username) || task.name}}

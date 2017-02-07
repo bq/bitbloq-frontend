@@ -38,7 +38,7 @@
         padding: 10px;
         background-color: #eeeeee;
         min-height: 50px;
-        &:hover {
+        &.table__block__hover:hover {
             background-color: #e2e2e2;
             .table__block__button--delete {
                 display: block;
@@ -96,11 +96,12 @@
         transition: color 120ms;
         line-height: 1.5;
         text-align: left;
-        &:hover {
-            &, & > * {
-                color: #82ad3a;
-                cursor: pointer;
-            }
+        cursor: default;
+    }
+    .table__item__link:hover {
+        &, & > * {
+            color: #82ad3a;
+            cursor: pointer;
         }
     }
 
@@ -125,11 +126,12 @@
         font-weight: 100;
         color: gray;
         display: block;
+        cursor: default;
     }
     .table__item__btn {
         &:not(.btn--delete) {
-        width: 95px;
-    }
+            width: 95px;
+        }
         float: right;
     }
 }

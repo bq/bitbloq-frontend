@@ -150,6 +150,7 @@ angular.module('bitbloqApp')
 
         $scope.removeProject = function(project, type) {
             if (type === 'exercise' || type === 'task') {
+              //add link: _undoRemoveExercise
                 exerciseApi.delete(project._id).then(function() {
                     $log.log('we delete this project');
                 }, function(error) {

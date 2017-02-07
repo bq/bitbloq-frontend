@@ -130,7 +130,7 @@
                 <legend class="h3">{{ 'infotab_title_groups' | translate }}</legend>
             </div>
             <ul class="table__block--invert">
-                <li class="table__block__list" ng-repeat="group in groups">
+                <li class="table__block__list table__block__hover" ng-repeat="group in groups">
                     <span class="table__block__item">
                         <a ng-href="{{'#/center-mode/group/' + group._id}}">
                             <h2 class="block__item__title block__item__title--small" data-element="{{'centerMode_item_' + group.name}}">

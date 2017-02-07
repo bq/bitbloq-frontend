@@ -8,7 +8,7 @@
      * Controller of the bitbloqApp
      */
     angular.module('bitbloqApp')
-        .controller('CenterCtrl', function($log, $scope, $rootScope, _, ngDialog, alertsService, centerModeApi, exerciseApi, centerModeService, $routeParams, $location, commonModals, $window, exerciseService) {
+        .controller('CenterCtrl', function($log, $scope, $rootScope, _, ngDialog, alertsService, centerModeApi, exerciseApi, centerModeService, $routeParams, $location, commonModals, $window, exerciseService, $document) {
 
             $scope.center = {};
             $scope.exercises = [];
@@ -25,12 +25,25 @@
             $scope.pageno = 1;
             $scope.exercisesCount = 0;
             $scope.itemsPerPage = 10;
+            $scope.menuActive = {};
             $scope.pagination = {
                 current: 1
             };
             $scope.groupArray = {};
+            $scope.exerciseService = exerciseService;
 
             var currentModal;
+
+            $scope.changeExerciseMenu = function(index) {
+                var previousState;
+                if ($scope.menuActive[index]) {
+                    previousState = $scope.menuActive[index];
+                } else {
+                    previousState = false;
+                }
+                $scope.menuActive = {};
+                $scope.menuActive[index] = !previousState;
+            };
 
             $scope.editGroup = function() {
                 exerciseService.assignGroup($scope.exercise, $scope.common.user._id, $scope.groups, $scope.center._id)
@@ -142,7 +155,9 @@
                     confirmAction: confirmAction,
                     rejectButton: 'modal-button-cancel',
                     contentTemplate: '/views/modals/information.html',
-                    textContent: $scope.common.translate('deleteTask_modal_information', {value: student}),
+                    textContent: $scope.common.translate('deleteTask_modal_information', {
+                        value: student
+                    }),
                     secondaryContent: 'deleteTask_modal_information-explain',
                     modalButtons: true
                 });
@@ -152,6 +167,48 @@
                     className: 'modal--container modal--input',
                     scope: modalOptions
                 });
+            };
+
+            $scope.deleteExercise = function(exercise) {
+                var confirmAction = function() {
+                        exerciseApi.delete(exercise._id).then(function() {
+                            _.remove($scope.exercises, exercise);
+                            alertsService.add({
+                                text: 'centerMode_alert_deleteExercise',
+                                id: 'deleteTask',
+                                type: 'ok',
+                                time: 5000
+                            });
+                        }).catch(function() {
+                            alertsService.add({
+                                text: 'centerMode_alert_deleteExercise-error',
+                                id: 'deleteTask',
+                                type: 'ko'
+                            });
+                        });
+                        currentModal.close();
+                    },
+                    parent = $rootScope,
+                    modalOptions = parent.$new();
+                //student = $scope.student && $scope.student.firstName ? $scope.student.firstName + $scope.student.lastName : $scope.student.username;
+                _.extend(modalOptions, {
+                    title: $scope.common.translate('deleteExercise_modal_title') + ': ' + exercise.name,
+                    confirmButton: 'button_delete',
+                    value: 'se acabaron los tiempos',
+                    confirmAction: confirmAction,
+                    rejectButton: 'modal-button-cancel',
+                    contentTemplate: '/views/modals/information.html',
+                    textContent: $scope.common.translate('deleteExercise_modal_information'),
+                    secondaryContent: 'deleteExercise_modal_information-explain',
+                    modalButtons: true
+                });
+
+                currentModal = ngDialog.open({
+                    template: '/views/modals/modal.html',
+                    className: 'modal--container modal--input',
+                    scope: modalOptions
+                });
+
             };
 
             $scope.deleteTeacher = function(teacher) {
@@ -223,7 +280,9 @@
                     rejectButton: 'cancel',
                     confirmAction: confirmAction,
                     contentTemplate: '/views/modals/information.html',
-                    textContent: $scope.common.translate('deleteStudent_modal_information', {value: studentName}),
+                    textContent: $scope.common.translate('deleteStudent_modal_information', {
+                        value: studentName
+                    }),
                     secondaryContent: 'deleteStudent_modal_information-explain',
                     modalButtons: true
                 });
@@ -288,8 +347,7 @@
                 }
             };
 
-            $scope.sortInstancesByGroup = function() {
-            };
+            $scope.sortInstancesByGroup = function() {};
 
             $scope.newGroup = function() {
                 centerModeService.newGroup($scope.teacher._id || $scope.common.user._id, $scope.center._id)
@@ -542,20 +600,44 @@
                 });
             });
 
+            $scope.renameExercise = function(exercise) {
+                commonModals.rename(exercise, 'exercise').then(function() {
+                    exerciseApi.update(exercise._id, exercise).then(function() {});
+                });
+            };
+
+            $scope.createExerciseCopy = function(exercise) {
+                exerciseService.clone(exercise);
+                localStorage.exercisesChange = true;
+            };
+
+
             $window.onfocus = function() {
                 if ($routeParams.type === 'teacher') {
                     $scope.$apply(function() {
                         $scope.timestamp = Date.now();
                     });
-                    if (JSON.parse(localStorage.exercisesChange) && $scope.common.itsUserLoaded()) {
+                    if (localStorage.exercisesChange && JSON.parse(localStorage.exercisesChange) && $scope.common.itsUserLoaded()) {
                         localStorage.exercisesChange = false;
-                        _getTeacher();
+                        _checkUrl();
                     }
                 }
             };
 
+            function clickDocumentHandler(evt) {
+                if (!$(evt.target).hasClass('btn--center-mode--table')) {
+                    $scope.menuActive = {};
+                    if (!$scope.$$phase) {
+                        $scope.$digest();
+                    }
+                }
+            }
+
+            $document.on('click', clickDocumentHandler);
+
             $scope.$on('$destroy', function() {
                 $window.onfocus = null;
+                $document.off('click', clickDocumentHandler);
             });
         });
 })();

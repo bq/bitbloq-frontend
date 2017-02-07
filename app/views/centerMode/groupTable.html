@@ -9,9 +9,9 @@
     <span class="col-vsmall-3" ng-if="common.urlType==='teacher'">{{'centerMode_column_students' | translate}}</span>
 </div>
 <ul class="table__block">
-    <li class="table__block__list row" ng-repeat="group in groups">
+    <li class="table__block__list row" ng-class="{'table__block__hover': common.userRole!=='student'}" ng-repeat="group in groups">
         <span class="col-vsmall-11 table__block__item">
-            <button class="table__item__text" ng-click="saveUrl('/center-mode/group/' + group._id)">
+            <button class="table__item__text" ng-class="{'table__item__link': common.userRole!=='student'}" ng-click="common.userRole!=='student' && saveUrl('/center-mode/group/' + group._id)">
                 <h2 class="block__item__title block__item__title--small" data-element="{{'centerMode_item_' + group.name}}">
                     {{group.name}}
                 </h2>
@@ -20,7 +20,7 @@
                 <span class="block__item__explanation--subscript" ng-if="common.urlType==='exercise-info'"> {{group.endDate ? ('date_to' | translate)+' '+(group.endDate | date:'dd MMM yyyy - HH:mm') : 'date_without_endDate' | translate}}</span>
             </button>
         </span>
-        <span class="col-vsmall-1 table__block__item" ng-if="common.urlType!=='exercise-info'">{{group.students.length || 0}}</span>
+        <span class="col-vsmall-1 table__block__item" ng-if="common.urlType!=='exercise-info' && common.userRole!=='student'">{{group.students.length || 0}}</span>
     </li>
 </ul>
 

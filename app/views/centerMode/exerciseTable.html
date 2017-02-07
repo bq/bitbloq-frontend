@@ -8,13 +8,10 @@
         </h1>
         <span class="center-mode__table__header__element-right">
             {{'centerMode_exercises_showFilters' | translate}}</span>
-        
+
         <!--{{'centerMode_exercises_hideFilters' | translate}}-->
     </div>
-    
-    <!--<div style="background-color: red !important" class="center-mode__table__filters">
-      sadsadsadasd
-    </div>-->
+
     <div class="dropdown-group table__added__exercise clearfix" ng-if="common.urlType!=='group'">
         <common-dropdown options="sortExerciseArray" options-click="sortInstancesByExercise" pre-heading="'explore-sortby'" heading-option="orderOptions[0] | translate" class="projects--sort-dropdown"></common-dropdown>
         <common-dropdown options="groupArray" options-click="sortInstancesByGroup" pre-heading="'centerMode_sortby_groups'" heading-option="orderOptions[0] | translate" class="projects--sort-dropdown"></common-dropdown>
@@ -25,9 +22,9 @@
             <span class="col-vsmall-3">{{'centerMode_column_time' | translate}}</span>
         </div>
         <div class="table__block table__block__exercise">
-            <div class="table__block__list row" dir-paginate="exercise in exercises | itemsPerPage: itemsPerPage" current-page="pagination.current" total-items="{{exercisesCount}}">
+            <div class="table__block__list table__block__hover row" dir-paginate="exercise in exercises | itemsPerPage: itemsPerPage" current-page="pagination.current" total-items="{{exercisesCount}}">
                 <div class="table__block__item col-vsmall-8">
-                    <button class="table__item__text" ng-click="saveUrl((exercise.exercise? '/task/' : '/center-mode/exercise-info/') + exercise._id)">
+                    <button class="table__item__text table__item__link" ng-click="saveUrl((exercise.exercise? '/task/' : '/center-mode/exercise-info/') + exercise._id)">
                         <h2 class="block__item__title" data-element="{{'centerMode-item-' + exercise.name}}">
                             {{exercise.name || exercise.exercise.name || 'new-exercise' | translate}}</h2>
                     </button>
@@ -37,17 +34,74 @@
                         {{getDatetime(exercises[1].endDate)}}
                     </p>
                 </div>
-                <div class="table__block__item table__column--right col-vsmall-1">
-                    <button class="btn btn--tertiary table__block__button" data-element="centerMode-button-options">
+                <div class="table__block__item table__column--right col-vsmall-1 center-mode__table__menu">
+                    <button class="btn btn--center-mode--table table__block__button" ng-click="changeExerciseMenu($index)" data-element="centerMode-button-options">
                         <svg class="svg-icon">
                             <use xlink:href="#ellipsis"></use>
                         </svg>
                     </button>
                 </div>
+                <div ng-show="menuActive[$index]" class="table__block__item--menu">
+                    <ul>
+
+                        <li class="table__block__item--menu__item table__block__item--menu__item--open">
+                            <a class="table__block__item--menu__link" data-ng-href="#/center-mode/exercise-info/{{exercise._id}}" target="_blank">
+                                <svg class="svg-icon svg-icon--text svg-icon--menu">
+                                    <use xlink:href=""></use>
+                                </svg>
+                                {{'open' | translate}}</a>
+                        </li>
+
+                        <li class="dropdown__item--separator"></li>
+                        <li ng-click="exerciseService.assignGroup(exercise, common.user._id, groups, null, true)" class="table__block__item--menu__item">
+                            <svg class="svg-icon svg-icon--text svg-icon--menu">
+                                <use xlink:href="#people"></use>
+                            </svg>
+                            {{'centerMode_editGroups' | translate}}
+                        </li>
+                        <li ng-click="renameExercise(exercise)" class="table__block__item--menu__item">
+                            <svg class="svg-icon svg-icon--text svg-icon--menu">
+                                <use xlink:href="#pencil"></use>
+                            </svg>
+                            {{'change-name' | translate}}
+                        </li>
+                        <li ng-click="createExerciseCopy(exercise)" class="table__block__item--menu__item">
+                            <svg class="svg-icon svg-icon--text svg-icon--menu">
+                                <use xlink:href="#duplicate"></use>
+                            </svg>
+                            {{'centerMode_exercise_duplicate' | translate}}
+                        </li>
+                        <li class="dropdown__item--separator--thick"></li>
+
+                        <li ng-click="exerciseService.download(exercise)" class="table__block__item--menu__item">
+                            <svg class="svg-icon svg-icon--text svg-icon--menu">
+                                <use xlink:href="#download"></use>
+                            </svg>
+                            {{'download' | translate}}
+                        </li>
+
+                        <li ng-click="exerciseService.download(exercise, 'arduino')" class="table__block__item--menu__item">
+                            <svg class="svg-icon svg-icon--text svg-icon--menu">
+                                <use xlink:href="#fileCode"></use>
+                            </svg>
+                            {{'navigation_text_file_downloadArduinoCode' | translate}}
+                        </li>
+
+                        <li class="dropdown__item--separator--thick"></li>
+                        <li ng-click="deleteExercise(exercise)" class="table__block__item--menu__item table__block__item--menu__item-red">
+                            <svg class="svg-icon svg-icon--text svg-icon--menu">
+                                <use xlink:href="#delete"></use>
+                            </svg>
+                            {{'button_delete' | translate}}
+                        </li>
+
+                    </ul>
+
+                </div>
             </div>
         </div>
     </div>
-    
+
     <div class="forum__paginator">
         <dir-pagination-controls on-page-change="getExercisesPaginated(newPageNumber)" max-size="7" template-url="views/forum/forumPagination.html"></dir-pagination-controls>
     </div>

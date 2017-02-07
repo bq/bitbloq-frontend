@@ -265,32 +265,32 @@ $hw_toolbox: 210px;
             width: 500px;
         }
         &.mbot {
-            background-image: url("/images/robots/mbot.svg");
+            background-image: url("/images/robots/mcore.svg");
             background-color: transparent;
             height: 50%;
         }
         &.rangerlandraider {
-            background-image: url("/images/robots/rangerlandraider.svg");
+            background-image: url("/images/robots/meauriga.svg");
             background-color: transparent;
             height: 50%;
         }
         &.rangerraptor {
-            background-image: url("/images/robots/rangerraptor.svg");
+            background-image: url("/images/robots/meauriga.svg");
             background-color: transparent;
             height: 50%;
         }
         &.rangernervousbird {
-            background-image: url("/images/robots/rangernervousbird.svg");
+            background-image: url("/images/robots/meauriga.svg");
             background-color: transparent;
             height: 50%;
         }
         &.startertank {
-            background-image: url("/images/robots/startertank.svg");
+            background-image: url("/images/robots/meorion.svg");
             background-color: transparent;
             height: 50%;
         }
         &.starterthreewheels {
-            background-image: url("/images/robots/starterthreewheels.svg");
+            background-image: url("/images/robots/meorion.svg");
             background-color: transparent;
             height: 50%;
         }
@@ -362,6 +362,18 @@ $hw_toolbox: 210px;
             background-image: url("/images/boards/ArduinoMEGA2560.svg");
             background-color: transparent;
             width: 555px;
+        }
+        &.mcore {
+            background-image: url("/images/boards/mcore.svg");
+            background-color: transparent;
+        }
+        &.meorion {
+            background-image: url("/images/boards/meorion.svg");
+            background-color: transparent;
+        }
+        &.meauriga {
+            background-image: url("/images/boards/meauriga.svg");
+            background-color: transparent;
         }
     }
     .component {

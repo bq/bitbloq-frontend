@@ -90,9 +90,11 @@ angular.module('bitbloqApp')
                 }
             }
 
-            var modalOptions = $rootScope.$new();
-
-            var extraButton = utils.userIsUnder14($scope.common.user.birthday)? null : 'centerMode_button_createCenter-try';
+            var modalOptions = $rootScope.$new(),
+                extraButton = 'centerMode_button_createCenter-try';
+            if ($scope.common.user.birthday && utils.userIsUnder14($scope.common.user.birthday)) {
+                extraButton = null;
+            }
 
             _.extend(modalOptions, {
                 title: 'centerMode_modal_createCenterTitle',

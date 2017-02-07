@@ -8,7 +8,7 @@
             <span class="col-vsmall-5">{{'centerMode_column_students' | translate}}</span>
         </div>
         <ul class="table__block--invert assign-group__content">
-            <li class="table__block__list" ng-repeat="group in groups" ng-if="!onlyEdit || oldGroups[group._id]">
+            <li class="table__block__list table__block__hover" ng-repeat="group in groups" ng-if="!onlyEdit || oldGroups[group._id]">
                 <span class="checkbox--general">
                         <input type="checkbox" name="groupCheck" id="{{'group_'+group._id}}" ng-show="!onlyEdit" ng-init="group.selected=oldGroups[group._id]? true: false" ng-model="group.selected"/>
                 </span>

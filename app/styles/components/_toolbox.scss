@@ -115,6 +115,27 @@ $hw_toolbox: 210px;
             border-left: 1px solid #dddddd;
         }
     }
+    .input--checkbox {
+        float: left;
+        position: relative;
+        top: 13px;
+        left: 11px;
+    }
+
+    .toolbox_tabs--checkbox {
+        .input--checkbox {
+            top: 21px;
+            left: 0;
+            input {
+                float: left;
+                width: 16px !important;
+                height: 16px !important;
+            }
+        }
+        button.component-toolbox {
+            width: calc(100% - 24px);
+        }
+    }
 }
 
 .toolbox__item {
@@ -132,15 +153,18 @@ $hw_toolbox: 210px;
     &.toolbox--expand {
         width: 451px;
     }
+
     .toolbox__menu {
         width: 174px;
     }
+
     .toolbox__item {
         height: 53px;
         .btn-text {
             padding: 15px;
         }
     }
+
     .tabs-layout__aside--vertical {
         width: 53px;
         .tabs__header__item--vertical {
@@ -156,13 +180,16 @@ $hw_toolbox: 210px;
             }
         }
     }
+
     .tabs-layout {
         width: calc(100% - 53px);
     }
+
     .tabs-layout__content {
         background-color: white;
         border-top: none;
     }
+
     .toolbox-zowi {
         background-color: #4e929b;
         &.selected--tab .btn-svg .svg-icon {
@@ -267,17 +294,5 @@ $hw_toolbox: 210px;
                 margin-left: .5em;
             }
         }
-    }
-}
-
-.toolbox--right {
-    input.component-toolbox {
-        display: none;
-    }
-}
-
-.toolbox--checks {
-    input.component-toolbox {
-        display: inherit;
     }
 }

@@ -32,6 +32,14 @@
         &:disabled {
             background-color: $font-color-disabled;
         }
+
+        &:indeterminate {
+            background-color: white;
+            background-image: url('../images/icons/minus.svg');
+            background-size: 70%;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
     }
 
     .fa {

@@ -10,9 +10,8 @@
 
 angular.module('bitbloqApp')
     .controller('ExerciseCtrl', function($rootScope, $route, $scope, $log, $timeout, $routeParams, $document, $window, $location,
-                                         $q, web2board, alertsService, ngDialog, _, bloqs, bloqsUtils, utils, userApi, commonModals, hw2Bloqs, web2boardOnline,
-                                         exerciseService, hardwareConstants, chromeAppApi, centerModeApi, exerciseApi)
-    {
+        $q, web2board, alertsService, ngDialog, _, bloqs, bloqsUtils, utils, userApi, commonModals, hw2Bloqs, web2boardOnline,
+        exerciseService, hardwareConstants, chromeAppApi, centerModeApi, exerciseApi) {
 
         /*************************************************
          Exercise settings
@@ -347,11 +346,11 @@ angular.module('bitbloqApp')
             var freeBloqs = bloqs.getFreeBloqs();
             //$log.debug(freeBloqs);
             step = step || {
-                    vars: exerciseService.bloqs.varsBloq.getBloqsStructure(),
-                    setup: exerciseService.bloqs.setupBloq.getBloqsStructure(),
-                    loop: exerciseService.bloqs.loopBloq.getBloqsStructure(),
-                    freeBloqs: freeBloqs
-                };
+                vars: exerciseService.bloqs.varsBloq.getBloqsStructure(),
+                setup: exerciseService.bloqs.setupBloq.getBloqsStructure(),
+                loop: exerciseService.bloqs.loopBloq.getBloqsStructure(),
+                freeBloqs: freeBloqs
+            };
             if ($scope.bloqsHistory.pointer !== ($scope.bloqsHistory.history.length - 1)) {
                 $scope.bloqsHistory.history = _.take($scope.bloqsHistory.history, $scope.bloqsHistory.pointer + 1);
             }
@@ -425,8 +424,7 @@ angular.module('bitbloqApp')
             if (event.which === 8 &&
                 event.target.nodeName !== 'INPUT' &&
                 event.target.nodeName !== 'SELECT' &&
-                event.target.nodeName !== 'TEXTAREA' && !$document[0].activeElement.attributes['data-bloq-id'])
-            {
+                event.target.nodeName !== 'TEXTAREA' && !$document[0].activeElement.attributes['data-bloq-id']) {
 
                 event.preventDefault();
             }

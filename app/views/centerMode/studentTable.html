@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="table__block">
-            <div class="table__block__list row" ng-repeat="student in students | orderBy:'orderInstance'">
+            <div class="table__block__list table__block__hover row" ng-repeat="student in students | orderBy:'orderInstance'">
                 <div class="table__block__item col-vsmall-7">
                     <a ng-href="{{'#/center-mode/group/' + group._id + '/student/' + student._id}}">
                         <h2 class="block__item__title" data-element="{{'centerMode-student-' + student.username}}">

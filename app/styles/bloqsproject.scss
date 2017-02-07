@@ -453,6 +453,13 @@ $leftBarWidth: 70px;
     margin-bottom: .5em;
 }
 
+.dropdown__item--separator--thick {
+    border-bottom: 2px solid #dadada;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+
 .actions__menu--selected {
     z-index: 8;
 }

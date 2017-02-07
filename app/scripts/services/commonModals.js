@@ -8,8 +8,7 @@
  * Service in the bitbloqApp.
  */
 angular.module('bitbloqApp')
-    .service('commonModals', function(feedbackApi, alertsService, $rootScope, $translate, $compile, userApi, envData, _, ngDialog, $window, common, projectApi, exerciseApi, utils, $location, clipboard, $q, chromeAppApi)
-    {
+    .service('commonModals', function(feedbackApi, alertsService, $rootScope, $translate, $compile, userApi, envData, _, ngDialog, $window, common, projectApi, exerciseApi, utils, $location, clipboard, $q, chromeAppApi) {
 
         var exports = {},
             shortUrl,
@@ -446,10 +445,10 @@ angular.module('bitbloqApp')
                         }
                     });
                 }).error(function() {
-                _.extend(modalOptions, {
-                    shortUrl: $location.protocol() + '://' + $location.host() + '/#/project/' + project._id
+                    _.extend(modalOptions, {
+                        shortUrl: $location.protocol() + '://' + $location.host() + '/#/project/' + project._id
+                    });
                 });
-            });
 
             shareModal = ngDialog.open({
                 template: '/views/modals/modal.html',
@@ -494,7 +493,6 @@ angular.module('bitbloqApp')
                 });
                 return true;
             }
-
 
             if (type === 'project') {
                 currentApi = projectApi;
@@ -731,7 +729,6 @@ angular.module('bitbloqApp')
             });
         };
 
-
         function _shareUserInfoModal(noUsers, usersLength) {
             var noShareModal, confirmAction = function() {
                     noShareModal.close();
@@ -760,7 +757,6 @@ angular.module('bitbloqApp')
                 scope: modalScope
             });
         }
-
 
         exports.requestChromeExtensionActivation = function(text, callback) {
             var modalNeedWeb2boardOnline = $rootScope.$new();
