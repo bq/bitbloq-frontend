@@ -3,11 +3,14 @@
     <a ng-if="secondaryBreadcrumb" class="breadcrumb--secondary" ng-href="#/center-mode/{{teacher._id}}">{{teacher.firstName ? teacher.firstName + ' ' +teacher.lastName : teacher.username}}</a>
 </div>
 <h1 class="header__title col-vsmall-8" ng-if="common.urlType==='teacher'">{{'header_tab_myClass' | translate}}</h1>
-<div ng-if="common.urlType==='group'" class="breadcrumb header__title col-vsmall-8" ng-class="{'second-level':secondaryBreadcrumb}" data-element="centerMode-header-breadcrumb">
+<div ng-if="common.urlType==='group'" class="breadcrumb header__title col-vsmall-8" ng-class="{'second-level':secondaryBreadcrumb || tertiaryBreadcrumb}" data-element="centerMode-header-breadcrumb">
     <h1><a ng-href="{{common.lastUrl ? '#' + common.lastUrl: '#/center-mode/teacher'}}">{{'groups' | translate}}</a></h1>
-    <a ng-if="secondaryBreadcrumb" class="breadcrumb--secondary" ng-href="#/center-mode/{{group._id}}">
+    <a ng-if="secondaryBreadcrumb || tertiaryBreadcrumb" ng-class="{'breadcrumb--secondary': secondaryBreadcrumb, 'breadcrumb__item': tertiaryBreadcrumb}" ng-href="#/center-mode/group/{{group._id}}">
         {{group.name}}
-        <span class="breadcrumb--subtext">{{group.accessId}}</span>
+        <span class="breadcrumb--subtext" ng-if="!tertiaryBreadcrumb">{{group.accessId}}</span>
+    </a>
+    <a ng-if="tertiaryBreadcrumb" class="breadcrumb--secondary" ng-href="#/center-mode/{{group._id}}">
+        {{student.firstName? student.firstName + student.lastName : student.username}}
     </a>
 </div>
 <div ng-if="common.urlType==='exercise-info'" class="breadcrumb header__title col-vsmall-8 second-level" data-element="centerMode-header-breadcrumb">
@@ -16,7 +19,7 @@
         {{exercise.name}}
     </a>
 </div>
-<div class="button-group col-vsmall-4">
+<div ng-if="urlSubType!=='student'" class="button-group col-vsmall-4">
     <button ng-if="common.urlType==='center'" class="btn btn--primary btn--small" ng-click="newTeacher()" data-element="centerMode_button_newTeacher">
         <span>{{'centerMode_button_newTeacher' | translate}}</span>
     </button>
@@ -29,4 +32,8 @@
     <button ng-if="common.user && common.user.studentMode" class="btn btn--primary btn--small" ng-click="registerInGroup()" data-element="centerMode_button_registerInGroup">
         <span>{{'centerMode_button_registerInGroup' | translate}}</span>
     </button>
+</div>
+<div class="center-mode__average" ng-if="urlSubType==='student' && student.average">
+    <p class="average__mark">{{student.average}}</p>
+    <p class="average__info">{{'centerMode_column_averageMark' | translate }}</p>
 </div>

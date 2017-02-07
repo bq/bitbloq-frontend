@@ -12,7 +12,6 @@ angular.module('bitbloqApp')
 
         var exports = {};
 
-
         exports.newGroup = function(teacherId, centerId) {
             var def = $q.defer();
 

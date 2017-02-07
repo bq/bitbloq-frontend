@@ -31,7 +31,7 @@
     }
 
     &.second-level, &.third-level {
-        h1 {
+        h1, .breadcrumb__item {
             &:after {
                 content: '>';
                 margin-left: 5px;
@@ -47,14 +47,3 @@
         }
     }
 }
-
-/*
-.table__header{
-.breadcrumb {
-    font-size: 20px;
-    color: #373b44;
-    a {
-        color: #8c919b;
-    }
-}
-*/

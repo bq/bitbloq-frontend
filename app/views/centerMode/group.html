@@ -1,4 +1,7 @@
-<div class="center-mode__group">
+<div ng-if="urlSubType==='student'" class="table__main">
+    <div ng-if="tasks.length>0" class="centerMode" ng-include="'views/centerMode/taskTable.html'"></div>
+</div>
+<div class="center-mode__group" ng-if="urlSubType!=='student'">
     <div class="group__header">
         <label class="switch-button">
             <input type="checkbox" ng-model="classStateCheck" ng-change="classStateCheck? group.status='open' : group.status='inProgress'; changeStatusClass();" ng-disabled="group.status==='closed'" checked>

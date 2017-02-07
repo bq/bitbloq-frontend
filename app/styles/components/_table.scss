@@ -126,6 +126,12 @@
         color: gray;
         display: block;
     }
+    .table__item__btn {
+        &:not(.btn--delete) {
+        width: 95px;
+    }
+        float: right;
+    }
 }
 
 .table__block__button--delete {

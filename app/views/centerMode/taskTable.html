@@ -1,12 +1,26 @@
-<h1 class="table__title">
+<h1 class="table__title" ng-if="common.urlType==='exercise-info'">
     <svg class="svg-icon svg-icon--text">
         <use xlink:href="#user"></use>
     </svg>
     {{'centerMode_column_students' | translate}}
 </h1>
+<h1 class="table__title" ng-if="common.urlType==='group'">
+    <svg class="svg-icon svg-icon--text">
+        <use xlink:href="#exercise"></use>
+    </svg>
+    {{'centerMode_exercises' | translate}}
+</h1>
 <div ng-if="tasks.length>0">
     <div class="dropdown-group table__added clearfix">
         <common-dropdown options="sortArray" options-click="sortInstances" pre-heading="'explore-sortby'" heading-option="orderOptions[0] | translate" class="projects--sort-dropdown"></common-dropdown>
+        <div class="button-group col-vsmall-6" ng-if="urlSubType==='student'">
+            <button class="btn btn--tertiary btn--small btn--delete" ng-click="deleteStudent(student)" data-element="centerMode_button_deleteStudent">
+                <svg class="svg-icon">
+                    <use xlink:href="#delete"></use>
+                </svg>
+                {{ 'centerMode_button_deleteStudent' | translate}}
+            </button>
+        </div>
     </div>
     <div>
         <div class="centerMode__table-title row">
@@ -24,7 +38,7 @@
             <div class="table__block__list row" ng-repeat="task in tasks | orderBy:'orderInstance'">
                 <div class="table__block__item col-vsmall-5">
                     <h2 class="block__item__title">
-                        {{task.firstName? task.firstName + ' ' + task.lastName : task.username}}
+                        {{(task.firstName? task.firstName + ' ' + task.lastName : task.username) || task.name}}
                     </h2>
                 </div>
                 <div class="table__block__item table__column--centered col-vsmall-2">
@@ -38,7 +52,12 @@
                     </span>
                 </div>
                 <div class="table__block__item table__column--hover table__column--right col-vsmall-3">
-                    <a class="btn btn--tertiary btn--small" ng-href="{{'#/task/' + task._id}}" target="_blank" data-element="{{'centerMode-button-showExercise' + task._id}}">
+                    <button class="btn btn--tertiary btn--small btn--delete table__item__btn" ng-if="common.urlType==='group'" ng-click="deleteTask(task)" data-element="{{'centerMode-button-deleteTask' + task._id}}">
+                        <svg class="svg-icon">
+                            <use xlink:href="#delete"></use>
+                        </svg>
+                    </button>
+                    <a class="btn btn--tertiary btn--small table__item__btn" ng-href="{{'#/task/' + task._id}}" target="_blank" data-element="{{'centerMode-button-showTask' + task._id}}">
                         {{'centerMode_button_correct' | translate}}
                     </a>
                 </div>

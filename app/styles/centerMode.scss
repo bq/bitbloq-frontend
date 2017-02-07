@@ -54,3 +54,18 @@
         color: #676a71;
     }
 }
+
+.center-mode__average {
+    line-height: 0.6;
+    float: right;
+    .average__mark {
+        font-size: 40px;
+        font-weight: bold;
+        color: #373b44;
+        display: inline;
+    }
+    .average__info {
+        display: inline;
+        color: #8c919b;
+    }
+}

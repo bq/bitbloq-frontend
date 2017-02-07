@@ -21,6 +21,7 @@
             $scope.students = [];
             $scope.orderInstance = 'name';
             $scope.common.urlType = $routeParams.type;
+            $scope.urlSubType = $routeParams.subtype;
             $scope.pageno = 1;
             $scope.exercisesCount = 0;
             $scope.itemsPerPage = 10;
@@ -112,6 +113,47 @@
                 });
             };
 
+            $scope.deleteTask = function(task) {
+                var confirmAction = function() {
+                        centerModeApi.deleteTask(task._id).then(function() {
+                            _.remove($scope.tasks, task);
+                            alertsService.add({
+                                text: 'centerMode_alert_deleteTask',
+                                id: 'deleteTask',
+                                type: 'ok',
+                                time: 5000
+                            });
+                        }).catch(function() {
+                            alertsService.add({
+                                text: 'centerMode_alert_deleteTask-error',
+                                id: 'deleteTask',
+                                type: 'ko'
+                            });
+                        });
+                        currentModal.close();
+                    },
+                    parent = $rootScope,
+                    modalOptions = parent.$new(),
+                    student = $scope.student && $scope.student.firstName ? $scope.student.firstName + $scope.student.lastName : $scope.student.username;
+                _.extend(modalOptions, {
+                    title: $scope.common.translate('deleteTask_modal_title') + ': ' + task.name,
+                    confirmButton: 'button_delete',
+                    value: $scope.student.username,
+                    confirmAction: confirmAction,
+                    rejectButton: 'modal-button-cancel',
+                    contentTemplate: '/views/modals/information.html',
+                    textContent: $scope.common.translate('deleteTask_modal_information', {value: student}),
+                    secondaryContent: 'deleteTask_modal_information-explain',
+                    modalButtons: true
+                });
+
+                currentModal = ngDialog.open({
+                    template: '/views/modals/modal.html',
+                    className: 'modal--container modal--input',
+                    scope: modalOptions
+                });
+            };
+
             $scope.deleteTeacher = function(teacher) {
                 var confirmAction = function() {
                         centerModeApi.deleteTeacher(teacher._id, $scope.center._id).then(function() {
@@ -142,6 +184,47 @@
                     contentTemplate: '/views/modals/information.html',
                     textContent: 'deleteTeacher_modal_information',
                     secondaryContent: 'deleteTeacher_modal_information-explain',
+                    modalButtons: true
+                });
+
+                var newTeacherModal = ngDialog.open({
+                    template: '/views/modals/modal.html',
+                    className: 'modal--container modal--input',
+                    scope: modalOptions
+                });
+            };
+
+            $scope.deleteStudent = function(student) {
+                var confirmAction = function() {
+                        centerModeApi.deleteStudent(student._id, $scope.group._id).then(function() {
+                            alertsService.add({
+                                text: 'centerMode_alert_deleteStudent',
+                                id: 'deleteStudent',
+                                type: 'ok',
+                                time: 5000
+                            });
+                            $location.path('center-mode/group/' + $scope.group._id);
+                        }).catch(function() {
+                            alertsService.add({
+                                text: 'centerMode_alert_deleteStudent-error',
+                                id: 'deleteTStudent',
+                                type: 'error'
+                            });
+                        });
+                        newTeacherModal.close();
+                    },
+                    parent = $rootScope,
+                    modalOptions = parent.$new(),
+                    studentName = $scope.student && $scope.student.firstName ? $scope.student.firstName + $scope.student.lastName : $scope.student.username;
+
+                _.extend(modalOptions, {
+                    title: 'deleteStudent_modal_title',
+                    confirmButton: 'button_delete ',
+                    rejectButton: 'cancel',
+                    confirmAction: confirmAction,
+                    contentTemplate: '/views/modals/information.html',
+                    textContent: $scope.common.translate('deleteStudent_modal_information', {value: studentName}),
+                    secondaryContent: 'deleteStudent_modal_information-explain',
                     modalButtons: true
                 });
 
@@ -310,8 +393,12 @@
                         _getTeacher($routeParams.id);
                         break;
                     case 'group':
-                        _getGroup($routeParams.id);
-                        _getTasks($routeParams.id);
+                        if ($scope.urlSubType && $scope.urlSubType === 'student') {
+                            _getTasks($routeParams.id, $routeParams.subId);
+                        } else {
+                            _getGroup($routeParams.id);
+                            _getTasks($routeParams.id);
+                        }
                         break;
                     case 'student':
                         _getGroups();
@@ -390,9 +477,15 @@
                 }
             }
 
-            function _getTasks(groupId) {
-                exerciseApi.getTasks(groupId).then(function(response) {
+            function _getTasks(groupId, studentId) {
+                exerciseApi.getTasks(groupId, studentId).then(function(response) {
                     $scope.exercises = response.data;
+                    if ($scope.urlSubType === 'student') {
+                        $scope.tertiaryBreadcrumb = true;
+                        $scope.tasks = response.data.tasks;
+                        $scope.group = response.data.group;
+                        $scope.student = response.data.student;
+                    }
                 });
             }
 

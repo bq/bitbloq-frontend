@@ -70,12 +70,19 @@ angular.module('bitbloqApp')
             });
         }
 
-        function getTasks(groupId) {
+        function getTasks(groupId, studentId) {
             if (groupId) {
-                return $http({
-                    method: 'GET',
-                    url: envData.config.centerModeUrl + 'task/group/' + groupId
-                });
+                if (studentId) {
+                    return $http({
+                        method: 'GET',
+                        url: envData.config.centerModeUrl + 'task/group/' + groupId + '/student/' + studentId
+                    });
+                } else {
+                    return $http({
+                        method: 'GET',
+                        url: envData.config.centerModeUrl + 'task/group/' + groupId
+                    });
+                }
             } else {
                 return $http({
                     method: 'GET',

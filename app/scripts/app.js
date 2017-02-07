@@ -165,7 +165,7 @@ angular
                     templateUrl: 'views/under14authorization.html',
                     controller: 'Under14AuthorizationCtrl'
                 })
-                .when('/center-mode/:type?/:id?/:subtype?/:subtypeId?', {
+                .when('/center-mode/:type?/:id?/:subtype?/:subId?', {
                     templateUrl: 'views/centerMode/centerModeIndex.html',
                     controller: 'CenterCtrl',
                     reloadOnSearch: false
