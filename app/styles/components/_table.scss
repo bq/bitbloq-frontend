@@ -47,9 +47,6 @@
                 display: inherit;
             }
         }
-        &:first-child {
-            border-top: 1px solid #dddddd;
-        }
         &:last-child {
             border-bottom: 1px solid #dddddd;
         }
@@ -59,29 +56,10 @@
     }
 }
 
-.table__block__list, .centerMode__table-title {
-    &.row {
-        margin: 0;
-    }
-}
-
-.centerMode__table-title--exercises {
-    padding-left: 0 !important;
-    padding-bottom: 5px !important;
-
-    span {
-        padding-left: 0;
-    }
-}
-
 .table__title {
     padding: 0 10px 30px 0;
     font-size: 16px;
     color: #373b44;
-}
-
-.centerMode__table-title span:first-child {
-    padding-left: 0;
 }
 
 .table__block__item {
@@ -167,7 +145,7 @@
 }
 
 .table__added {
-    margin: 30px 0;
+    margin-bottom: 30px;
     width: 100%;
 
     common-dropdown {
@@ -222,4 +200,77 @@
 
 .table__column--right {
     text-align: right;
+}
+
+// Actions menu
+
+.table__block__item--menu {
+    position: absolute;
+    height: auto;
+    width: auto;
+    margin-right: 10px;
+    margin-top: 40px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #dadada;
+    border-top: 0;
+    white-space: nowrap;
+    z-index: 8;
+    border-left: 1px solid white;
+    padding-top: 0.5em;
+
+    li:last-child {
+        margin-bottom: 0.5em;
+    }
+    -webkit-box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.2), 0 15px 12px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.2), 0 15px 12px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.2), 0 15px 12px 1px rgba(0, 0, 0, 0.2);
+}
+
+.table__block__item--menu__item {
+    display: flex;
+    padding: 0.3em 1em;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+    }
+
+    &:hover {
+        background-color: #ebebeb;
+        cursor: pointer;
+    }
+
+    &[disabled] {
+        pointer-events: none;
+        color: gray;
+
+        .svg-icon {
+            fill: gray;
+        }
+    }
+
+    .contact-us-email {
+        text-align: left;
+        width: 150px;
+        line-height: initial;
+    }
+}
+
+.table__block__item--menu__item--open {
+    padding: 0;
+}
+
+.table__block__item--menu__link {
+    color: #5d6069;
+    padding: 0.3em 1em;
+    width: 100%;
+}
+
+.table__block__item--menu__item-red {
+    color: red;
+
+    .svg-icon {
+        fill: red;
+    }
 }

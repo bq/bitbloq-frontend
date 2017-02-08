@@ -23,7 +23,7 @@
         </div>
     </div>
     <div>
-        <div class="centerMode__table-title row">
+        <div class="center-mode__table-title row">
             <div class="col-vsmall-5">
                 <span>{{'centerMode_column_name' | translate}}</span>
             </div>
@@ -41,12 +41,12 @@
                         {{(task.firstName? task.firstName + ' ' + task.lastName : task.username) || task.name}}
                     </h2>
                 </div>
-                <div class="table__block__item table__column--centered col-vsmall-2">
+                <div class="table__block__item table__column--centered col-vsmall-1">
                     <span data-element="{{'centerMode-task-mark' + task._id}}">
                         {{task.mark || '-'}}
                     </span>
                 </div>
-                <div class="table__block__item table__column--centered col-vsmall-2">
+                <div class="table__block__item table__column--centered col-vsmall-3">
                     <span data-element="{{'centerMode-task-status' + task._id}}">
                         {{task.status==='delivered'? 'centerMode_status_notCorrected' : task.status==='corrected' ? 'centerMode_status_corrected' : task.status==='notDelivered' ? 'centerMode_status_notDelivered' : ''  | translate}}
                     </span>

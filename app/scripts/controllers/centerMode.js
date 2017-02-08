@@ -295,16 +295,20 @@
             };
 
             $scope.getDatetime = function(date, diff) {
-                if (diff) {
-                    if (date) {
-                        var now = moment();
-                        return now.diff(date) > 0;
+                var now = moment(),
+                    result = '';
+                if (date) {
+                    if (diff) {
+                        result = now.diff(date) > 0;
                     } else {
-                        return false;
+                        if (now.diff(date) < 0) {
+                            result = $scope.common.translate('time_finished');
+                        } else {
+                            result = moment(date).fromNow();
+                        }
                     }
-                } else {
-                    return moment(date).fromNow();
                 }
+                return result;
             };
 
             $scope.getExercisesPaginated = function(pageno) {
@@ -347,7 +351,8 @@
                 }
             };
 
-            $scope.sortInstancesByGroup = function() {};
+            $scope.sortInstancesByGroup = function() {
+            };
 
             $scope.newGroup = function() {
                 centerModeService.newGroup($scope.teacher._id || $scope.common.user._id, $scope.center._id)
@@ -602,7 +607,8 @@
 
             $scope.renameExercise = function(exercise) {
                 commonModals.rename(exercise, 'exercise').then(function() {
-                    exerciseApi.update(exercise._id, exercise).then(function() {});
+                    exerciseApi.update(exercise._id, exercise).then(function() {
+                    });
                 });
             };
 

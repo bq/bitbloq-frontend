@@ -16,8 +16,8 @@
         <common-dropdown options="sortExerciseArray" options-click="sortInstancesByExercise" pre-heading="'explore-sortby'" heading-option="orderOptions[0] | translate" class="projects--sort-dropdown"></common-dropdown>
         <common-dropdown options="groupArray" options-click="sortInstancesByGroup" pre-heading="'centerMode_sortby_groups'" heading-option="orderOptions[0] | translate" class="projects--sort-dropdown"></common-dropdown>
     </div>
-    <div>
-        <div class="centerMode__table-title centerMode__table-title--exercises row">
+    <div class="center-mode__table">
+        <div class="center-mode__table-title center-mode__table-title--exercises row">
             <span class="col-vsmall-8">{{'centerMode_column_name' | translate}}</span>
             <span class="col-vsmall-3">{{'centerMode_column_time' | translate}}</span>
         </div>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="table__block__item col-vsmall-3">
                     <p class="fist-uppercase" data-element="{{'centerMode-endDate' + exercise.name}}">
-                        {{getDatetime(exercises[1].endDate)}}
+                        {{getDatetime(exercises[0].endDate)}}
                     </p>
                 </div>
                 <div class="table__block__item table__column--right col-vsmall-1 center-mode__table__menu">

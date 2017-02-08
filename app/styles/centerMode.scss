@@ -38,80 +38,38 @@
     top: 0;
     margin: 0;
     padding: 0 2px 2px 3px;
-    border-width: 2px;
-    border-bottom: 2px white solid;
     width: 100%;
 }
 
-.table__block__item--menu {
-    right: 0;
-    background-color: red;
-    position: absolute;
-}
-
-.table__block__item--menu {
-    position: absolute;
-    height: auto;
-    width: auto;
-    margin-right: 10px;
-    margin-top: 40px;
-    z-index: 20;
-    right: 0;
-    background-color: white;
-    border: 1px solid #dadada;
-    border-top: 0;
-    white-space: nowrap;
-    z-index: 8;
-    border-left: 1px solid white;
-    padding-top: 0.5em;
-
-    li:last-child {
-        margin-bottom: 0.5em;
-    }
-    -webkit-box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.2), 0 15px 12px 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.2), 0 15px 12px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.2), 0 15px 12px 1px rgba(0, 0, 0, 0.2);
-}
-
-.table__block__item--menu__item {
-    display: flex;
-    padding: 0.3em 1em;
-    align-items: center;
-
-    a {
-        text-decoration: none;
-        //color: #333;
-    }
-
-    &:hover {
-        background-color: #ebebeb;
-        cursor: pointer;
-    }
-
-    &[disabled] {
-        pointer-events: none;
-        color: gray;
-
-        .svg-icon {
-            fill: gray;
-        }
-    }
-
-    .contact-us-email {
-        text-align: left;
-        width: 150px;
-        line-height: initial;
+.table__block__list, .center-mode__table-title {
+    &.row {
+        margin: 0;
     }
 }
 
-.table__block__item--menu__item--open {
-    padding: 0;
+.center-mode__table {
+    [class*="col-"]:not(:first-child) {
+        text-align: center;
+    }
 }
 
-.table__block__item--menu__link {
-    color: #5d6069;
-    padding: 0.3em 1em;
-    width: 100%;
+.center-mode__table-title {
+    padding: 0 10px;
+    span:first-child {
+        padding-left: 0;
+    }
+    [class*="col-"]:not(:first-child) {
+        text-align: center;
+    }
+}
+
+.center-mode__table-title--exercises {
+    padding-left: 0 !important;
+    padding-bottom: 5px !important;
+
+    span {
+        padding-left: 0;
+    }
 }
 
 .center-mode--empty {
@@ -146,14 +104,6 @@
         text-align: left;
         width: 150px;
         line-height: initial;
-    }
-}
-
-.table__block__item--menu__item-red {
-    color: red;
-
-    .svg-icon {
-        fill: red;
     }
 }
 
