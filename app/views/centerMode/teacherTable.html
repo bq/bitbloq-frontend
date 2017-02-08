@@ -25,11 +25,11 @@
             </div>
             <div class="able__block__item col-vsmall-3 ">
                 <span data-element="{{'centerMode-groups' + item.name}}">
-                    {{item.groups}}
+                    {{item.groups || 0}}
                 </span>
             </div>
             <div class="table__block__item col-vsmall-2">
-                <span>{{item.students}}</span>
+                <span>{{item.students || 0}}</span>
             </div>
             <div class="table__block__item table__column--right col-vsmall-1" ng-if="item._id !== common.user._id">
                 <button class="btn btn--secondary table__block__button table__block__button--delete" ng-click="deleteTeacher(item)" data-element="centerMode-delete-teacher">

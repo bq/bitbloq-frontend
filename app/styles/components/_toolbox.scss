@@ -44,6 +44,14 @@ $hw_toolbox: 210px;
         width: 60px;
         height: 100%;
     }
+    .input--checkbox {
+        display: none;
+    }
+    &.toolbox--checks {
+        .input--checkbox {
+            display: inline-block;
+        }
+    }
 }
 
 .toolbox__menu {
