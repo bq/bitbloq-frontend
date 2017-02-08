@@ -19,7 +19,6 @@ angular.module('bitbloqApp')
         $scope.commonModals = commonModals;
         $scope.removeAlert = [];
 
-
         $scope.currentProjectService = $scope.currentProjectService || projectService;
 
         $scope.currentProject = $scope.currentProject || $scope.currentProject;
@@ -150,7 +149,7 @@ angular.module('bitbloqApp')
 
         $scope.removeProject = function(project, type) {
             if (type === 'exercise' || type === 'task') {
-              //add link: _undoRemoveExercise
+                //add link: _undoRemoveExercise
                 exerciseApi.delete(project._id).then(function() {
                     $log.log('we delete this project');
                 }, function(error) {
@@ -227,6 +226,12 @@ angular.module('bitbloqApp')
                 fieldContent.css('zoom', zoom);
                 $scope.defaultZoom = zoom;
             }
+        };
+
+        $scope.editExerciseGroups = function(exercise, groups) {
+            $scope.currentProjectService.assignGroup(exercise, $scope.common.user._id, groups).then(function(response) {
+                $scope.setGroups(response);
+            });
         };
 
         $rootScope.$on('viewer-code:ready', function() {

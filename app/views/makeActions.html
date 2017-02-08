@@ -47,7 +47,7 @@
                 </div>
             </li>
             <li ng-if="common.section === 'exercise'" data-tooltip-position="right" data-tooltip="{{(!currentProject._id?'empty-project':'') | translate}}" data-tooltips="{{!currentProject._id}}">
-                <div class="dropdown__item" data-ng-click="currentProjectService.assignGroup(currentProject, common.user._id, groups)" data-ng-disabled="!common.user || !currentProject._id" data-element="centerMode_asignGroup">
+                <div class="dropdown__item" data-ng-click="editExerciseGroups(currentProject, groups)" data-ng-disabled="!common.user || !currentProject._id" data-element="centerMode_asignGroup">
                     <svg class="svg-icon svg-icon--text svg-icon--menu">
                         <use xlink:href="#people"></use>
                     </svg>

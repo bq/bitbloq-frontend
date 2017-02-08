@@ -64,6 +64,10 @@ angular.module('bitbloqApp')
             return [!isEarly, !isLate];
         };
 
+        $scope.setGroups = function(groups){
+          $scope.groups = groups;
+        };
+
         $scope.sendTask = function(task) {
             var dialog,
                 parent = $rootScope,

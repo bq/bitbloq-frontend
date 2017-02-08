@@ -136,8 +136,8 @@
                             <h2 class="block__item__title block__item__title--small" data-element="{{'centerMode_item_' + group.name}}">
                                 {{group.name}}
                             </h2>
-                            <span class="block__item__explanation--subscript">desde {{group.createdAt | date  }}</span>
-                            <span class="block__item__explanation--subscript">hata {{group.createdAt | date}}</span>
+                            <span class="block__item__explanation--subscript">{{'date_from' | translate}} {{group.initDate | date  }}</span>
+                            <span class="block__item__explanation--subscript">{{'date_to' | translate}} {{group.endDate | date}}</span>
                         </a>
                     </span>
                 </li>

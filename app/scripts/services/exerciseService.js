@@ -109,9 +109,13 @@ angular.module('bitbloqApp')
                             });
                         }
                     });
+
                     exerciseApi.assignGroups(project._id, groupsToAssign).then(function() {
-                        defered.resolve();
+                      centerModeApi.getGroupsByExercise(project._id).then(function(response){
+                        defered.resolve(response.data);
                         assignModal.close();
+                      });
+
                     });
                 }
 
