@@ -1,9 +1,10 @@
-<div ng-if="exercises.length>0 || groups.length>0" class="centerMode row">
-    <div class="col-vsmall-3 table__item" ng-include="'views/centerMode/groupTable.html'"></div>
-    <div class="col-vsmall-9 table__item" ng-include="'views/centerMode/exerciseTable.html'"></div>
+<div class="table__main">
+    <div ng-if="exercises.length>0 || groups.length>0" class="centerMode row">
+        <div class="col-vsmall-3 table__item" ng-include="'views/centerMode/groupTable.html'"></div>
+        <div class="col-vsmall-9 table__item" ng-include="'views/centerMode/exerciseTable.html'"></div>
+    </div>
+    <div class="center-mode--empty" ng-if="exercises.length===0 && groups.length===0">
+        <h1 class="center-mode--empty__title">{{'centerMode_groups_empty' | translate}}</h1>
+        <p class="center-mode--empty__info">{{'centerMode_groups_emptyInfo' | translate}}</p>
+    </div>
 </div>
-<div class="center-mode--empty" ng-if="exercises.length===0 && groups.length===0">
-    <h1 class="center-mode--empty__title">{{'centerMode_groups_empty' | translate}}</h1>
-    <p class="center-mode--empty__info">{{'centerMode_groups_emptyInfo' | translate}}</p>
-</div>
-

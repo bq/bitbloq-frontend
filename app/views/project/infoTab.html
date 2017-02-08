@@ -24,7 +24,7 @@
                     <label>{{ common.section !== 'exercise' && common.section !== 'task'? 'description' : 'centerMode_title_exerciseContent' | translate }}*</label>
                     <span data-ng-class="{'form--textarea':true, 'input--focused':focus === 'textarea', 'input--error': form.textarea.$error.required && publishProjectError}">
                         <textarea id="textarea" name="textarea" rows="6" cols="53" placeholder="{{'infotab-project-description' | translate}}" data-ng-model="currentProject.description" data-ng-model-options="{ debounce: { 'default': 1000, 'blur': 0 } }" data-ng-focus="focus = 'textarea'"
-                                  data-ng-disabled="!common.user ||  common.section==='task'" data-element="infotab-description" required/>
+                                  data-ng-disabled="!common.user ||  common.section==='task'" data-element="infotab-description" required> </textarea>
                     </span>
                     <span class="form--error" ng-show="form.textarea.$error.required && publishProjectError">
                         <small>{{ 'infotab-project-descriptionError' | translate }}</small>

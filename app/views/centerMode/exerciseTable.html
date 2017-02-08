@@ -51,9 +51,7 @@
                                 </svg>
                                 {{'open' | translate}}</a>
                         </li>
-
-                        <li class="dropdown__item--separator"></li>
-                        <li ng-click="exerciseService.assignGroup(exercise, common.user._id, groups, null, true)" class="table__block__item--menu__item">
+                        <li ng-click="editGroups(exercise);" class="table__block__item--menu__item">
                             <svg class="svg-icon svg-icon--text svg-icon--menu">
                                 <use xlink:href="#people"></use>
                             </svg>

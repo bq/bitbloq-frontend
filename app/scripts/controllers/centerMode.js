@@ -351,8 +351,7 @@
                 }
             };
 
-            $scope.sortInstancesByGroup = function() {
-            };
+            $scope.sortInstancesByGroup = function() {};
 
             $scope.newGroup = function() {
                 centerModeService.newGroup($scope.teacher._id || $scope.common.user._id, $scope.center._id)
@@ -607,8 +606,7 @@
 
             $scope.renameExercise = function(exercise) {
                 commonModals.rename(exercise, 'exercise').then(function() {
-                    exerciseApi.update(exercise._id, exercise).then(function() {
-                    });
+                    exerciseApi.update(exercise._id, exercise).then(function() {});
                 });
             };
 
@@ -617,6 +615,11 @@
                 localStorage.exercisesChange = true;
             };
 
+            $scope.editGroups = function(exercise) {
+                centerModeApi.getGroupsByExercise(exercise._id).then(function(response) {
+                    exerciseService.assignGroup(exercise, $scope.common.user._id, response.data);
+                });
+            };
 
             $window.onfocus = function() {
                 if ($routeParams.type === 'teacher') {
