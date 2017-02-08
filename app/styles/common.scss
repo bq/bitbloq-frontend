@@ -448,3 +448,17 @@ textarea:disabled {
 .fist-uppercase::first-letter {
     text-transform: uppercase;
 }
+
+// filter arrow
+.filter-button {
+    color: #373b44;
+    .filter-arrow {
+        width: 9px;
+        height: 9px;
+        fill: #373b44;
+        margin-left: 9px;
+    }
+    .filter-arrow--reversed {
+        transform: rotate(180deg);
+    }
+}

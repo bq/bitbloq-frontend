@@ -27,7 +27,8 @@ angular.module('bitbloqApp')
         var scope = $rootScope.$new();
         scope.exercise = exports.exercise;
 
-        exports.editDate = function() {};
+        exports.editDate = function() {
+        };
 
         exports.clone = function(exercise) {
             if (!exercise) {
@@ -506,7 +507,7 @@ angular.module('bitbloqApp')
             var defered = $q.defer();
             exports.completedExercise();
             if (exports.exercise.canMark) {
-                if (exports.exercise.mark || exports.exercise.remark) {
+                if (exports.exercise.newMark || exports.exercise.remark) {
                     exerciseApi.markTask(exports.exercise).then(function() {
                         exports.saveStatus = 2;
                         defered.resolve();

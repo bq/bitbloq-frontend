@@ -6,13 +6,21 @@
             </svg>
             {{'centerMode_exercises' | translate}}
         </h1>
-        <span class="center-mode__table__header__element-right">
-            {{'centerMode_exercises_showFilters' | translate}}</span>
-
-        <!--{{'centerMode_exercises_hideFilters' | translate}}-->
+        <button class="center-mode__table__header__element-right filter-button" ng-click="showFilters=!showFilters" ng-init="showFilters=false">
+            {{!showFilters? 'centerMode_exercises_showFilters' : 'centerMode_exercises_hideFilters' | translate}}
+            <svg class="svg-icon filter-arrow" ng-class="{'filter-arrow--reversed' : showFilters}">
+                <use xlink:href="#arrowDown"></use>
+            </svg>
+        </button>
     </div>
-
-    <div class="dropdown-group table__added__exercise clearfix" ng-if="common.urlType!=='group'">
+    
+    <div class="dropdown-group table__added__exercise clearfix" ng-if="common.urlType!=='group'" ng-show="showFilters">
+        <span class="form--input searcher" ng-class="{'input--focused':focus === 'search'}">
+            <svg class="svg-icon--search">
+                <use xlink:href="#search"></use>
+            </svg>
+            <input type="search" name="search--normal" id="search--normal" placeholder="{{'find'|translate}}" data-ng-model="searchText" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" data-ng-focus="focus = 'search'" data-ng-blur="focus = false" data-element="filter-searcher">
+        </span>
         <common-dropdown options="sortExerciseArray" options-click="sortInstancesByExercise" pre-heading="'explore-sortby'" heading-option="orderOptions[0] | translate" class="projects--sort-dropdown"></common-dropdown>
         <common-dropdown options="groupArray" options-click="sortInstancesByGroup" pre-heading="'centerMode_sortby_groups'" heading-option="orderOptions[0] | translate" class="projects--sort-dropdown"></common-dropdown>
     </div>
@@ -51,7 +59,9 @@
                                 </svg>
                                 {{'open' | translate}}</a>
                         </li>
-                        <li ng-click="editGroups(exercise);" class="table__block__item--menu__item">
+
+                        <li class="dropdown__item--separator"></li>
+                        <li ng-click="exerciseService.assignGroup(exercise, common.user._id, groups, null, true)" class="table__block__item--menu__item">
                             <svg class="svg-icon svg-icon--text svg-icon--menu">
                                 <use xlink:href="#people"></use>
                             </svg>

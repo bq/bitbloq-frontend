@@ -4,6 +4,18 @@
     [class*="col-"] {
         padding-left: 0;
     }
+    .svg-icon {
+        fill: #373b44;
+    }
+
+    // task status
+    .status-notCorrected {
+        color: #dd1010;
+    }
+
+    .status-corrected {
+        color: #82ad3a;
+    }
 }
 
 .center-mode__group .group__header {

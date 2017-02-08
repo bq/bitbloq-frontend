@@ -22,7 +22,7 @@
             </button>
         </div>
     </div>
-    <div>
+    <div class="center-mode__table">
         <div class="center-mode__table-title row">
             <div class="col-vsmall-5">
                 <span>{{'centerMode_column_name' | translate}}</span>
@@ -47,8 +47,8 @@
                     </span>
                 </div>
                 <div class="table__block__item table__column--centered col-vsmall-3">
-                    <span data-element="{{'centerMode-task-status' + task._id}}">
-                        {{task.status==='delivered'? 'centerMode_status_notCorrected' : task.status==='corrected' ? 'centerMode_status_corrected' : task.status==='notDelivered' ? 'centerMode_status_notDelivered' : ''  | translate}}
+                    <span data-element="{{'centerMode-task-status' + task._id}}" ng-class="{'status-notCorrected': task.status==='delivered', 'status-corrected' : task.status==='corrected' || (task.status==='delivered' && task.mark)}">
+                        {{(task.status==='corrected' || (task.status==='delivered' && task.mark))? 'centerMode_status_corrected' : task.status==='delivered'? 'centerMode_status_notCorrected' : task.status==='notDelivered' ? 'centerMode_status_notDelivered' : ''  | translate}}
                     </span>
                 </div>
                 <div class="table__block__item table__column--hover table__column--right col-vsmall-3">
@@ -58,7 +58,7 @@
                         </svg>
                     </button>
                     <a class="btn btn--tertiary btn--small table__item__btn" ng-href="{{'#/task/' + task._id}}" target="_blank" data-element="{{'centerMode-button-showTask' + task._id}}">
-                        {{'centerMode_button_correct' | translate}}
+                        {{(task.status==='corrected' || (task.status==='delivered' && task.mark))? 'see': 'centerMode_button_correct' | translate}}
                     </a>
                 </div>
             </div>

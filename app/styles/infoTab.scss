@@ -33,6 +33,11 @@
                     margin: 6px;
                     margin-right: 10px;
                     line-height: normal;
+                    &.svg-icon--big{
+                        width: 15px;
+                        height: 15px;
+                        margin-top: 5px;
+                    }
                 }
             }
 

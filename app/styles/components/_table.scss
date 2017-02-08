@@ -60,6 +60,17 @@
     padding: 0 10px 30px 0;
     font-size: 16px;
     color: #373b44;
+    .svg-icon--text {
+        height: 13px;
+        width: 13px;
+        margin-top: 5px;
+        margin-right: 10px;
+        &.svg-icon--big{
+            height: 16px;
+            width: 16px;
+            margin-top: 4px;
+        }
+    }
 }
 
 .table__block__item {
@@ -159,8 +170,9 @@
 }
 
 .table__added__exercise {
-    margin: 30px 0;
+    padding: 30px 0;
     width: 100%;
+    border-top: 1px solid #dddddd;
 
     common-dropdown {
         float: left;
