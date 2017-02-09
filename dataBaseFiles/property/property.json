@@ -254,32 +254,6 @@
             "name": "serialReceiveInt"
         }, {
             "name": "serialSend-v1"
-        }, {
-            "name": "phoneEmitSound"
-        }, {
-            "name": "phoneSendText"
-        }, {
-            "name": "phoneReceive"
-        }, {
-            "name": "phoneTurnOnLight"
-        }, {
-            "name": "phoneTurnOffLight"
-        }, {
-            "name": "phoneConfigTwitter"
-        }, {
-            "name": "phoneSendTweet"
-        }, {
-            "name": "phoneReadAccel"
-        }, {
-            "name": "phoneReadGyroscope"
-        }, {
-            "name": "phoneReadMagnetic"
-        }, {
-            "name": "phoneReadOrientation"
-        }, {
-            "name": "phoneisCovered"
-        }, {
-            "name": "phoneReadLight"
         }],
         "controls": [{
             "name": "wait"
@@ -426,6 +400,33 @@
             "name": "zowiIfSound"
         }, {
             "name": "zowiIfDistance"
+        }],
+        "phone": [{
+            "name": "phoneEmitSound"
+        }, {
+            "name": "phoneSendText"
+        }, {
+            "name": "phoneReceive"
+        }, {
+            "name": "phoneTurnOnLight"
+        }, {
+            "name": "phoneTurnOffLight"
+        }, {
+            "name": "phoneConfigTwitter"
+        }, {
+            "name": "phoneSendTweet"
+        }, {
+            "name": "phoneReadAccel"
+        }, {
+            "name": "phoneReadGyroscope"
+        }, {
+            "name": "phoneReadMagnetic"
+        }, {
+            "name": "phoneReadOrientation"
+        }, {
+            "name": "phoneisCovered"
+        }, {
+            "name": "phoneReadLight"
         }]
     },
     "robotsFirmwareVersion": {

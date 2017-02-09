@@ -37,6 +37,13 @@
                     </svg>
                 </button>
             </li>
+            <li class="tabs__header__item--vertical toolbox-phone" ng-class="{'selected--tab': selectedBloqsToolbox==='phone'}" ng-show="currentProject.useBitbloqConnect" data-element="toolbox-phone">
+                <button class="btn-svg phone-toolbox" ng-click="changeBloqsToolbox('phone')">
+                    <svg class="svg-icon">
+                        <use xlink:href="#component"></use>
+                    </svg>
+                </button>
+            </li>
             <li class="tabs__header__item--vertical toolbox-components" ng-class="{'selected--tab': selectedBloqsToolbox==='components'}" data-element="toolbox-components">
                 <button class="btn-svg component-toolbox" ng-click="changeBloqsToolbox('components')">
                     <svg class="svg-icon">
@@ -90,94 +97,91 @@
             <li class="tabs__header__item--vertical toolbox-zowi" ng-class="{'selected--tab': selectedBloqsToolbox==='zowi'}" ng-show="currentProject.hardware.robot==='zowi'" data-element="toolbox-zowi">
                 <button class="btn-svg component-toolbox" ng-click="changeBloqsToolbox('zowi')">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allZowiBloqs" ng-model="zowiCheckModel" data-indeterminate-checkbox data-counter-check="zowiCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="zowi" data-advanced-tab="advancedZowi"
-                               data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allZowiBloqs" ng-model="zowiCheckModel" data-indeterminate-checkbox data-counter-check="zowiCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="zowi" data-advanced-tab="advancedZowi" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-evolution" ng-class="{'selected--tab': selectedBloqsToolbox==='evolution'}" ng-show="currentProject.hardware.robot==='evolution'" data-element="toolbox-evolution">
                 <button class="btn-svg component-toolbox" ng-click="changeBloqsToolbox('evolution')">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allEvolutionBloqs" ng-model="evolutionCheckModel" data-indeterminate-checkbox data-counter-check="evolutionCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="evolution"
-                               data-advanced-tab="advancedEvolution" data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allEvolutionBloqs" ng-model="evolutionCheckModel" data-indeterminate-checkbox data-counter-check="evolutionCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="evolution" data-advanced-tab="advancedEvolution" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-mbot" ng-class="{'selected--tab': selectedBloqsToolbox==='mBot'}" ng-show="currentProject.hardware.robot==='mbot'" data-element="toolbox-mbot">
                 <button class="btn-svg component-toolbox" ng-click="changeBloqsToolbox('mBot')">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allMBotBloqs" ng-model="mBotCheckModel" data-indeterminate-checkbox data-counter-check="mBotCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="mBot" data-advanced-tab="advancedMBot"
-                               data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allMBotBloqs" ng-model="mBotCheckModel" data-indeterminate-checkbox data-counter-check="mBotCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="mBot" data-advanced-tab="advancedMBot" data-update-state="statusGeneralCheck" />
+                    </span>
+                </button>
+            </li>
+            <li class="tabs__header__item--vertical toolbox-phone" ng-class="{'selected--tab': selectedBloqsToolbox==='phone'}" ng-show="currentProject.hardware.robot==='phone'" data-element="toolbox-phone">
+                <button class="btn-svg component-toolbox" ng-click="changeBloqsToolbox('phone')">
+                    <span class="input input--checkbox">
+                        <input type="checkbox" class="component-toolbox" id="allPhoneBloqs" ng-model="phoneCheckModel" data-indeterminate-checkbox data-counter-check="phoneCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="phone" data-advanced-tab="advancedPhone" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-components" ng-class="{'selected--tab': selectedBloqsToolbox==='components'}" data-element="toolbox-components">
                 <button class="btn-svg component-toolbox" ng-click="componentsCheck=!componentsCheck">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allComponentsBloqs" ng-model="componentsCheckModel" data-indeterminate-checkbox data-counter-check="componentsCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="components"
-                               data-advanced-tab="advancedComponents" data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allComponentsBloqs" ng-model="componentsCheckModel" data-indeterminate-checkbox data-counter-check="componentsCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="components" data-advanced-tab="advancedComponents" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-functions" ng-class="{'selected--tab': selectedBloqsToolbox==='functions'}">
                 <button class="btn-text component-toolbox">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allFunctionsBloqs" ng-model="functionCheckModel" data-indeterminate-checkbox data-counter-check="functionsCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="functions"
-                               data-advanced-tab="advancedFunctions" data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allFunctionsBloqs" ng-model="functionCheckModel" data-indeterminate-checkbox data-counter-check="functionsCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="functions" data-advanced-tab="advancedFunctions" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-variables" ng-class="{'selected--tab': selectedBloqsToolbox==='variables'}">
                 <button class="btn-text component-toolbox">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allVariablesBloqs" ng-model="variablesCheckModel" data-indeterminate-checkbox data-counter-check="variablesCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="variables"
-                               data-advanced-tab="advancedVariables" data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allVariablesBloqs" ng-model="variablesCheckModel" data-indeterminate-checkbox data-counter-check="variablesCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="variables" data-advanced-tab="advancedVariables" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-code" ng-class="{'selected--tab': selectedBloqsToolbox==='codes'}">
                 <button class="btn-text component-toolbox">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allCodeBloqs" ng-model="codesCheckModel" data-indeterminate-checkbox data-counter-check="codesCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="codes" data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allCodeBloqs" ng-model="codesCheckModel" data-indeterminate-checkbox data-counter-check="codesCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="codes" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-math" ng-class="{'selected--tab': selectedBloqsToolbox==='mathematics'}">
                 <button class="btn-text component-toolbox">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allMathematicsBloqs" ng-model="mathsCheckModel" data-indeterminate-checkbox data-counter-check="mathsCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="mathematics"
-                               data-advanced-tab="advancedMathematics" data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allMathematicsBloqs" ng-model="mathsCheckModel" data-indeterminate-checkbox data-counter-check="mathsCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="mathematics" data-advanced-tab="advancedMathematics" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-text" ng-class="{'selected--tab': selectedBloqsToolbox==='texts'}">
                 <button class="btn-text component-toolbox">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allTextBloqs" ng-model="textCheckModel" data-indeterminate-checkbox data-counter-check="textCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="texts" data-advanced-tab="advancedTexts"
-                               data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allTextBloqs" ng-model="textCheckModel" data-indeterminate-checkbox data-counter-check="textCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="texts" data-advanced-tab="advancedTexts" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-control" ng-class="{'selected--tab': selectedBloqsToolbox==='controls'}">
                 <button class="btn-text component-toolbox">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allControlBloqs" ng-model="controlCheckModel" data-indeterminate-checkbox data-counter-check="controlCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="controls" data-advanced-tab="advancedControls"
-                               data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allControlBloqs" ng-model="controlCheckModel" data-indeterminate-checkbox data-counter-check="controlCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="controls" data-advanced-tab="advancedControls" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-logic" ng-class="{'selected--tab': selectedBloqsToolbox==='logics'}">
                 <button class="btn-text component-toolbox">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allLogicBloqs" ng-model="logicCheckModel" data-indeterminate-checkbox data-counter-check="logicCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="logics" data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allLogicBloqs" ng-model="logicCheckModel" data-indeterminate-checkbox data-counter-check="logicCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="logics" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-classes" ng-class="{'selected--tab': selectedBloqsToolbox==='classes'}">
                 <button class="btn-text component-toolbox">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="allClassesBloqs" ng-model="classesCheckModel" data-indeterminate-checkbox data-counter-check="classesCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="classes" data-advanced-tab="advancedClasses"
-                               data-update-state="statusGeneralCheck"/>
+                        <input type="checkbox" class="component-toolbox" id="allClassesBloqs" ng-model="classesCheckModel" data-indeterminate-checkbox data-counter-check="classesCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="classes" data-advanced-tab="advancedClasses" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
@@ -207,6 +211,14 @@
             <li class="toolbox__item" ng-show="currentProject.hardware.robot==='mbot'">
                 <button class="btn btn-text component-toolbox" ng-click="changeBloqsToolbox('mBot')">
                     {{'make-swtoolbox-mbot' | translate}}
+                    <svg class="svg-icon svg-icon--right">
+                        <use xlink:href="#arrow"></use>
+                    </svg>
+                </button>
+            </li>
+            <li class="toolbox__item" ng-show="currentProject.useBitbloqConnect">
+                <button class="btn btn-text component-toolbox" ng-click="changeBloqsToolbox('phone')">
+                    Bitbloq Connect
                     <svg class="svg-icon svg-icon--right">
                         <use xlink:href="#arrow"></use>
                     </svg>
@@ -286,7 +298,6 @@
             </li>
         </ul>
     </div>
-    
     <!--
      -- TABS
      -->
@@ -297,7 +308,7 @@
                 <li class="tabs__header__item toolbox_tabs--checkbox" ng-class="{'selected--tab':selectedToolboxTab === 'basic'}">
                     <button class="component-toolbox" ng-click="selectedToolboxTab = 'basic'" data-element="toolbox-basic-button">
                         <span class="input input--checkbox">
-                            <input type="checkbox" class="component-toolbox" id="basicCheck" ng-model="basicModel" data-indeterminate-checkbox data-counter-check="checkBasicTab" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-update-state="statusGeneralCheck"/>
+                            <input type="checkbox" class="component-toolbox" id="basicCheck" ng-model="basicModel" data-indeterminate-checkbox data-counter-check="checkBasicTab" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-update-state="statusGeneralCheck" />
                         </span>
                         {{'basics' | translate}}
                     </button>
@@ -305,244 +316,220 @@
                 <li class="tabs__header__item toolbox_tabs--checkbox" ng-class="{'selected--tab':selectedToolboxTab === 'advance'}" ng-show="common.properties.bloqsSortTree['advanced'+selectedBloqsToolbox.charAt(0).toUpperCase()+selectedBloqsToolbox.slice(1)]">
                     <button class="component-toolbox" ng-click="selectedToolboxTab = 'advance'" data-element="toolbox-advanced-button">
                         <span class="input input--checkbox">
-                            <input type="checkbox" class="component-toolbox" id="advanceCheck" ng-model="advancedModel" data-indeterminate-checkbox data-counter-check="checkAdvanceTab" data-change-function="addChecks" data-selected-tab="'advanced'+selectedBloqsToolbox.charAt(0).toUpperCase()+selectedBloqsToolbox.slice(1)"/>
+                            <input type="checkbox" class="component-toolbox" id="advanceCheck" ng-model="advancedModel" data-indeterminate-checkbox data-counter-check="checkAdvanceTab" data-change-function="addChecks" data-selected-tab="'advanced'+selectedBloqsToolbox.charAt(0).toUpperCase()+selectedBloqsToolbox.slice(1)" />
                         </span>
                         {{'make-swtoolbox-advanced' | translate}}
                     </button>
                 </li>
             </ul>
         </aside>
-        
         <!--
         -- BASIC BLOQS
         -->
         <div class="tabs-layout__content" ng-show="selectedToolboxTab === 'basic'">
             <!-- Zowi -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='zowi'">
-                <li id="{{'bloq' + zowi.name}}" data-ng-class="zowi.addClass" data-ng-repeat="zowi in common.properties.bloqsSortTree.zowi" ng-show="common.section !== 'task' || currentProject.selectedBloqs.zowi.indexOf(zowi.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.zowi[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + zowi.name}}" data-ng-class="zowi.addClass" data-ng-repeat="zowi in common.properties.bloqsSortTree.zowi" ng-show="common.section !== 'task' || currentProject.selectedBloqs.zowi.indexOf(zowi.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.zowi[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{zowi.name + 'Check'}}" ng-model="checkModel[zowi.name]" ng-click="addChecks('zowi', checkModel[zowi.name], zowi.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.zowi"/>
+                        <input type="checkbox" class="component-toolbox" id="{{zowi.name + 'Check'}}" ng-model="checkModel[zowi.name]" ng-click="addChecks('zowi', checkModel[zowi.name], zowi.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.zowi" />
                     </span>
                 </li>
             </ul>
             <!-- Evolution -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='evolution'">
-                <li id="{{'bloq' + evolution.name}}" data-ng-class="evolution.addClass" data-ng-repeat="evolution in common.properties.bloqsSortTree.evolution" ng-show="common.section !== 'task' || currentProject.selectedBloqs.evolution.indexOf(evolution.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.evolution[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + evolution.name}}" data-ng-class="evolution.addClass" data-ng-repeat="evolution in common.properties.bloqsSortTree.evolution" ng-show="common.section !== 'task' || currentProject.selectedBloqs.evolution.indexOf(evolution.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.evolution[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{evolution.name + 'Check'}}" ng-model="checkModel[evolution.name]" ng-click="addChecks('evolution', checkModel[evolution.name], evolution.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.evolution"/>
+                        <input type="checkbox" class="component-toolbox" id="{{evolution.name + 'Check'}}" ng-model="checkModel[evolution.name]" ng-click="addChecks('evolution', checkModel[evolution.name], evolution.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.evolution" />
                     </span>
                 </li>
             </ul>
             <!-- mBot -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='mBot'">
-                <li id="{{'bloq' + mBot.name}}" data-ng-class="mBot.addClass" data-ng-repeat="mBot in common.properties.bloqsSortTree.mBot" ng-show="common.section !== 'task' || currentProject.selectedBloqs.mBot.indexOf(mBot.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.mBot[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + mBot.name}}" data-ng-class="mBot.addClass" data-ng-repeat="mBot in common.properties.bloqsSortTree.mBot" ng-show="common.section !== 'task' || currentProject.selectedBloqs.mBot.indexOf(mBot.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.mBot[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{mBot.name + 'Check'}}" ng-model="checkModel[mBot.name]" ng-click="addChecks('mBot', checkModel[mBot.name], mBot.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.mBot"/>
+                        <input type="checkbox" class="component-toolbox" id="{{mBot.name + 'Check'}}" ng-model="checkModel[mBot.name]" ng-click="addChecks('mBot', checkModel[mBot.name], mBot.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.mBot" />
+                    </span>
+                </li>
+            </ul>
+            <!-- phone -->
+            <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='phone'">
+                <li id="{{'bloq' + phone.name}}" data-ng-class="phone.addClass" data-ng-repeat="phone in common.properties.bloqsSortTree.phone" ng-show="common.section !== 'task' || currentProject.selectedBloqs.phone.indexOf(phone.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.phone[$index].name]" data-components-array="componentsArray">
+                    <span class="input input--checkbox">
+                        <input type="checkbox" class="component-toolbox" id="{{phone.name + 'Check'}}" ng-model="checkModel[phone.name]" ng-click="addChecks('phone', checkModel[phone.name], phone.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.phone" />
                     </span>
                 </li>
             </ul>
             <!-- Components -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='components'">
-                <li class="{{component.addClass}}" id="{{'bloq' + component.name}}" data-ng-repeat="component in common.properties.bloqsSortTree.components" data-ng-show="showComponents(component.name) && (common.section !== 'task' || currentProject.selectedBloqs.components.indexOf(component.name)>-1)" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.components[$index].name]" data-components-array="componentsArray">
+                <li class="{{component.addClass}}" id="{{'bloq' + component.name}}" data-ng-repeat="component in common.properties.bloqsSortTree.components" data-ng-show="showComponents(component.name) && (common.section !== 'task' || currentProject.selectedBloqs.components.indexOf(component.name)>-1)" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.components[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{component.name + 'Check'}}" ng-model="checkModel[component.name]" ng-click="addChecks('components', checkModel[component.name], component.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.components"/>
+                        <input type="checkbox" class="component-toolbox" id="{{component.name + 'Check'}}" ng-model="checkModel[component.name]" ng-click="addChecks('components', checkModel[component.name], component.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.components" />
                     </span>
                 </li>
                 <li ng-if="!anyComponent()" class="error--text">{{"no-components-connected" | translate}}</li>
             </ul>
             <!-- Functions -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='functions'" data-element="toolbox-container-functions">
-                <li id="{{'bloq' + function.name}}" data-ng-class="function.addClass" data-ng-repeat="function in common.properties.bloqsSortTree.functions" ng-show="common.section !== 'task' || currentProject.selectedBloqs.functions.indexOf(function.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.functions[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + function.name}}" data-ng-class="function.addClass" data-ng-repeat="function in common.properties.bloqsSortTree.functions" ng-show="common.section !== 'task' || currentProject.selectedBloqs.functions.indexOf(function.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.functions[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{function.name + 'Check'}}" ng-model="checkModel[function.name]" ng-click="addChecks('functions', checkModel[function.name], function.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.functions"/>
+                        <input type="checkbox" class="component-toolbox" id="{{function.name + 'Check'}}" ng-model="checkModel[function.name]" ng-click="addChecks('functions', checkModel[function.name], function.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.functions" />
                     </span>
                 </li>
             </ul>
             <!-- Variables -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='variables'">
-                <li id="{{'bloq' + variable.name}}" data-ng-class="variable.addClass" data-ng-repeat="variable in common.properties.bloqsSortTree.variables" ng-show="common.section !== 'task' || currentProject.selectedBloqs.variables.indexOf(variable.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.variables[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + variable.name}}" data-ng-class="variable.addClass" data-ng-repeat="variable in common.properties.bloqsSortTree.variables" ng-show="common.section !== 'task' || currentProject.selectedBloqs.variables.indexOf(variable.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.variables[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{variable.name + 'Check'}}" ng-model="checkModel[variable.name]" ng-click="addChecks('variables', checkModel[variable.name], variable.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.variables"/>
+                        <input type="checkbox" class="component-toolbox" id="{{variable.name + 'Check'}}" ng-model="checkModel[variable.name]" ng-click="addChecks('variables', checkModel[variable.name], variable.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.variables" />
                     </span>
                 </li>
             </ul>
             <!-- Code -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='codes'">
-                <li id="{{'bloq' + code.name}}" data-ng-class="code.addClass" data-ng-repeat="code in common.properties.bloqsSortTree.codes" ng-show="common.section !== 'task' || currentProject.selectedBloqs.codes.indexOf(code.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.codes[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + code.name}}" data-ng-class="code.addClass" data-ng-repeat="code in common.properties.bloqsSortTree.codes" ng-show="common.section !== 'task' || currentProject.selectedBloqs.codes.indexOf(code.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.codes[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{code.name + 'Check'}}" ng-model="checkModel[code.name]" ng-click="addChecks('codes', checkModel[code.name], code.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.codes"/>
+                        <input type="checkbox" class="component-toolbox" id="{{code.name + 'Check'}}" ng-model="checkModel[code.name]" ng-click="addChecks('codes', checkModel[code.name], code.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.codes" />
                     </span>
                 </li>
             </ul>
             <!-- Math -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='mathematics'">
-                <li id="{{'bloq' + math.name}}" data-ng-class="math.addClass" data-ng-repeat="math in common.properties.bloqsSortTree.mathematics" ng-show="common.section !== 'task' || currentProject.selectedBloqs.mathematics.indexOf(math.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.mathematics[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + math.name}}" data-ng-class="math.addClass" data-ng-repeat="math in common.properties.bloqsSortTree.mathematics" ng-show="common.section !== 'task' || currentProject.selectedBloqs.mathematics.indexOf(math.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.mathematics[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{math.name + 'Check'}}" ng-model="checkModel[math.name]" ng-click="addChecks('mathematics', checkModel[math.name], math.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.mathematics"/>
+                        <input type="checkbox" class="component-toolbox" id="{{math.name + 'Check'}}" ng-model="checkModel[math.name]" ng-click="addChecks('mathematics', checkModel[math.name], math.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.mathematics" />
                     </span>
                 </li>
             </ul>
             <!-- Text -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='texts'">
-                <li id="{{'bloq' + text.name}}" data-ng-class="text.addClass" data-ng-repeat="text in common.properties.bloqsSortTree.texts" ng-show="common.section !== 'task' || currentProject.selectedBloqs.texts.indexOf(text.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.texts[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + text.name}}" data-ng-class="text.addClass" data-ng-repeat="text in common.properties.bloqsSortTree.texts" ng-show="common.section !== 'task' || currentProject.selectedBloqs.texts.indexOf(text.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.texts[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{text.name + 'Check'}}" ng-model="checkModel[text.name]" ng-click="addChecks('texts', checkModel[text.name], text.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.texts"/>
+                        <input type="checkbox" class="component-toolbox" id="{{text.name + 'Check'}}" ng-model="checkModel[text.name]" ng-click="addChecks('texts', checkModel[text.name], text.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.texts" />
                     </span>
                 </li>
             </ul>
             <!-- Control -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='controls'">
-                <li id="{{'bloq' + control.name}}" data-ng-class="control.addClass" data-ng-repeat="control in common.properties.bloqsSortTree.controls" ng-show="common.section !== 'task' || currentProject.selectedBloqs.controls.indexOf(control.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.controls[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + control.name}}" data-ng-class="control.addClass" data-ng-repeat="control in common.properties.bloqsSortTree.controls" ng-show="common.section !== 'task' || currentProject.selectedBloqs.controls.indexOf(control.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.controls[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{control.name + 'Check'}}" ng-model="checkModel[control.name]" ng-click="addChecks('controls', checkModel[control.name], control.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.controls"/>
+                        <input type="checkbox" class="component-toolbox" id="{{control.name + 'Check'}}" ng-model="checkModel[control.name]" ng-click="addChecks('controls', checkModel[control.name], control.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.controls" />
                     </span>
                 </li>
             </ul>
             <!-- Logic -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='logics'">
-                <li id="{{'bloq' + logic.name}}" data-ng-class="logic.addClass" data-ng-repeat="logic in common.properties.bloqsSortTree.logics" ng-show="common.section !== 'task' || currentProject.selectedBloqs.logics.indexOf(logic.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.logics[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + logic.name}}" data-ng-class="logic.addClass" data-ng-repeat="logic in common.properties.bloqsSortTree.logics" ng-show="common.section !== 'task' || currentProject.selectedBloqs.logics.indexOf(logic.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.logics[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{logic.name + 'Check'}}" ng-model="checkModel[logic.name]" ng-click="addChecks('logics', checkModel[logic.name], logic.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.logics"/>
+                        <input type="checkbox" class="component-toolbox" id="{{logic.name + 'Check'}}" ng-model="checkModel[logic.name]" ng-click="addChecks('logics', checkModel[logic.name], logic.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.logics" />
                     </span>
                 </li>
             </ul>
             <!-- Classes -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='classes'">
-                <li id="{{'bloq' + classes.name}}" data-ng-class="classes.addClass" data-ng-repeat="classes in common.properties.bloqsSortTree.classes" ng-show="common.section !== 'task' || currentProject.selectedBloqs.classes.indexOf(classes.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.classes[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + classes.name}}" data-ng-class="classes.addClass" data-ng-repeat="classes in common.properties.bloqsSortTree.classes" ng-show="common.section !== 'task' || currentProject.selectedBloqs.classes.indexOf(classes.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.classes[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{classes.name + 'Check'}}" ng-model="checkModel[classes.name]" ng-click="addChecks('classes', checkModel[classes.name], classes.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.classes"/>
+                        <input type="checkbox" class="component-toolbox" id="{{classes.name + 'Check'}}" ng-model="checkModel[classes.name]" ng-click="addChecks('classes', checkModel[classes.name], classes.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.classes" />
                     </span>
                 </li>
             </ul>
         </div>
-        
-        
         <!--
         -- ADVANCE BLOQS
         -->
         <div class="tabs-layout__content" ng-show="selectedToolboxTab === 'advance'">
             <!-- Zowi -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='zowi'">
-                <li id="{{'bloq' + advancedZowi.name}}" data-ng-class="advancedZowi.addClass" data-ng-repeat="advancedZowi in common.properties.bloqsSortTree.advancedZowi" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedZowi.indexOf(advancedZowi.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedZowi[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedZowi.name}}" data-ng-class="advancedZowi.addClass" data-ng-repeat="advancedZowi in common.properties.bloqsSortTree.advancedZowi" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedZowi.indexOf(advancedZowi.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedZowi[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advamcedZowi.name + 'Check'}}" ng-model="checkModel[advancedZowi.name]" ng-click="addChecks('advancedZowi', checkModel[advancedZowi.name], advancedZowi.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedZowi"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advamcedZowi.name + 'Check'}}" ng-model="checkModel[advancedZowi.name]" ng-click="addChecks('advancedZowi', checkModel[advancedZowi.name], advancedZowi.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedZowi" />
                     </span>
                 </li>
             </ul>
             <!-- Evolution -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='evolution'">
-                <li id="{{'bloq' + advancedEvolution.name}}" data-ng-class="advancedEvolution.addClass" data-ng-repeat="advancedEvolution in common.properties.bloqsSortTree.advancedEvolution" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedEvolution.indexOf(advancedEvolution.name)>-1"
-                    data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedEvolution[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedEvolution.name}}" data-ng-class="advancedEvolution.addClass" data-ng-repeat="advancedEvolution in common.properties.bloqsSortTree.advancedEvolution" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedEvolution.indexOf(advancedEvolution.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedEvolution[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advancedEvolution.name + 'Check'}}" ng-model="checkModel[advancedEvolution.name]" ng-click="addChecks('advancedEvolution', checkModel[advancedEvolution.name], advancedEvolution.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedEvolution"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advancedEvolution.name + 'Check'}}" ng-model="checkModel[advancedEvolution.name]" ng-click="addChecks('advancedEvolution', checkModel[advancedEvolution.name], advancedEvolution.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedEvolution" />
                     </span>
                 </li>
             </ul>
             <!-- mBot -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='mBot'">
-                <li id="{{'bloq' + advancedMBot.name}}" data-ng-class="advancedMBot.addClass" data-ng-repeat="advancedMBot in common.properties.bloqsSortTree.advancedMBot" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedMBot.indexOf(advancedMBot.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedMBot[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedMBot.name}}" data-ng-class="advancedMBot.addClass" data-ng-repeat="advancedMBot in common.properties.bloqsSortTree.advancedMBot" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedMBot.indexOf(advancedMBot.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedMBot[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advancedMBot.name + 'Check'}}" ng-model="checkModel[advancedMBot.name]" ng-click="addChecks('advancedMBot', checkModel[advancedMBot.name], advancedMBot.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedMBot"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advancedMBot.name + 'Check'}}" ng-model="checkModel[advancedMBot.name]" ng-click="addChecks('advancedMBot', checkModel[advancedMBot.name], advancedMBot.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedMBot" />
+                    </span>
+                </li>
+            </ul>
+            <!-- Phone -->
+            <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='Phone'">
+                <li id="{{'bloq' + advancedPhone.name}}" data-ng-class="advancedPhone.addClass" data-ng-repeat="advancedPhone in common.properties.bloqsSortTree.advancedPhone" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedPhone.indexOf(advancedPhone.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedPhone[$index].name]" data-components-array="componentsArray">
+                    <span class="input input--checkbox">
+                        <input type="checkbox" class="component-toolbox" id="{{advancedPhone.name + 'Check'}}" ng-model="checkModel[advancedPhone.name]" ng-click="addChecks('advancedPhone', checkModel[advancedPhone.name], advancedPhone.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedPhone" />
                     </span>
                 </li>
             </ul>
             <!-- Components -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='components'">
-                <li id="{{'bloq' + advancedComponent.name}}" data-ng-class="advancedComponent.addClass" data-ng-repeat="advancedComponent in common.properties.bloqsSortTree.advancedComponents"
-                    data-ng-show="showComponents(advancedComponent.name) && (common.section !== 'task' || currentProject.selectedBloqs.advancedComponents.indexOf(advancedComponent.name)>-1)" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedComponents[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedComponent.name}}" data-ng-class="advancedComponent.addClass" data-ng-repeat="advancedComponent in common.properties.bloqsSortTree.advancedComponents" data-ng-show="showComponents(advancedComponent.name) && (common.section !== 'task' || currentProject.selectedBloqs.advancedComponents.indexOf(advancedComponent.name)>-1)" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedComponents[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advancedComponent.name + 'Check'}}" ng-model="checkModel[advancedComponent.name]" ng-click="addChecks('advancedComponents', checkModel[advancedComponent.name], advancedComponent.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedComponents"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advancedComponent.name + 'Check'}}" ng-model="checkModel[advancedComponent.name]" ng-click="addChecks('advancedComponents', checkModel[advancedComponent.name], advancedComponent.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedComponents" />
                     </span>
                 </li>
             </ul>
             <!-- Functions -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='functions'" data-element="toolbox-container-functions">
-                <li id="{{'bloq' + advancedFunction.name}}" data-ng-class="advancedFunction.addClass" data-ng-repeat="advancedFunction in common.properties.bloqsSortTree.advancedFunctions" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedFunctions.indexOf(advancedFunction.name)>-1"
-                    data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedFunctions[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedFunction.name}}" data-ng-class="advancedFunction.addClass" data-ng-repeat="advancedFunction in common.properties.bloqsSortTree.advancedFunctions" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedFunctions.indexOf(advancedFunction.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedFunctions[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advancedFunction.name + 'Check'}}" ng-model="checkModel[advancedFunction.name]" ng-click="addChecks('advancedFunctions', checkModel[advancedFunction.name], advancedFunction.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedFunctions"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advancedFunction.name + 'Check'}}" ng-model="checkModel[advancedFunction.name]" ng-click="addChecks('advancedFunctions', checkModel[advancedFunction.name], advancedFunction.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedFunctions" />
                     </span>
                 </li>
             </ul>
             <!-- Variables -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='variables'">
-                <li id="{{'bloq' + advancedVariable.name}}" data-ng-class="advancedVariable.addClass" data-ng-repeat="advancedVariable in common.properties.bloqsSortTree.advancedVariables" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedVariables.indexOf(advancedVariable.name)>-1"
-                    data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedVariables[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedVariable.name}}" data-ng-class="advancedVariable.addClass" data-ng-repeat="advancedVariable in common.properties.bloqsSortTree.advancedVariables" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedVariables.indexOf(advancedVariable.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedVariables[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advancedVariable.name + 'Check'}}" ng-model="checkModel[advancedVariable.name]" ng-click="addChecks('advancedVariables', checkModel[advancedVariable.name], advancedVariable.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedVariables"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advancedVariable.name + 'Check'}}" ng-model="checkModel[advancedVariable.name]" ng-click="addChecks('advancedVariables', checkModel[advancedVariable.name], advancedVariable.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedVariables" />
                     </span>
                 </li>
             </ul>
             <!-- Code -->
             <!-- Math -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='mathematics'">
-                <li id="{{'bloq' + advancedMath.name}}" data-ng-class="advancedMath.addClass" data-ng-repeat="advancedMath in common.properties.bloqsSortTree.advancedMathematics" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedMathematics.indexOf(advancedMath.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedMathematics[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedMath.name}}" data-ng-class="advancedMath.addClass" data-ng-repeat="advancedMath in common.properties.bloqsSortTree.advancedMathematics" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedMathematics.indexOf(advancedMath.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedMathematics[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advancedMath.name + 'Check'}}" ng-model="checkModel[advancedMath.name]" ng-click="addChecks('advancedMathematics', checkModel[advancedMath.name], advancedMath.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedMathematics"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advancedMath.name + 'Check'}}" ng-model="checkModel[advancedMath.name]" ng-click="addChecks('advancedMathematics', checkModel[advancedMath.name], advancedMath.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedMathematics" />
                     </span>
                 </li>
             </ul>
             <!-- Text -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='texts'">
-                <li id="{{'bloq' + advancedText.name}}" data-ng-class="advancedText.addClass" data-ng-repeat="advancedText in common.properties.bloqsSortTree.advancedTexts" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedTexts.indexOf(advancedText.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedTexts[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedText.name}}" data-ng-class="advancedText.addClass" data-ng-repeat="advancedText in common.properties.bloqsSortTree.advancedTexts" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedTexts.indexOf(advancedText.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedTexts[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advancedText.name + 'Check'}}" ng-model="checkModel[advancedText.name]" ng-click="addChecks('advancedTexts', checkModel[advancedText.name], advancedText.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedTexts"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advancedText.name + 'Check'}}" ng-model="checkModel[advancedText.name]" ng-click="addChecks('advancedTexts', checkModel[advancedText.name], advancedText.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedTexts" />
                     </span>
                 </li>
             </ul>
             <!-- Control -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='controls'">
-                <li id="{{'bloq' + advancedControl.name}}" data-ng-class="advancedControl.addClass" data-ng-repeat="advancedControl in common.properties.bloqsSortTree.advancedControls" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedControls.indexOf(advancedControl.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedControls[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedControl.name}}" data-ng-class="advancedControl.addClass" data-ng-repeat="advancedControl in common.properties.bloqsSortTree.advancedControls" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedControls.indexOf(advancedControl.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedControls[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advancedControl.name + 'Check'}}" ng-model="checkModel[advancedControl.name]" ng-click="addChecks('advancedControls', checkModel[advancedControl.name], advancedControl.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedControls"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advancedControl.name + 'Check'}}" ng-model="checkModel[advancedControl.name]" ng-click="addChecks('advancedControls', checkModel[advancedControl.name], advancedControl.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedControls" />
                     </span>
                 </li>
             </ul>
             <!-- Logic -->
             <!-- Classes -->
             <ul class="toolbox--bloqs--container" ng-show="selectedBloqsToolbox==='classes'">
-                <li id="{{'bloq' + advancedClasses.name}}" data-ng-class="advancedClasses.addClass" data-ng-repeat="advancedClasses in common.properties.bloqsSortTree.advancedClasses" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedClasses.indexOf(advancedClasses.name)>-1" data-bitbloq-bloq-creator
-                    data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedClasses[$index].name]" data-components-array="componentsArray">
+                <li id="{{'bloq' + advancedClasses.name}}" data-ng-class="advancedClasses.addClass" data-ng-repeat="advancedClasses in common.properties.bloqsSortTree.advancedClasses" ng-show="common.section !== 'task' || currentProject.selectedBloqs.advancedClasses.indexOf(advancedClasses.name)>-1" data-bitbloq-bloq-creator data-bloq-schema="bloqsApi.schemas[common.properties.bloqsSortTree.advancedClasses[$index].name]" data-components-array="componentsArray">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="component-toolbox" id="{{advancedClasses.name + 'Check'}}" ng-model="checkModel[advancedClasses.name]" ng-click="addChecks('advancedClasses', checkModel[advancedClasses.name], advancedClasses.name)" data-indeterminate-checkbox
-                               data-children-checkbox="currentProject.selectedBloqs.advancedClasses"/>
+                        <input type="checkbox" class="component-toolbox" id="{{advancedClasses.name + 'Check'}}" ng-model="checkModel[advancedClasses.name]" ng-click="addChecks('advancedClasses', checkModel[advancedClasses.name], advancedClasses.name)" data-indeterminate-checkbox data-children-checkbox="currentProject.selectedBloqs.advancedClasses" />
                     </span>
                 </li>
             </ul>
         </div>
     </div>
 </aside>
-
 <aside id="trashcan" class="toolbox--right toolbox--software trashcan" ng-show="showTrashcan" data-element="paper-bin">
     <svg class="svg-icon">
         <use xlink:href="#delete"></use>

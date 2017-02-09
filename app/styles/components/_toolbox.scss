@@ -129,7 +129,6 @@ $hw_toolbox: 210px;
         top: 13px;
         left: 11px;
     }
-
     .toolbox_tabs--checkbox {
         .input--checkbox {
             top: 21px;
@@ -161,18 +160,15 @@ $hw_toolbox: 210px;
     &.toolbox--expand {
         width: 451px;
     }
-
     .toolbox__menu {
         width: 174px;
     }
-
     .toolbox__item {
         height: 53px;
         .btn-text {
             padding: 15px;
         }
     }
-
     .tabs-layout__aside--vertical {
         width: 53px;
         .tabs__header__item--vertical {
@@ -188,16 +184,13 @@ $hw_toolbox: 210px;
             }
         }
     }
-
     .tabs-layout {
         width: calc(100% - 53px);
     }
-
     .tabs-layout__content {
         background-color: white;
         border-top: none;
     }
-
     .toolbox-zowi {
         background-color: #4e929b;
         &.selected--tab .btn-svg .svg-icon {
@@ -219,6 +212,12 @@ $hw_toolbox: 210px;
         background-color: #0059B4;
         &.selected--tab .btn-svg .svg-icon {
             fill: #0059B4
+        }
+    }
+    .toolbox-phone {
+        background-color: #5d6069;
+        &.selected--tab .btn-svg .svg-icon {
+            fill: #5d6069
         }
     }
     .toolbox-components {

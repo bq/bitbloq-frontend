@@ -27,8 +27,7 @@ angular.module('bitbloqApp')
         var scope = $rootScope.$new();
         scope.exercise = exports.exercise;
 
-        exports.editDate = function() {
-        };
+        exports.editDate = function() {};
 
         exports.clone = function(exercise) {
             if (!exercise) {
@@ -110,12 +109,9 @@ angular.module('bitbloqApp')
                         }
                     });
 
-                    exerciseApi.assignGroups(project._id, groupsToAssign).then(function() {
-                      centerModeApi.getGroupsByExercise(project._id).then(function(response){
+                    exerciseApi.assignGroups(project._id, groupsToAssign).then(function(response) {
                         defered.resolve(response.data);
                         assignModal.close();
-                      });
-
                     });
                 }
 
