@@ -65,19 +65,19 @@ input:disabled + .slider {
 
 /* Svgs */
 .slider.round .svg-icon {
-    width: 13px;
+    width: 10px;
     height: 10px;
     object-fit: contain;
     position: relative;
     top: 6px;
     &:first-child {
         fill: #cacdd2;
-        left: 12px;
+        left: 14px;
         display: initial;
     }
     &:nth-child(2) {
         fill: #82ad3a;
-        left: 42px;
+        left: 44px;
         display: none;
     }
 }

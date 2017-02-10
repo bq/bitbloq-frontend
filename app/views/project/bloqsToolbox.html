@@ -115,10 +115,10 @@
                     </span>
                 </button>
             </li>
-            <li class="tabs__header__item--vertical toolbox-phone" ng-class="{'selected--tab': selectedBloqsToolbox==='phone'}" ng-show="currentProject.hardware.robot==='phone'" data-element="toolbox-phone">
+            <li class="tabs__header__item--vertical toolbox-phone" ng-class="{'selected--tab': selectedBloqsToolbox==='phone'}" ng-show="currentProject.useBitbloqConnect" data-element="toolbox-phone">
                 <button class="btn-svg element-toolbox" ng-click="changeBloqsToolbox('phone')">
                     <span class="input input--checkbox">
-                        <input type="checkbox" class="element-toolbox" id="allPhoneBloqs" ng-model="phoneCheckModel" data-indeterminate-checkbox data-counter-check="phoneCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="phone" data-advanced-tab="advancedPhone" data-update-state="statusGeneralCheck" />
+                        <input type="checkbox" class="element-toolbox" id="allPhoneBloqs" ng-model="phoneCheckModel" data-indeterminate-checkbox data-counter-check="phoneCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="phone" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>

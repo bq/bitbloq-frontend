@@ -27,11 +27,6 @@
     }
 }
 
-.btn {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
 .btn--primary {
     font-weight: bold;
     @include button($font-color-heading, white);
