@@ -190,10 +190,10 @@ angular.module('bitbloqApp')
 
         $scope.hideBloqsMenu = function($event) {
             var current = $event.target.className;
-            if (typeof current === 'object') {
+            if (typeof current === 'object') { //svg
                 current = $event.target.parentElement.parentElement.className;
             }
-            if (!current.match('toolbox--bloqs--container') && !current.match('component-toolbox') && !current.match('submenu__item')) {
+            if (!current.match('toolbox--bloqs--container') && !current.match('element-toolbox') && !current.match('submenu__item') && !current.match('tabs__header__item--vertical')) {
                 $scope.selectedBloqsToolbox = '';
             }
 
