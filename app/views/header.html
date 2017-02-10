@@ -29,7 +29,7 @@
                         <span>{{ 'header_tab_myClass' | translate }}</span>
                     </a>
                 </li>
-                <li ng-if="common.user && common.user.studentMode" ng-class="{'nav__menu__item':true, 'nav__menu__item--selected':common.section === 'center-mode' && common.urlType==='student'}" data-element="nav-class">
+                <li ng-if="common.user && common.user.studentMode" ng-class="{'nav__menu__item':true, 'nav__menu__item--selected':common.section === 'center-mode' && common.urlType==='student'}" data-element="nav-exercise">
                     <a class="nav__menu__link" href="#/center-mode/student">
                         <svg class="svg-icon svg-icon--text">
                             <use xlink:href="#exercise"></use>
@@ -91,7 +91,7 @@
                 <p class="notification-alert">{{'new' | translate}}</p>
                 <div class="notification__content">
                     <p class="notification__title">{{'centerMode_modal_createCenterTitle' | translate}}</p>
-                    <button class="notification__link" ng-click="activateCenterMode()">{{'centerMode_header_info' | translate}}</button>
+                    <button class="notification__link" ng-click="activateCenterMode()" data-element="header-centermode">{{'centerMode_header_info' | translate}}</button>
                 </div>
             </div>
             <div class="menu--user__header">
