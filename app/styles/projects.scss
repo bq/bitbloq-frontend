@@ -208,7 +208,7 @@
                 overflow: auto;
 
                 time {
-                    width: 38%;
+                    width: 97px;
                     color: #8c919b;
                     font-size: 12px;
                     font-weight: 400;
@@ -221,7 +221,6 @@
                     font-size: 12px;
                     text-overflow: ellipsis;
                     white-space: nowrap;
-                    width: 50%;
                     overflow: hidden;
                     margin-right: 10px;
                     span {
@@ -232,14 +231,13 @@
                     &.shared-project__into__username {
                         width: 27%;
                     }
-                    &.shared-project__into__intro-date {
-                        width: 27%;
+                }
+                .shared-project__into__intro-date {
+                    float: left;
+                    p {
                         overflow: initial;
                         margin-right: 6px;
                     }
-                }
-                &.shared-project > time {
-                    float: right;
                 }
             }
 

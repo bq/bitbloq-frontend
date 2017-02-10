@@ -31,7 +31,7 @@
             <use xlink:href="#inbox"></use>
         </svg>
         <p class="empty__info">{{'myProjectShare_text_empty ' | translate}}
-
+        
         <p>
     </div>
     <li data-ng-repeat="project in sharedProjects | filter:{name: searchText} | filter:userProjectsFilterFunction(userProjectsFilter) | orderBy:userProjectsOrderBy:userProjectsReverseOrder track by project._id"
@@ -62,15 +62,10 @@
                         <p class="shared-project__into__username">{{ 'explore-created-by' | translate }}
                             <span>{{project.creator.username}}</span>
                         </p>
-                        <p class="shared-project__into__intro-date">
-                            {{project._acl['user:'+ common.user._id].properties.date ? 'sharedProject_date_shareAt' : '' | translate}}
-                        </p>
-                        <time class="text--secondary project__info--time">{{ project._acl['user:'+ common.user._id].properties.date | amDateFormat:'DD/MM/YY - HH:mm[h]' }}</time>
-                        <div class="project__info__header__icons">
-                            <svg class="svg-icon" ng-if="project._acl.ALL">
-                                <use xlink:href="#publish"></use>
-                            </svg>
-                        </div>
+                        <span class="shared-project__into__intro-date">
+                            <p>{{project._acl['user:'+ common.user._id].properties.date ? 'sharedProject_date_shareAt' : '' | translate}}</p>
+                            <time class="text--secondary project__info--time">{{ project._acl['user:'+ common.user._id].properties.date | amDateFormat:'DD/MM/YY - HH:mm[h]' }}</time>
+                        </span>
                     </div>
                 </div>
             </div>

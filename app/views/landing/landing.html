@@ -6,6 +6,10 @@
             <span class="landing--text--big--dark">{{'landing_text_mastheadSubtitle' | translate}}</span>
             <a href="#/bloqsproject" target="_blank" class="btn btn--landing">{{'landing_link_testItNow' | translate}}</a>
             <img src="../images/landing/home_computer.png" alt="">
+            <a href="#/offline" target="_blank">
+                <img data-ng-show="translate.use() === 'es-ES'" class="offline-promo" src="../images/landing/bitbloq_offline_promo_es.png" alt="">
+                <img data-ng-show="translate.use() !== 'es-ES'" class="offline-promo" src="../images/landing/bitbloq_offline_promo_eng.png" alt="">
+            </a>
         </div>
     </div>
     <div class="row row--inline landing--section for--who--section">
