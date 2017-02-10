@@ -95,28 +95,28 @@
         <!-- exercise buttons -->
         <ul ng-click="selectedToolboxTab = 'basic'" ng-if="common.section==='exercise'" ng-show="selectedBloqsToolbox===''">
             <li class="tabs__header__item--vertical toolbox-zowi" ng-class="{'selected--tab': selectedBloqsToolbox==='zowi'}" ng-show="currentProject.hardware.robot==='zowi'" data-element="toolbox-zowi">
-                <button class="btn-svg element-toolbox" ng-click="changeBloqsToolbox('zowi')">
+                <button class="btn-svg element-toolbox">
                     <span class="input input--checkbox">
                         <input type="checkbox" class="element-toolbox" id="allZowiBloqs" ng-model="zowiCheckModel" data-indeterminate-checkbox data-counter-check="zowiCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="zowi" data-advanced-tab="advancedZowi" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-evolution" ng-class="{'selected--tab': selectedBloqsToolbox==='evolution'}" ng-show="currentProject.hardware.robot==='evolution'" data-element="toolbox-evolution">
-                <button class="btn-svg element-toolbox" ng-click="changeBloqsToolbox('evolution')">
+                <button class="btn-svg element-toolbox">
                     <span class="input input--checkbox">
                         <input type="checkbox" class="element-toolbox" id="allEvolutionBloqs" ng-model="evolutionCheckModel" data-indeterminate-checkbox data-counter-check="evolutionCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="evolution" data-advanced-tab="advancedEvolution" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-mbot" ng-class="{'selected--tab': selectedBloqsToolbox==='mBot'}" ng-show="currentProject.hardware.robot==='mbot'" data-element="toolbox-mbot">
-                <button class="btn-svg element-toolbox" ng-click="changeBloqsToolbox('mBot')">
+                <button class="btn-svg element-toolbox">
                     <span class="input input--checkbox">
                         <input type="checkbox" class="element-toolbox" id="allMBotBloqs" ng-model="mBotCheckModel" data-indeterminate-checkbox data-counter-check="mBotCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="mBot" data-advanced-tab="advancedMBot" data-update-state="statusGeneralCheck" />
                     </span>
                 </button>
             </li>
             <li class="tabs__header__item--vertical toolbox-phone" ng-class="{'selected--tab': selectedBloqsToolbox==='phone'}" ng-show="currentProject.useBitbloqConnect" data-element="toolbox-phone">
-                <button class="btn-svg element-toolbox" ng-click="changeBloqsToolbox('phone')">
+                <button class="btn-svg element-toolbox">
                     <span class="input input--checkbox">
                         <input type="checkbox" class="element-toolbox" id="allPhoneBloqs" ng-model="phoneCheckModel" data-indeterminate-checkbox data-counter-check="phoneCheckCounter" data-change-function="addChecks" data-selected-tab="selectedBloqsToolbox" data-basic-tab="phone" data-update-state="statusGeneralCheck" />
                     </span>
