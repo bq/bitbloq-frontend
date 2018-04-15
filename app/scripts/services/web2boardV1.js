@@ -29,7 +29,7 @@ angular.module('bitbloqApp')
 
         web2board.config = {
             wsHost: '127.0.0.1',
-            wsPort: 1234,
+            wsPort: 9867,
             serialPort: ''
         };
 
