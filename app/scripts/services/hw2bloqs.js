@@ -638,11 +638,11 @@ angular
             } else if (newComponent.manufacturer === 'bq-zumjunior') {
                 spaceInterPin = {
                     ad: {
-                        x: 0.25,
+                        x: 0.29,
                         y: 1
                     },
                     i2c: {
-                        x: 0.25,
+                        x: 0.29,
                         y: 1
                     }
                 };
