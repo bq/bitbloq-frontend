@@ -181,7 +181,7 @@
                     {{'show-console' | translate}}
                 </div>
             </li>
-            <li>
+            <!--<li>
                 <div class="dropdown__item" data-ng-click="showWeb2boardSettings()" data-ng-disabled="isWeb2BoardInProgress()" data-ng-if="(common.os !== 'ChromeOS' && (common.user && !common.user.chromeapp)) || (common.os !== 'ChromeOS' && (!common.user.username))"
                     data-element="makeactions-menuview-console">
                     <svg class="svg-icon svg-icon--text svg-icon--menu">
@@ -189,7 +189,7 @@
                     </svg>
                     {{ 'web2board-settings-title' | translate }}
                 </div>
-            </li>
+            </li>-->
             <li>
                 <div class="dropdown__item" data-ng-click="showPlotter()" data-ng-disabled="isWeb2BoardInProgress()" data-element="makeactions-menuview-plotter">
                     <svg class="svg-icon svg-icon--text svg-icon--menu">
@@ -198,7 +198,7 @@
                     {{'show-plotter' | translate}}
                 </div>
             </li>
-            <li data-tooltips="{{!currentProject._id || !common.user || !utils.userIsOwner(currentProject, common.user._id, common.section)}}"
+            <!--<li data-tooltips="{{!currentProject._id || !common.user || !utils.userIsOwner(currentProject, common.user._id, common.section)}}"
                 data-tooltip="{{(!common.user?'need-to-be-logged':!currentProject._id?'empty-project':!utils.userIsOwner(currentProject, common.user._id, common.section)?'you-are-not-the-admin-copy-it':'publish-project') | translate}}"
                 data-tooltip-position="right">
                 <div class="dropdown__item" data-ng-click="showViewer()" data-ng-disabled="!currentProject._id || isWeb2BoardInProgress()"
@@ -208,7 +208,7 @@
                     </svg>
                     {{'show-viewer' | translate}}
                 </div>
-            </li>
+            </li>-->
         </ul>
     </li>
     <li class="actions__menu__item" ng-if="common.section !== 'exercise' && common.section !== 'task'">
