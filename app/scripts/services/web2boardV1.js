@@ -28,7 +28,7 @@ angular.module('bitbloqApp')
             TIMES_TRY_TO_START_W2B = 7;
 
         web2board.config = {
-            wsHost: '127.0.0.1',
+            wsHost: 'web2board.es',
             wsPort: 9867,
             serialPort: ''
         };
