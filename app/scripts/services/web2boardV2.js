@@ -400,7 +400,8 @@ document.body.removeChild(tempA); },
             if (!inProgress) {
                 inProgress = true;
                 openCommunication(function () {
-                    return api.CodeHub.server.compile(code, board.mcu).then(function () {
+                  //makes safety check if board and board.mcu are set
+                    return api.CodeHub.server.compile(code,(board && board.mcu) || "uno").then(function () {
                         alertsService.add({
                             text: 'alert-web2board-compile-verified',
                             id: 'web2board',
