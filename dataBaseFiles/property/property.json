@@ -1413,6 +1413,9 @@
                 },
                 {
                   "name": "zumjuniorMiniservoAdvanced"
+                },
+                {
+                  "name": "zumjuniorDisplayNumberAdvanced"
                 }
             ]
         },
