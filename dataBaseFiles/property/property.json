@@ -158,6 +158,9 @@
                     "name": "waitAdvanced"
                 },
                 {
+                    "name": "millis"
+                },
+                {
                     "name": "ifAdvanced"
                 },
                 {
@@ -493,9 +496,6 @@
                     "name": "wait"
                 },
                 {
-                    "name": "millis"
-                },
-                {
                     "name": "if"
                 },
                 {
@@ -507,6 +507,12 @@
                     "name": "else"
                 },
                 {
+                    "name": "while"
+                },
+                {
+                    "name": "magicFor"
+                },
+                {
                     "name": "switch"
                 },
                 {
@@ -516,15 +522,6 @@
                 {
                     "addClass": "indent-1",
                     "name": "caseDefault"
-                },
-                {
-                    "name": "magicFor"
-                },
-                {
-                    "name": "for-v1"
-                },
-                {
-                    "name": "while"
                 }
             ],
             "evolution": [
@@ -1405,6 +1402,17 @@
                 },
                 {
                     "name": "zumjuniorPlayBuzz"
+                }
+            ],
+            "advancedZumJunior":[
+                {
+                  "name": "zumjuniorPlayBuzzAdvanced"
+                },
+                {
+                  "name": "zumjuniorServoStartAdvanced"
+                },
+                {
+                  "name": "zumjuniorMiniservoAdvanced"
                 }
             ]
         },

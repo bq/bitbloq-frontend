@@ -411,11 +411,13 @@ angular.module('bitbloqApp')
 
             switch (bloqName) {
                 case 'zumjuniorServoStart':
+                case 'zumjuniorServoStartAdvanced':
                 case 'zumjuniorServoStop':
                     return existComponent(['zumjunior_servo'], connectedComponents);
                 case 'zumjuniorDoubleLed':
                     return existComponent(['zumjunior_double_led'], connectedComponents);
                 case 'zumjuniorMiniservo':
+                case 'zumjuniorMiniservoAdvanced':
                     return existComponent(['zumjunior_miniservo'], connectedComponents);
                 case 'zumjuniorButtonIf':
                 case 'zumjuniorButtonWhile':
@@ -436,6 +438,7 @@ angular.module('bitbloqApp')
                 case 'zumjuniorTurnOffLed':
                     return existComponent(['zumjunior_integrated_led'], connectedComponents);
                 case 'zumjuniorPlayBuzz':
+                case 'zumjuniorPlayBuzzAdvanced':
                     return existComponent(['zumjunior_integrated_buzz'], connectedComponents);
 
                 default:
@@ -1056,7 +1059,7 @@ angular.module('bitbloqApp')
             zumjunior: {
                 id: 'allZumjuniorBloqs',
                 basicTab: 'zumjunior',
-                advancedTab: 'zumjuniorAdvanced',
+                advancedTab: 'advancedZumJunior',
                 counter: 0,
                 model: null,
                 showCondition: function () {
@@ -1070,7 +1073,7 @@ angular.module('bitbloqApp')
                 dataElement: 'toolbox-zumjunior',
                 properties: {
                     basicBloqs: 'zumjunior',
-                    advancedBloqs: 'zumjuniorAdvanced'
+                    advancedBloqs: 'advancedZumJunior'
                 }
             },
             rangerlandraider: {
@@ -1364,7 +1367,7 @@ angular.module('bitbloqApp')
                         return true;
                     }
                 }
-            },
+            }/*,
             classes: {
                 id: 'allClassesBloqs',
                 basicTab: 'classes',
@@ -1383,7 +1386,7 @@ angular.module('bitbloqApp')
                         return true;
                     }
                 }
-            }
+            }*/
         };
 
         $scope.addChecks = function (type, value, bloqName) {
