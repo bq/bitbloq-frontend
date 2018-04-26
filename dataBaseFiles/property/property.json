@@ -172,6 +172,17 @@
                     "name": "else"
                 },
                 {
+                    "name": "whileAdvanced"
+                },
+                {
+                    "addClass": "indent-1",
+                    "name": "continue"
+                },
+                {
+                    "addClass": "indent-1",
+                    "name": "break"
+                },
+                {
                     "name": "magicForAdvanced"
                 },
                 {
@@ -187,18 +198,8 @@
                 {
                     "addClass": "indent-1",
                     "name": "caseDefault"
-                },
-                {
-                    "name": "whileAdvanced"
-                },
-                {
-                    "addClass": "indent-1",
-                    "name": "continue"
-                },
-                {
-                    "addClass": "indent-1",
-                    "name": "break"
                 }
+
             ],
             "advancedEvolution": [
                 {
@@ -566,16 +567,16 @@
                     "name": "boolean"
                 },
                 {
-                    "name": "boolArray"
+                    "name": "equalityOperations"
+                },
+                {
+                    "name": "logicOperations"
                 },
                 {
                     "name": "not"
                 },
                 {
-                    "name": "equalityOperations"
-                },
-                {
-                    "name": "logicOperations"
+                    "name": "boolArray"
                 }
             ],
             "mbot": [
@@ -1226,19 +1227,19 @@
                     "name": "number"
                 },
                 {
-                    "name": "numberArray"
+                    "name": "basicOperations"
                 },
                 {
-                    "name": "basicOperations"
+                    "name": "random"
                 },
                 {
                     "name": "map"
                 },
                 {
-                    "name": "randomSeed"
+                    "name": "numberArray"
                 },
                 {
-                    "name": "random"
+                    "name": "randomSeed"
                 }
             ],
             "texts": [
@@ -1246,16 +1247,16 @@
                     "name": "string"
                 },
                 {
-                    "name": "stringArray"
-                },
-                {
-                    "name": "length"
+                    "name": "stringSum"
                 },
                 {
                     "name": "stringCreate"
                 },
                 {
-                    "name": "stringSum"
+                    "name": "stringArray"
+                },
+                {
+                    "name": "length"
                 },
                 {
                     "name": "substring"
@@ -1350,6 +1351,15 @@
             ],
             "zumjunior": [
                 {
+                    "name": "zumjuniorTurnOnLed"
+                },
+                {
+                    "name": "zumjuniorTurnOffLed"
+                },
+                {
+                    "name": "zumjuniorPlayBuzz"
+                },
+                {
                     "name": "zumjuniorServoStart"
                 },
                 {
@@ -1393,15 +1403,6 @@
                 },
                 {
                     "name": "zumjuniorColorWhile"
-                },
-                {
-                    "name": "zumjuniorTurnOnLed"
-                },
-                {
-                    "name": "zumjuniorTurnOffLed"
-                },
-                {
-                    "name": "zumjuniorPlayBuzz"
                 }
             ],
             "advancedZumJunior":[
