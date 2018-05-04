@@ -487,9 +487,6 @@
                 },
                 {
                     "name": "zumjuniorReadColor"
-                },
-                {
-                    "name": "zumjuniorTurnOnLedRGB"
                 }
             ],
             "controls": [
@@ -1407,6 +1404,9 @@
             ],
             "advancedZumJunior":[
                 {
+                  "name": "zumjuniorTurnOnLedRGBAdvanced"
+                },
+                {
                   "name": "zumjuniorPlayBuzzAdvanced"
                 },
                 {
@@ -1417,6 +1417,12 @@
                 },
                 {
                   "name": "zumjuniorDisplayNumberAdvanced"
+                },
+                {
+                  "name": "zumjuniorSensorsIfAdvanced"
+                },
+                {
+                  "name": "zumjuniorSensorsWhileAdvanced"
                 }
             ]
         },

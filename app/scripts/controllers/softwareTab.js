@@ -431,12 +431,16 @@ angular.module('bitbloqApp')
                 case 'zumjuniorDisplayNumberAdvanced':
                     return existComponent(['zumjunior_7segment'], connectedComponents);
                 case 'zumjuniorSensorsIf':
+                case 'zumjuniorsensorselseif':
+                case 'zumjuniorSensorsIfAdvanced':
                 case 'zumjuniorSensorsWhile':
+                case'zumjuniorSensorsWhileAdvanced':
                 case 'zumjuniorColorIf':
                 case 'zumjuniorColorWhile':
                     return existComponent(['zumjunior_sensors'], connectedComponents);
                 case 'zumjuniorTurnOnLed':
                 case 'zumjuniorTurnOffLed':
+                case 'zumjuniorTurnOnLedRGBAdvanced':
                     return existComponent(['zumjunior_integrated_led'], connectedComponents);
                 case 'zumjuniorPlayBuzz':
                 case 'zumjuniorPlayBuzzAdvanced':
