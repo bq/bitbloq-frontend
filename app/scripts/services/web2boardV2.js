@@ -249,6 +249,21 @@ angular.module('bitbloqApp')
             }
         }
 
+        var errorLiterals = {
+            'VERIFYERROR': 'alert-web2board-verifyerror',
+            'UPLOADERROR': 'alert-web2board-uploaderror',
+            'FILENOTFOUND': 'alert-web2board-filenotfound',
+            'FILENOTCREATED': 'alert-web2board-filenotcreated',
+            'DIRNOTCREATED': 'alert-web2board-dirnotcreated',
+            'ARDUINONOTFOUND': 'alert-web2board-arduinonotfound',
+            'BOARDNOTKNOWN': 'alert-web2board-boardnotknown',
+            'BOARDNOTSET': 'alert-web2board-boardnotset',
+            'SKETCHNOTSET': 'alert-web2board-sketchnotset',
+            'PORTNOTOPENED': 'alert-web2board-portnotopened',
+            'CANNOTMOVELIBS': 'alert-web2board-cannotmovelibs',
+            'GETTIMEOUT': 'alert-web2board-gettimeout'
+        };
+
         function handleCompileError(error) {
             var errorStr = error,
                 alertParams = {
@@ -266,7 +281,7 @@ angular.module('bitbloqApp')
                     value: '<br>' + errorStr
                 });
             } else {
-                alertParams.text = 'alert-web2board-compile-error';
+                alertParams.text = errorLiterals[error.title] || 'alert-web2board-compile-error';
                 alertParams.value = error;
             }
 
@@ -281,17 +296,19 @@ angular.module('bitbloqApp')
                     text: 'alert-web2board-no-port-found',
                     id: 'web2board',
                     type: 'warning',
-                    link: function () { var tempA = document.createElement('a');
-tempA.setAttribute('href', '#/support/p/noBoardLanding');
-tempA.setAttribute('target', '_blank');
-document.body.appendChild(tempA);
-tempA.click();
-document.body.removeChild(tempA); },
+                    link: function () {
+                        var tempA = document.createElement('a');
+                        tempA.setAttribute('href', '#/support/p/noBoardLanding');
+                        tempA.setAttribute('target', '_blank');
+                        document.body.appendChild(tempA);
+                        tempA.click();
+                        document.body.removeChild(tempA);
+                    },
                     linkText: $translate.instant('support-go-to')
                 });
             } else {
                 alertsService.add({
-                    text: 'alert-web2board-upload-error',
+                    text: errorLiterals[error.title] || 'alert-web2board-upload-error',
                     id: 'web2board',
                     type: 'warning',
                     value: error
@@ -410,7 +427,7 @@ document.body.removeChild(tempA); },
                 inProgress = true;
                 openCommunication(function () {
                   //makes safety check if board and board.mcu are set
-                    return api.CodeHub.server.compile(code,(board && board.mcu) || "uno").then(function () {
+                    return api.CodeHub.server.compile(code,(board && board.mcu) || 'uno').then(function () {
                         alertsService.add({
                             text: 'alert-web2board-compile-verified',
                             id: 'web2board',
