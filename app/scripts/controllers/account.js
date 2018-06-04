@@ -101,6 +101,54 @@ angular.module('bitbloqApp')
             });
         };
 
+        $scope.deleteAccount = function() {
+            var dialog,
+                modalScope = $rootScope.$new(),
+                confirmAction = function(form) {
+                    modalScope.errorEmail = false;
+                    modalScope.errorPassword = false;
+                    userApi.deleteMyAccount(form.email.$modelValue, form.password.$modelValue).then(function() {
+                        dialog.close();
+                        userApi.logout();
+                        $scope.common.setUser(null);
+                        localStorage.projectsChange = false;
+                        $location.url('/');
+                    }, function(res) {
+                        if (res.data === 'wrongEmail') {
+                            modalScope.errorEmail = true;
+                        } else if (res.data === 'wrongPassword') {
+                            modalScope.errorPassword = true;
+                        } else {
+                            alertsService.add({
+                                text: 'account-delete-error',
+                                id: 'account-delete-error',
+                                type: 'warning',
+                                time: 5000
+                            });
+                        }
+                    });
+                };
+
+            _.extend(modalScope, {
+                title: 'modal-delete-account-title',
+                confirmButton: 'modal-delete-account-button-ok',
+                contentTemplate: 'views/modals/deleteAccount.html',
+                confirmAction: confirmAction,
+                submitted: false,
+                errorPassword: false
+            });
+
+            dialog = ngDialog.open({
+                template: '/views/modals/modal.html',
+                className: 'modal--container modal--delete-account',
+                scope: modalScope
+            });
+
+            $('textarea.msd-elastic').autogrow({
+                onInitialize: true
+            });
+        };
+
         $scope.saveProfile = function() {
             var defered = $q.defer();
 

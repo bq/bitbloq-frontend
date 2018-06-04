@@ -35,6 +35,14 @@
     &.modal--publish,
     &.modal--send-comments,
     &.modal--share-no-users,
+    &.modal--delete-account {
+        .ngdialog-content {
+            width: 500px;
+            p {
+                margin-bottom: 20px;
+            }
+        }
+    }
     &.password-reset--modal {
         .ngdialog-content {
             width: 500px;

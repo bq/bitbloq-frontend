@@ -70,6 +70,20 @@
                                 <button class="btn btn--social btn__login--google rounded btn__social-account" ng-click="authenticate('google')" ng-if="common.user && !common.user.social.google.id" data-element="account-social-google-button">{{ 'Google' | translate }}</button>
                     </div>
                 </fieldset>
+                <fieldset>
+                    <legend>
+                        <svg class="svg-icon svg-icon--text">
+                            <use xlink:href="#delete"></use>
+                        </svg>
+                        <span>{{ 'delete-account' | translate }}</span>
+                    </legend>
+                    <div class="form-control">
+                        <label>{{ 'delete-account' | translate }}</label>
+                        <input type="button" value="{{ 'delete-account' | translate }}" class="btn btn--danger btn--small" data-ng-click="deleteAccount($event)" data-element="account-delete-account-button" />
+                    </div>
+                    <div>
+                    </div>
+                </fieldset>
             </div>
             <fieldset class="user-options-checkbox">
                 <span class="input input--checkbox">
@@ -96,9 +110,6 @@
                     <label for="seeBoardsUnderDevelopmentCheckbox">{{'account-checkbox-seeboardsunderdevelopment' | translate}}</label>
                 </span>
             </fieldset>
-            <p class="account__delete">{{'account-link-deleteAccount' | translate}}
-                <a href="mailto:{{'support_email' | translate}}">{{'support_email' | translate}}</a>
-            </p>
         </div>
     </form>
     <form class="form--account" id="form--account__second-column">

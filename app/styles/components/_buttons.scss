@@ -118,6 +118,16 @@
     }
 }
 
+.btn--danger {
+    @include button($button-danger, $button-danger-text);
+    &:hover {
+        background-color: $button-danger-hover;
+    }
+    &:active {
+        background-color: $button-danger-pressed;
+    }
+}
+
 .btn--delete {
     float: right;
     min-width: 50px;
