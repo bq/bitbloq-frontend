@@ -1,0 +1,27 @@
+<div class="modal_delete-account">
+    <p>{{ 'delete-account-message' | translate }}</p>
+    <div class="form">
+        <form name="form" autocomplete="off" ng-submit="confirmAction(form)" novalidate>
+            <fieldset>
+                <div class="form-control">
+                    <label for="deleteAccountEmail">{{ 'delete-account-type-email' | translate }}</label>
+                    <span class="form--input" data-ng-class="{'form--input':true, 'input--focused':focus === 'email', 'input--error':errorEmail}">
+                        <input type="email" id="deleteAccountEmail" name="email" placeholder="mail@mail.com" tabindex="0" aria-invalid="false" data-ng-blur="focus = false" data-ng-focus="focus = 'email'" data-ng-model="email" data-element="email">
+                    </span>
+                </div>
+                <div class="form-control">
+                    <label for="deleteAccountPassword">{{ 'delete-account-type-password' | translate }}</label>
+                    <span data-ng-class="{'input input--form--login input--default':true, 'input--focused':focus === 'password', 'input--error':errorPassword}">
+                        <svg class="svg-icon">
+                            <use xlink:href="#lock"></use>
+                        </svg>
+                        <input type="password" id="deleteAccountPassword" name="password" autocomplete="off" data-ng-model="password" data-ng-focus="focus='password'" data-ng-blur="focus = false" id="password" placeholder="{{'modal-reset-password-main-password-placeholder' | translate}}" autocorrect="off" required>
+                    </span>
+                </div>
+                <div class="form-control">
+                    <button data-element="modal-delete-account-delete-button" class="btn btn--danger btn__modal--footer btn--confirm">{{'delete-account' | translate}}</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

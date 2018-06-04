@@ -150,6 +150,17 @@ angular.module('bitbloqApp')
             });
         };
 
+        exports.deleteMyAccount = function(email, password) {
+            return $http({
+                method: 'POST',
+                url: envData.config.serverUrl + 'user/deleteMyAccount',
+                data: {
+                    email: email,
+                    password: password
+                }
+            });
+        };
+
         exports.getUserId = function(email) {
             return $http({
                 method: 'GET',
