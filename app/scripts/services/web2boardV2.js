@@ -258,6 +258,7 @@ angular.module('bitbloqApp')
             'ARDUINONOTFOUND': 'alert-web2board-arduinonotfound',
             'BOARDNOTKNOWN': 'alert-web2board-boardnotknown',
             'BOARDNOTSET': 'alert-web2board-boardnotset',
+            'BOARDNOTDETECTED': 'alert-web2board-boardnotdetected',
             'SKETCHNOTSET': 'alert-web2board-sketchnotset',
             'PORTNOTOPENED': 'alert-web2board-portnotopened',
             'CANNOTMOVELIBS': 'alert-web2board-cannotmovelibs',
