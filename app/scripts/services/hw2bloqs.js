@@ -422,6 +422,7 @@ angular
         }
 
         function _connectionAction(connection) {
+            connection.targetEndpoint.canvas._katavorioDrag.scopes = connection.sourceEndpoint.scope.split(' ');
             connection.targetEndpoint.setType('connected');
             connection.sourceEndpoint.setType('connected');
 

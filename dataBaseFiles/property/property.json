@@ -420,7 +420,7 @@
                     "name": "readSensor"
                 },
                 {
-                    "name": "mBotGetDistance-v2"
+                    "name": "mBotGetUS"
                 },
                 {
                     "name": "mBotSetRGBLed"
@@ -585,9 +585,6 @@
                 },
                 {
                     "name": "mBotBuzzer"
-                },
-                {
-                    "name": "mBotGetDistance"
                 },
                 {
                     "name": "mBotGetButtonStatus"

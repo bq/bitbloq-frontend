@@ -401,7 +401,7 @@ angular.module('bitbloqApp')
             return result;
         };
 
-        $scope.showZumjuniorComponents = function(bloqName) {
+        $scope.showZumjuniorComponents = function (bloqName) {
             if (!$scope.currentProject.hardware.board ||
                 !$scope.currentProject.hardware.components) {
                 return false;
@@ -434,7 +434,7 @@ angular.module('bitbloqApp')
                 case 'zumjuniorsensorselseif':
                 case 'zumjuniorSensorsIfAdvanced':
                 case 'zumjuniorSensorsWhile':
-                case'zumjuniorSensorsWhileAdvanced':
+                case 'zumjuniorSensorsWhileAdvanced':
                 case 'zumjuniorColorIf':
                 case 'zumjuniorColorWhile':
                     return existComponent(['zumjunior_sensors'], connectedComponents);
@@ -531,6 +531,9 @@ angular.module('bitbloqApp')
                                 break;
                             case 'makeblockIfNoise':
                                 result = existComponent(['mkb_soundsensor'], connectedComponents);
+                                break;
+                            case 'mBotGetUS':
+                                result = existComponent(['mkb_ultrasound'], connectedComponents);
                                 break;
                             case 'mBotLedMatrix':
                                 result = existComponent(['mkb_ledmatrix'], connectedComponents);
@@ -1070,7 +1073,7 @@ angular.module('bitbloqApp')
                 showCondition: function () {
                     return $scope.currentProject.hardware && ($scope.currentProject.hardware.board === 'zumjunior');
                 },
-                showBasicBloqsCondition: function(name) {
+                showBasicBloqsCondition: function (name) {
                     return $scope.showZumjuniorComponents(name);
                 },
                 icon: '#robot',
