@@ -1378,10 +1378,7 @@
                     "name": "zumjuniorSliderWhile"
                 },
                 {
-                    "name": "zumjuniorDisplayNumber"
-                },
-                {
-                    "name": "zumjuniorDisplayNumbers"
+                    "name": "zumjuniorDisplayChars"
                 },
                 {
                     "name": "zumjuniorClearDisplay"
@@ -1414,6 +1411,9 @@
                 },
                 {
                   "name": "zumjuniorDisplayNumberAdvanced"
+                },
+                {
+                    "name": "zumjuniorDisplayCharsAdvanced"
                 },
                 {
                   "name": "zumjuniorSensorsIfAdvanced"

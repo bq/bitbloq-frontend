@@ -425,10 +425,10 @@ angular.module('bitbloqApp')
                 case 'zumjuniorSliderIf':
                 case 'zumjuniorSliderWhile':
                     return existComponent(['zumjunior_slider'], connectedComponents);
-                case 'zumjuniorDisplayNumber':
-                case 'zumjuniorDisplayNumbers':
                 case 'zumjuniorClearDisplay':
                 case 'zumjuniorDisplayNumberAdvanced':
+                case 'zumjuniorDisplayCharsAdvanced':
+                case 'zumjuniorDisplayChars':
                     return existComponent(['zumjunior_7segment'], connectedComponents);
                 case 'zumjuniorSensorsIf':
                 case 'zumjuniorsensorselseif':
