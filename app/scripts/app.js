@@ -258,6 +258,7 @@ angular
             $authProvider.google({
                 clientId: envData.google.clientId,
                 apiKey: envData.google.apikey,
+                redirectUri: window.location.origin + '/oauth.html',
                 scope: envData.google.scope,
                 apis: envData.google.apis,
                 responseType: 'token',
@@ -273,6 +274,7 @@ angular
             $authProvider.facebook({
                 clientId: envData.facebook.clientId,
                 authorizationEndpoint: envData.facebook.authorizationEndpoint,
+                redirectUri: window.location.origin + '/oauth.html',
                 scope: envData.facebook.scope,
                 responseType: 'token',
                 display: 'popup',
