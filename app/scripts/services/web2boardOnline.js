@@ -8,7 +8,7 @@
  * Service in the bitbloqApp.
  */
 angular.module('bitbloqApp')
-    .service('web2boardOnline', function (compilerApi, chromeAppApi, alertsService, utils, $q, $translate, envData, $rootScope, web2board, $timeout) {
+    .service('web2boardOnline', function (compilerApi, chromeAppApi, alertsService, utils, $q, $translate, envData, $rootScope, web2board) {
         var exports = {
             compile: compile,
             upload: upload,
@@ -16,41 +16,7 @@ angular.module('bitbloqApp')
         };
 
         var compileAndUploadDefer,
-            completed,
-            alertCompile;
-
-        function alertServerTimeout(alertCounter) {
-            alertCounter = alertCounter || 0;
-            if (!completed) {
-                var alertText;
-                switch (alertCounter) {
-                    case 0:
-                        alertText = 'compiler-traffic-warning';
-                        break;
-                    case 1:
-                        alertText = 'compiler-inprogress';
-                        break;
-                    case 2:
-                        alertText = 'compiler-still-inprogress';
-                        break;
-                }
-                $timeout(function () {
-                    if (!completed) {
-                        alertCompile = alertsService.add({
-                            text: alertText,
-                            id: 'compiler-timeout',
-                            type: 'warning'
-                        });
-                        if (alertCounter >= 2) {
-                            alertCounter = 1;
-                        } else {
-                            alertCounter = alertCounter + 1;
-                        }
-                        alertServerTimeout(alertCounter);
-                    }
-                }, envData.config.compileErrorTime);
-            }
-        }
+            completed;
 
         /**
          * [compile description]
@@ -76,12 +42,10 @@ angular.module('bitbloqApp')
 
             completed = false;
 
-            alertServerTimeout();
-
             web2board.setInProcess(true);
             var compilerPromise = compilerApi.compile(params);
+            compilerAlerts(compilerPromise);
             if (!params.upload) {
-                compilerAlerts(compilerPromise);
                 if (envData.config.env !== 'production') {
                     compilerPromise.then(function (res) {
                         console.log(res.data.hex);
@@ -96,16 +60,50 @@ angular.module('bitbloqApp')
 
         }
 
-        function compilerAlerts(compilerPromise) {
-            alertCompile = null;
+        var errorLiterals = {
+            'VERIFYERROR': 'alert-web2board-verifyerror',
+            'UPLOADERROR': 'alert-web2board-uploaderror',
+            'FILENOTFOUND': 'alert-web2board-filenotfound',
+            'FILENOTCREATED': 'alert-web2board-filenotcreated',
+            'DIRNOTCREATED': 'alert-web2board-dirnotcreated',
+            'ARDUINONOTFOUND': 'alert-web2board-arduinonotfound',
+            'BOARDNOTKNOWN': 'alert-web2board-boardnotknown',
+            'BOARDNOTSET': 'alert-web2board-boardnotset',
+            'BOARDNOTDETECTED': 'alert-web2board-boardnotdetected',
+            'SKETCHNOTSET': 'alert-web2board-sketchnotset',
+            'PORTNOTOPENED': 'alert-web2board-portnotopened',
+            'CANNOTMOVELIBS': 'alert-web2board-cannotmovelibs',
+            'GETTIMEOUT': 'alert-web2board-gettimeout'
+        };
 
+        function handleCompileError(error) {
+            var errorStr = error,
+                alertParams = {
+                    id: 'compile',
+                    type: 'warning'
+                };
+            if ((typeof (error) === 'object') && error.forEach) {
+                var errorLines = [];
+                error.forEach(function (errorLine) {
+                    errorLines.push($translate.instant('alert-web2board-compile-line-error ', errorLine));
+                });
+                errorStr = errorLines.join('<br>');
+
+                alertParams.translatedText = $translate.instant('alert-web2board-compile-error', {
+                    value: '<br>' + errorStr
+                });
+            } else {
+                alertParams.text = errorLiterals[error.title] || 'alert-web2board-compile-error';
+                alertParams.value = error;
+            }
+
+            alertsService.add(alertParams);
+        }
+
+        function compilerAlerts(compilerPromise) {
             compilerPromise.then(function (response) {
                 if (response.data.error) {
-                    alertsService.add({
-                        id: 'compile',
-                        type: 'warning',
-                        translatedText: utils.parseCompileError(response.data.error)
-                    });
+                    handleCompileError(response.data.error);
                 } else {
                     alertsService.add({
                         text: 'alert-web2board-compile-verified',
@@ -118,13 +116,12 @@ angular.module('bitbloqApp')
                 alertsService.add({
                     id: 'compile',
                     type: 'error',
-                    translatedText: response.data
+                    text: response.data
                 });
             })
                 .finally(function () {
                     web2board.setInProcess(false);
                     completed = true;
-                    alertsService.close(alertCompile);
                 });
 
         }
@@ -149,11 +146,7 @@ angular.module('bitbloqApp')
                     alertsService.closeByTag('compile');
                     if (response.data.error) {
                         web2board.setInProcess(false);
-                        alertsService.add({
-                            id: 'compile',
-                            type: 'warning',
-                            translatedText: utils.parseCompileError(response.data.error)
-                        });
+                        handleCompileError(response.data.error);
                         compileAndUploadDefer.reject(response);
                     } else {
                         params.hex = response.data.hex;
