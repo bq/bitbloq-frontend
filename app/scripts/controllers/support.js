@@ -208,6 +208,7 @@ angular
                     }
                     break;
                 case 'us':
+                case 'us3':
                     if (board === 'bqzum') {
                         web2boardOnline
                             .upload({

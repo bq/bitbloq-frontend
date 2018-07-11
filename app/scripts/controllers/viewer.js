@@ -31,6 +31,11 @@ angular.module('bitbloqApp')
                 value: '--',
                 range: common.translate('cm')
             },
+            'us3': {
+                name: common.translate('us3'),
+                value: '--',
+                range: common.translate('cm')
+            },
             'sound': {
                 name: common.translate('sound'),
                 value: '--',

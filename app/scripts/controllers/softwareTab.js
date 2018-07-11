@@ -512,7 +512,7 @@ angular.module('bitbloqApp')
                                 break;
                             case 'readSensor':
                                 result = existComponent([
-                                    'banana', 'us', 'button', 'limitswitch', 'encoder',
+                                    'banana', 'us', 'us3', 'button', 'limitswitch', 'encoder',
                                     'sound', 'buttons', 'irs', 'irs2',
                                     'joystick', 'ldrs', 'pot', 'mkb_lightsensor', 'mkb_joystick',
                                     'mkb_integrated_lightsensor', 'mkb_integrated_analogPinButton',

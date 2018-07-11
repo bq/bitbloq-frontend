@@ -513,7 +513,7 @@ angular.module('bitbloqApp')
                         });
                     } else {
                         _.forEach(value.names, function (name) {
-                            if (key === 'us' || key === 'encoder') {
+                            if (key === 'us' || key === 'us3' || key === 'encoder') {
                                 code = code.concat(serialName + '.println(String("[' + key.toUpperCase() + ':' + name + ']:") + String(String(' + name + '.read())));\n\r');
                                 code = code + 'delay(50);\n\r';
                             } else if (key === 'hts221') {
