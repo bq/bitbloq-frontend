@@ -349,6 +349,9 @@ angular.module('bitbloqApp')
             option: 'us',
             value: false
         }, {
+            option: 'us3',
+            value: false
+        }, {
             option: 'bt',
             value: false
         }, {
