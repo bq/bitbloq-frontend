@@ -14,6 +14,7 @@ angular.module('bitbloqApp')
             "ldrs",
             "sound",
             "us",
+            "us3",
             "irs",
             "button"
         ]
