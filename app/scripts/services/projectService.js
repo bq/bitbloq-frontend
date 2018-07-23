@@ -163,11 +163,16 @@ angular.module('bitbloqApp')
                     }
                 });
             } else {
-                if (type === 'arduino') {
-                    _downloadIno(project);
-                } else {
-                    _downloadJSON(project);
-                }
+                var downloadAlert = alertsService.add({
+                    text: 'alerts-download-requires-session',
+                    id: 'download-requires-session',
+                    type: 'warning',
+                    link: function() {
+                        alertsService.close(downloadAlert);
+                        window.location = '/#/login';
+                    },
+                    linkText: 'alerts-download-login'
+                });
             }
         };
 
