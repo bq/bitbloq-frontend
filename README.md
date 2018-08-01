@@ -10,7 +10,7 @@ To start you need to:
 
 1 . Clone the repo
 
-2 . Execute this command to install all dependencies
+2 . Ensure to have Git installed and then execute this command to install all dependencies
 ```
 npm install && bower install
 ```
@@ -40,7 +40,7 @@ npm install && bower install
         "zh-CN"
     ],
     "saveTime": 2000,
-    "serverUrl_": "http://localhost:8000/bitbloq/v1/",
+    "serverUrl": "http://localhost:8000/bitbloq/v1/",
     "gCloudUrl": "",
     "compilerUrl": "http://localhost:3000/",
     "bucket": "",
