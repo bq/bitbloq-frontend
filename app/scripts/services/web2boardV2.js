@@ -147,16 +147,16 @@ angular.module('bitbloqApp')
                             linkText: 'download',
                             link: showWeb2BoardUploadModal
                         });
-                    } else if (!isLatestWeb2board(version) && boardData.mcu === 'mega') {
-                        removeInProgressFlag();
-                        alertsService.add({
-                            text: 'alert-web2board-exitsLatestVersion',
-                            id: 'web2board',
-                            type: 'warning',
-                            time: 5000,
-                            linkText: 'download',
-                            link: showWeb2BoardUploadModal
-                        });
+                    // } else if (!isLatestWeb2board(version) && boardData.mcu === 'mega') {
+                    //     removeInProgressFlag();
+                    //     alertsService.add({
+                    //         text: 'alert-web2board-exitsLatestVersion',
+                    //         id: 'web2board',
+                    //         type: 'warning',
+                    //         time: 5000,
+                    //         linkText: 'download',
+                    //         link: showWeb2BoardUploadModal
+                    //     });
                     } else {
                         var libVersion = common.properties.bitbloqLibsVersion || '0.0.1';
                         var librariesAlert;
