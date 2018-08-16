@@ -233,19 +233,7 @@ angular.module('bitbloqApp')
                     }
                 );
             } else {
-                if (!isLatestWeb2board(w2bVersion) && boardData.mcu === 'mega') {
-                    removeInProgressFlag();
-                    alertsService.add({
-                        text: 'alert-web2board-exitsLatestVersion',
-                        id: 'web2board',
-                        type: 'warning',
-                        time: 5000,
-                        linkText: 'download',
-                        link: showWeb2BoardUploadModal
-                    });
-                } else {
-                    return callback();
-                }
+                return callback();
             }
         }
 
@@ -306,6 +294,21 @@ angular.module('bitbloqApp')
                         document.body.removeChild(tempA);
                     },
                     linkText: $translate.instant('support-go-to')
+                });
+            } else if (error.title === 'BOARDNOTDETECTED' || error.title === 'PORTNOTOPENED' || error.title === 'BOARD_NOT_READY') {
+                alertsService.add({
+                    text: errorLiterals[error.title],
+                    id: 'web2board',
+                    type: 'warning',
+                    link: function () {
+                        var tempA = document.createElement('a');
+                        tempA.setAttribute('href', 'https://github.com/bitbloq/QSSWeb2Board/releases/latest');
+                        tempA.setAttribute('target', '_blank');
+                        document.body.appendChild(tempA);
+                        tempA.click();
+                        document.body.removeChild(tempA);
+                    },
+                    linkText: 'download'
                 });
             } else {
                 alertsService.add({
