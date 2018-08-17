@@ -369,6 +369,12 @@ angular.module('bitbloqApp')
         }, {
             option: 'lcd',
             value: false
+        },{
+            option: 'lcd_generic',
+            value: false
+        },{
+            option: 'lcdebotics',
+            value: false
         }, {
             option: 'led',
             value: false

@@ -645,7 +645,7 @@ angular.module('bitbloqApp')
                             case 'lcdWrite':
                             case 'lcdWritePosition':
                             case 'lcdClear':
-                                result = existComponent(['lcd', 'lcd_generic'], connectedComponents);
+                                result = existComponent(['lcd', 'lcdebotics', 'lcd_generic'], connectedComponents);
                                 break;
                             case 'rgbLed':
                             case 'rgbLedOff':
