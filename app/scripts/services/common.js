@@ -264,7 +264,7 @@ angular.module('bitbloqApp')
         };
 
         exports.useChromeExtension = function() {
-            return (exports.os === 'ChromeOS' || (exports.user && exports.user.chromeapp));
+            return (exports.os === 'ChromeOS' || exports.os === 'Mac' || (exports.user && exports.user.chromeapp));
         };
 
         return exports;
