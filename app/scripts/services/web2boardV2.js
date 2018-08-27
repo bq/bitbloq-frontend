@@ -40,9 +40,9 @@ angular.module('bitbloqApp')
             return parseInt(version.replace(/\./g, ''), 10) >= parseInt(common.properties.web2boardVersion.replace(/\./g, ''), 10);
         }
 
-        function isLatestWeb2board(version) {
+        /*function isLatestWeb2board(version) {
             return parseInt(version.replace(/\./g, ''), 10) === parseInt(common.properties.currentweb2boardVersion.replace(/\./g, ''), 10);
-        }
+        }*/
 
         function isWSNotConnected(wsClient) {
             return !wsClient || (wsClient.readyState !== WebSocket.CONNECTING && wsClient.readyState !== WebSocket.OPEN);
