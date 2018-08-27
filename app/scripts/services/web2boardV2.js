@@ -302,7 +302,7 @@ angular.module('bitbloqApp')
                     type: 'warning',
                     link: function () {
                         var tempA = document.createElement('a');
-                        tempA.setAttribute('href', 'https://github.com/bitbloq/QSSWeb2Board/releases/latest');
+                        tempA.setAttribute('href', envData.config.windowsDriversUrl);
                         tempA.setAttribute('target', '_blank');
                         document.body.appendChild(tempA);
                         tempA.click();
