@@ -28,9 +28,7 @@ angular.module('bitbloqApp')
          */
         function compile(params) {
             if (!params.board) {
-                params.board = 'bt328';
-            } else {
-                params.board = params.board.mcu;
+              params.board = { mcu: 'bt328' };
             }
             if (!params.viewer) {
                 alertsService.add({
