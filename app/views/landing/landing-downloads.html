@@ -13,22 +13,22 @@
         <p class="landing--text--big--dark">{{ 'landing_text_download' | translate }}</p>
 
         <div class="masthead__buttons medium">
-            <a ng-if="common.os === 'Mac'" class="btn btn--masthead" data-ng-href="{{envData.config.web2boardLinkMac}}">
+            <!--<a ng-if="common.os === 'Mac'" class="btn btn--masthead" data-ng-href="{{envData.config.web2boardLinkMac}}">
                 <i class="fa fa-chevron-circle-down"></i>
                 <span>{{ 'landing_link_download' | translate }} Mac OS X</span>
-            </a>
+            </a>-->
             <a ng-if="common.os === 'Windows'" class="btn btn--masthead" data-ng-href="{{envData.config.web2boardLinkWindows}}">
                 <i class="fa fa-chevron-circle-down"></i>
                 <span>{{ 'landing_link_download' | translate }} Windows 32/64 bits</span>
             </a>
             <a ng-if="common.os === 'Linux'" class="btn btn--masthead" href="{{envData.config.web2boardLinkLinux}}">
                 <i class="fa fa-chevron-circle-down"></i>
-                <span>Web2Board Linux 64-bits</span>
+                <span>Web2Board Linux 32/64-bits</span>
             </a>
-            <a ng-if="common.os === 'Linux'" class="btn btn--masthead" href="{{envData.config.web2boardLinkLinux32}}">
+            <!--<a ng-if="common.os === 'Linux'" class="btn btn--masthead" href="{{envData.config.web2boardLinkLinux32}}">
                 <i class="fa fa-chevron-circle-down"></i>
                 <span>Web2Board Linux 32-bits</span>
-            </a>
+            </a>-->
         </div>
     </div>
     <div class="row row--inline landing--section medium max-width">
@@ -85,11 +85,11 @@
                 <h3>Linux</h3>
 
                 <div class="download--link medium">
-                    <a class="landing--link--small" data-ng-href="{{envData.config.web2boardLinkLinux}}">{{ 'download' | translate }} Web2Board 64-bits</a>
-                    <a class="landing--link--small" data-ng-href="{{envData.config.web2boardLinkLinux32}}">{{ 'download' | translate }} Web2Board 32-bits</a>
+                    <a class="landing--link--small" data-ng-href="{{envData.config.web2boardLinkLinux}}">{{ 'download' | translate }} Web2Board 32/64-bits</a>
+                    <!--<a class="landing--link--small" data-ng-href="{{envData.config.web2boardLinkLinux32}}">{{ 'download' | translate }} Web2Board 32-bits</a>-->
                 </div>
             </li>
-            <li class="col-medium-4">
+            <!--<li class="col-medium-4">
                 <i class="fa fa-apple"></i>
 
                 <h3>Mac OS 10.10</h3>
@@ -97,7 +97,7 @@
                 <div class="download--link medium">
                     <a class="landing--link--small" data-ng-href="{{envData.config.web2boardLinkMac}}">{{ 'download' | translate }} Web2Board</a>
                 </div>
-            </li>
+            </li> -->
         </ul>
         <div class="landing--requirements">
           <span class="h3">

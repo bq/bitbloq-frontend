@@ -40,9 +40,9 @@ angular.module('bitbloqApp')
             return parseInt(version.replace(/\./g, ''), 10) >= parseInt(common.properties.web2boardVersion.replace(/\./g, ''), 10);
         }
 
-        function isLatestWeb2board(version) {
+        /*function isLatestWeb2board(version) {
             return parseInt(version.replace(/\./g, ''), 10) === parseInt(common.properties.currentweb2boardVersion.replace(/\./g, ''), 10);
-        }
+        }*/
 
         function isWSNotConnected(wsClient) {
             return !wsClient || (wsClient.readyState !== WebSocket.CONNECTING && wsClient.readyState !== WebSocket.OPEN);
@@ -302,7 +302,7 @@ angular.module('bitbloqApp')
                     type: 'warning',
                     link: function () {
                         var tempA = document.createElement('a');
-                        tempA.setAttribute('href', 'https://github.com/bitbloq/QSSWeb2Board/releases/latest');
+                        tempA.setAttribute('href', envData.config.windowsDriversUrl);
                         tempA.setAttribute('target', '_blank');
                         document.body.appendChild(tempA);
                         tempA.click();
