@@ -31,9 +31,12 @@
                 <img src="../images/os/ubuntu_logo.jpg" alt="" class="modal--download--webtoboard--image">
             </div>
             <div class="modal--download--webtoboard--text-container">
-                <span>Ubuntu 16.04</span>
-                <a class="btn btn--primary btn--webtoboard" data-ng-href="{{envData.config.web2boardLinkLinux}}">{{ 'download' | translate }}</a>
-                <a class="webtoboard-view-all-link" ng-click="viewAllLink()">{{ 'view-all-os-availables' | translate }}</a>
+                <span>Ubuntu</span>
+
+                <a class="btn btn--primary btn--webtoboard" data-ng-href="{{envData.config.web2boardLinkUbuntu16_64}}"> 16.04 64 bits</a>
+                <a class="btn btn--primary btn--webtoboard" data-ng-href="{{envData.config.web2boardLinkUbuntu16_32}}"> 16.04 32 bits</a>
+                <a class="btn btn--primary btn--webtoboard" data-ng-href="{{envData.config.web2boardLinkUbuntu18_64}}"> 18.04 64 bits</a>           
+                <!-- <a class="webtoboard-view-all-link" ng-click="viewAllLink()">{{ 'view-all-os-availables' | translate }}</a> -->
             </div>
         </div>
     </div>

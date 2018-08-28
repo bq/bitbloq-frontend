@@ -78,8 +78,8 @@ angular.module('bitbloqApp')
                 className: 'modal--container modal--download-web2board',
                 scope: modalOptions,
                 showClose: true
-            });
-        }
+            }); 
+        } 
 
         function showWeb2BoardDownloadModal() {
             var modalOptions = {
@@ -104,7 +104,7 @@ angular.module('bitbloqApp')
             modalObj.close();
             var parent = $rootScope,
                 modalOptions = parent.$new();
-
+ 
             _.extend(modalOptions, {
                 contentTemplate: '/views/modals/web2boardErrors.html',
                 backAction: showWeb2BoardDownloadModal,
