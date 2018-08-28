@@ -27,9 +27,19 @@
                 {{ 'landing_link_download' | translate }} Windows 32/64 bits
             </button>
         </a>
-        <a class="download-button" ng-if="common.os === 'Linux'" data-ng-href="{{envData.config.web2boardLinkLinux}}" data-element="downloadBtn">
+        <a class="download-button" ng-if="common.os === 'Linux'" data-ng-href="{{envData.config.web2boardLinkUbuntu16_32}}" data-element="downloadBtn">
             <button class="btn btn--quaternary btn--medium">
-                {{ 'landing_link_download' | translate }} Linux 32/64 bits
+                {{ 'landing_link_download' | translate }} Ubuntu 16.04 32 bits
+            </button>
+        </a>
+        <a class="download-button" ng-if="common.os === 'Linux'" data-ng-href="{{envData.config.web2boardLinkUbuntu16_64}}" data-element="downloadBtn">
+            <button class="btn btn--quaternary btn--medium">
+                {{ 'landing_link_download' | translate }} Ubuntu 16.04 64 bits
+            </button>
+        </a>
+        <a class="download-button" ng-if="common.os === 'Linux'" data-ng-href="{{envData.config.web2boardLinkUbuntu18_64}}" data-element="downloadBtn">
+            <button class="btn btn--quaternary btn--medium">
+                {{ 'landing_link_download' | translate }} Ubuntu 18.04 64 bits
             </button>
         </a>
         <!--<a class="download-button" ng-if="common.os === 'Linux'" data-ng-href="{{envData.config.web2boardLinkLinux32}}"  data-element="downloadBtn">

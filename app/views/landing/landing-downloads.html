@@ -21,9 +21,17 @@
                 <i class="fa fa-chevron-circle-down"></i>
                 <span>{{ 'landing_link_download' | translate }} Windows 32/64 bits</span>
             </a>
-            <a ng-if="common.os === 'Linux'" class="btn btn--masthead" href="{{envData.config.web2boardLinkLinux}}">
+            <a ng-if="common.os === 'Linux'" class="btn btn--masthead" href="{{envData.config.web2boardLinkUbuntu16_32}}">
                 <i class="fa fa-chevron-circle-down"></i>
-                <span>Web2Board Linux 32/64-bits</span>
+                <span>Web2Board Ubuntu 16.04 32 bits</span>
+            </a>
+            <a ng-if="common.os === 'Linux'" class="btn btn--masthead" href="{{envData.config.web2boardLinkUbuntu16_64}}">
+                <i class="fa fa-chevron-circle-down"></i>
+                <span>Web2Board Ubuntu 16.04 64 bits</span>
+            </a>
+            <a ng-if="common.os === 'Linux'" class="btn btn--masthead" href="{{envData.config.web2boardLinkUbuntu18_64}}">
+                <i class="fa fa-chevron-circle-down"></i>
+                <span>Web2Board Ubuntu 18.04 64 bits</span>
             </a>
             <!--<a ng-if="common.os === 'Linux'" class="btn btn--masthead" href="{{envData.config.web2boardLinkLinux32}}">
                 <i class="fa fa-chevron-circle-down"></i>
