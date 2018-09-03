@@ -266,7 +266,14 @@ angular.module('bitbloqApp')
                         }
                     });
                 } else {
-                    web2board.uploadHex(mcu, result.data);
+                    //TO FIX - Make Web2Board able to upload hex file
+                    //web2board.uploadHex(mcu, result.data);
+                    web2boardOnline.upload({
+                        hex: result.data,
+                        board: {
+                            mcu: mcu
+                        }
+                    });
                 }
             }, function () {
                 alertsService.add({
