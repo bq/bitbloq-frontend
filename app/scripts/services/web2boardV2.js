@@ -18,7 +18,7 @@ angular.module('bitbloqApp')
             TIME_FOR_WEB2BOARD_TO_START = 1500, //ms
             TIMES_TRY_TO_START_W2B = 7,
             w2bToast = null,
-            web2boarTimeOutResponse = 45000, //45 seconds
+            web2boarTimeOutResponse = 90000, //90 seconds
             serialMonitorPanel = null,
             plotterMonitorPanel = null,
             boardData = {},
