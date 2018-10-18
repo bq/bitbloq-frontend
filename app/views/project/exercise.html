@@ -76,7 +76,7 @@
                         <use xlink:href="#hardware"></use>
                     </svg>
                 </li>
-                <li data-ng-class="{tabs__menu__item:true, selected:currentTab===1}" data-ng-click="setTab(1); handleTour(5)" data-tooltips="true"
+                <li data-ng-class="{tabs__menu__item:true, selected:currentTab===1}" data-ng-click="setTab(1); handleTour(5); $broadcast('refresh-bloqs');" data-tooltips="true"
                     data-tooltip="{{ 'software' | translate }}" data-tooltip-position="right" data-walkthrough="software-tab"
                     data-element="software-tab">
                     <svg class="svg-icon">
