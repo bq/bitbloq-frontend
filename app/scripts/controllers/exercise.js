@@ -264,67 +264,7 @@ angular.module('bitbloqApp')
         $scope.updateBloqs = function () {
 
             if (exerciseService.bloqs.varsBloq) {
-
-                var allBloqs = bloqs.bloqs;
-                var allComponents = [];
-
-                //Why?
-                for (var bloq in allBloqs) {
-                    allBloqs[bloq].componentsArray = exerciseService.componentsArray;
-                }
-
-                var updateBloq = function (element, list) {
-
-                    var tempValue,
-                        tempRef;
-
-                    tempRef = element.dataset.reference;
-                    tempValue = element.dataset.value;
-
-                    bloqsUtils.drawDropdownOptions($(element), list);
-
-                    if (tempRef && tempValue) {
-
-                        var componentRef = list.find(function (comp) {
-                            return comp.uid === tempRef;
-                        });
-
-                        if (componentRef) {
-                            element.value = componentRef.name;
-                            element.dataset.reference = componentRef.uid;
-                            element.dataset.value = componentRef.name;
-                        }
-
-                    } else {
-                        $log.debug('dropdown not selected');
-                        element.selectedIndex = 0;
-                    }
-                };
-                var bloqCanvasEl = null;
-                //Update dropdowns values from bloqs canvas
-                for (var type in exerciseService.componentsArray) {
-                    bloqCanvasEl = document.getElementsByClassName('bloqs-tab')[0];
-                    var nodeList = bloqCanvasEl.querySelectorAll('select[data-dropdowncontent="' + type + '"]');
-                    for (var i = 0, len = nodeList.length; i < len; i++) {
-                        updateBloq(nodeList[i], exerciseService.componentsArray[type]);
-                    }
-                    allComponents = allComponents.concat(exerciseService.componentsArray[type]);
-                }
-                //Update dropdowns from bloqs of toolbox
-                if (bloqCanvasEl) {
-                    var toolboxNodeList = bloqCanvasEl.querySelectorAll('select[data-dropdowncontent="varComponents"]');
-                    for (var j = 0, len2 = toolboxNodeList.length; j < len2; j++) {
-                        updateBloq(toolboxNodeList[j], allComponents);
-                    }
-
-                    var varServos = [];
-                    varServos = varServos.concat(exerciseService.componentsArray.servos, exerciseService.componentsArray.oscillators, exerciseService.componentsArray.continuousServos);
-                    var servosNodeList = bloqCanvasEl.querySelectorAll('select[data-dropdowncontent="allServos"]');
-                    for (var y = 0, lenServo = servosNodeList.length; y < lenServo; y++) {
-                        updateBloq(servosNodeList[y], varServos);
-                    }
-                }
-
+                return bloqs.startBloqsUpdate(exerciseService.componentsArray);
             }
         };
 
