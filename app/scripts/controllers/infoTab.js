@@ -111,14 +111,14 @@ angular.module('bitbloqApp')
         $scope.editGroups = function (currentProject, groups) {
             $scope.modalOpened = true;
             $scope.currentProjectService.assignGroup(currentProject, $scope.common.user._id, groups).then(
-              function (response) {
-                $scope.modalOpened = false;
-                $scope.setGroups(response);
-              },
-              function () {
-                  $scope.modalOpened = false;
-              });
-          };
+                function (response) {
+                    $scope.modalOpened = false;
+                    $scope.setGroups(response);
+                },
+                function () {
+                    $scope.modalOpened = false;
+                });
+        };
         $scope.composeImage = composeImage;
 
         function composeImage() {
@@ -216,6 +216,7 @@ angular.module('bitbloqApp')
                         context.drawImage(imageObj, xStart, 30, 542, 348);
                         break;
                     case 'evolution':
+                    case 'evolution20':
                         context.drawImage(imageObj, xStart, 60, 542, 325);
                         break;
                     case 'rangerlandraider':
