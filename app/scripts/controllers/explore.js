@@ -7,24 +7,13 @@
  * # ExploreCtrl
  * Controller of the bitbloqApp
  */
-angular
-    .module('bitbloqApp')
-    .controller('ExploreCtrl', function(
-        $scope,
-        $log,
-        $location,
-        $routeParams,
-        envData,
-        _,
-        projectApi,
-        userApi,
-    ) {
-        $scope.componentFilter = function(newFilter) {
-            if (
-                newFilter === 'without-components' &&
-                $scope.componentsFilterOptions[0].value
-            ) {
-                $scope.componentsFilterOptions.forEach(function(item) {
+angular.module('bitbloqApp')
+    .controller('ExploreCtrl', function ($scope, $log, $location, $routeParams, envData, _, projectApi, userApi) {
+
+        $scope.componentFilter = function (newFilter) {
+            if (newFilter === 'without-components' && $scope.componentsFilterOptions[0].value) {
+
+                $scope.componentsFilterOptions.forEach(function (item) {
                     item.value = false;
                 });
                 $scope.componentsFilterOptions[0].value = true;
@@ -34,30 +23,20 @@ angular
                 if (newFilter) {
                     $scope.componentsFilterOptions[0].value = false;
                 }
-                $scope.componentsFilters = _.map(
-                    _.filter($scope.componentsFilterOptions, {
-                        value: true,
-                    }),
-                    'option',
-                );
-                $scope.filterParams.compo =
-                    $scope.componentsFilters.length > 0
-                        ? $scope.componentsFilters.join('+')
-                        : undefined;
+                $scope.componentsFilters = _.map(_.filter($scope.componentsFilterOptions, {
+                    value: true
+                }), 'option');
+                $scope.filterParams.compo = $scope.componentsFilters.length > 0 ? $scope.componentsFilters.join('+') : undefined;
             }
             if (newFilter) {
                 $scope.search();
             }
         };
 
-        $scope.genericFilter = function(newFilter, preventSearch) {
-            if (
-                (newFilter &&
-                    (newFilter !== 'bq' &&
-                        $scope.genericFilterOptions[0].value)) ||
-                !$scope.genericFilterOptions[0].value
-            ) {
-                $scope.genericFilterOptions.forEach(function(item) {
+        $scope.genericFilter = function (newFilter, preventSearch) {
+            if (newFilter && (newFilter !== 'bq' && $scope.genericFilterOptions[0].value) || (!$scope.genericFilterOptions[0].value)) {
+
+                $scope.genericFilterOptions.forEach(function (item) {
                     item.value = false;
                 });
 
@@ -65,15 +44,14 @@ angular
 
                 $scope.genericFilters = [];
                 delete $scope.filterParams.project;
+
             } else {
+
                 $scope.genericFilterOptions[0].value = true;
 
-                $scope.genericFilters = _.map(
-                    _.filter($scope.genericFilterOptions, {
-                        value: true,
-                    }),
-                    'option',
-                )[0];
+                $scope.genericFilters = _.map(_.filter($scope.genericFilterOptions, {
+                    value: true
+                }), 'option')[0];
 
                 $scope.filterParams.project = $scope.genericFilters;
             }
@@ -85,18 +63,15 @@ angular
         function elementHasBoard(element) {
             return element.board ? element.board : element.option;
         }
-        $scope.boardFilter = function(newFilter, preventSearch) {
-            $scope.boardsFilterOptions.forEach(function(item) {
+        $scope.boardFilter = function (newFilter, preventSearch) {
+            $scope.boardsFilterOptions.forEach(function (item) {
                 if (item.option !== newFilter) {
                     item.value = false;
                 }
             });
-            $scope.boardFilters = _.map(
-                _.filter($scope.boardsFilterOptions, {
-                    value: true,
-                }),
-                elementHasBoard,
-            )[0];
+            $scope.boardFilters = _.map(_.filter($scope.boardsFilterOptions, {
+                value: true
+            }), elementHasBoard)[0];
 
             $scope.filterParams.board = $scope.boardFilters;
 
@@ -105,55 +80,48 @@ angular
             }
         };
 
-        $scope.sort = function(option) {
+        $scope.sort = function (option) {
             $scope.sortSelected = option;
             $scope.search();
         };
 
-        $scope.search = function() {
+        $scope.search = function () {
             $scope.exploraProjects = [];
             $scope.pageProjects = 0;
             _.extend($scope.filterParams, {
-                page: $scope.pagination.explora.current,
+                'page': $scope.pagination.explora.current
             });
             $location.search($scope.filterParams);
             $scope.getPublicProjects($scope.pagination.explora.current);
         };
 
-        $scope.getPublicProjects = function(page) {
+        $scope.getPublicProjects = function (page) {
             var queryParamsArray = getRequest(),
                 queryParams = queryParamsArray || {},
                 exploraPage = page ? page : 1;
 
             var pageParams = {
-                page: exploraPage - 1,
+                'page': exploraPage - 1
             };
             angular.extend(queryParams, pageParams);
             $log.debug('getPublicProjects', queryParams);
-            projectApi.getPublic(queryParams).then(
-                function(response) {
-                    projectApi
-                        .getPublicCounter(queryParams)
-                        .then(function(data) {
-                            $scope.projectCount =
-                                $scope.exploraProjects.length +
-                                '/' +
-                                data.data.count;
-                            $scope.exploraCount = data.data.count;
-                            $scope.common.isLoading = false;
-                        });
-                    $scope.exploraProjects = response.data;
-                    $location.search('page', exploraPage);
-                },
-                function(error) {
-                    $log.debug('Get public projects error: ' + error);
-                },
-            );
+            projectApi.getPublic(queryParams).then(function (response) {
+                projectApi.getPublicCounter(queryParams).then(function (data) {
+                    $scope.projectCount = $scope.exploraProjects.length + '/' + data.data.count;
+                    $scope.exploraCount = data.data.count;
+                    $scope.common.isLoading = false;
+                });
+                $scope.exploraProjects = response.data;
+                $location.search('page', exploraPage);
+
+            }, function (error) {
+                $log.debug('Get public projects error: ' + error);
+            });
         };
 
         function _getUrlParams() {
             if ($routeParams.board) {
-                $scope.boardsFilterOptions.forEach(function(board) {
+                $scope.boardsFilterOptions.forEach(function (board) {
                     if (board.option === $routeParams.board) {
                         board.value = true;
                         $scope.boardFilter(board.option, true);
@@ -161,7 +129,7 @@ angular
                 });
             }
             if ($routeParams.project) {
-                $scope.genericFilterOptions.forEach(function(generic) {
+                $scope.genericFilterOptions.forEach(function (generic) {
                     if (generic.option === $routeParams.project) {
                         generic.value = false;
                         $scope.genericFilter(generic.option, true);
@@ -170,11 +138,9 @@ angular
                 $scope.genericFilters = $routeParams.project;
             }
             if ($routeParams.compo) {
-                $scope.componentsFilters = decodeURIComponent(
-                    $routeParams.compo,
-                ).split('+');
-                $scope.componentsFilters.forEach(function(filter) {
-                    $scope.componentsFilterOptions.forEach(function(element) {
+                $scope.componentsFilters = decodeURIComponent($routeParams.compo).split('+');
+                $scope.componentsFilters.forEach(function (filter) {
+                    $scope.componentsFilterOptions.forEach(function (element) {
                         if (filter === element.option) {
                             element.value = true;
                         }
@@ -196,22 +162,22 @@ angular
             switch ($scope.sortSelected) {
                 case 'explore-sortby-views':
                     queryParams = {
-                        timesViewed: 'desc',
+                        'timesViewed': 'desc'
                     };
                     break;
                 case 'explore-sortby-downloads':
                     queryParams = {
-                        timesDownloaded: 'desc',
+                        'timesDownloaded': 'desc'
                     };
                     break;
                 case 'explore-sortby-adds':
                     queryParams = {
-                        timesAdded: 'desc',
+                        'timesAdded': 'desc'
                     };
                     break;
                 default:
                     queryParams = {
-                        createdAt: 'desc',
+                        'createdAt': 'desc'
                     };
             }
 
@@ -220,22 +186,19 @@ angular
 
         function getComponentFilterRequest(queryParams) {
             queryParams = queryParams || {
-                query: {},
+                'query': {}
             };
 
             if ($scope.componentsFilterOptions[0].value) {
-                var componentsArray = _.map(
-                    $scope.componentsFilterOptions,
-                    'option',
-                );
+                var componentsArray = _.map($scope.componentsFilterOptions, 'option');
                 componentsArray.splice(0, 1);
                 queryParams.query.hardwareTags = {
-                    $nin: componentsArray,
+                    '$nin': componentsArray
                 };
             } else {
                 if ($scope.componentsFilters.length > 0) {
                     queryParams.query.hardwareTags = {
-                        $all: $scope.componentsFilters,
+                        '$all': $scope.componentsFilters
                     };
                 }
             }
@@ -245,28 +208,14 @@ angular
 
         function getBoardFilterRequest(queryParams) {
             queryParams = queryParams || {
-                query: {},
+                'query': {}
             };
 
             if ($scope.boardFilters) {
-                if (
-                    $scope.boardFilters === 'Evolution' ||
-                    $scope.boardFilters === 'Evolution20' ||
-                    $scope.boardFilters === 'Zowi' ||
-                    $scope.boardFilters === 'mBot' ||
-                    $scope.boardFilters === 'mRanger'
-                ) {
-                    queryParams.query[
-                        'hardware.robot'
-                    ] = $scope.boardFilters.toLowerCase();
+                if ($scope.boardFilters === 'Evolution' || $scope.boardFilters === 'Zowi' || $scope.boardFilters === 'mBot' || $scope.boardFilters === 'mRanger') {
+                    queryParams.query['hardware.robot'] = $scope.boardFilters.toLowerCase();
                 } else if ($scope.boardFilters === 'Echidna') {
-                    queryParams.query['hardware.board'] = {
-                        $in: [
-                            'echidna-ArduinoUNO',
-                            'echidna-bqZUM',
-                            'echidna-FreaduinoUNO',
-                        ],
-                    };
+                    queryParams.query['hardware.board'] = { '$in': ['echidna-ArduinoUNO', 'echidna-bqZUM', 'echidna-FreaduinoUNO'] };
                 } else {
                     queryParams.query['hardware.board'] = $scope.boardFilters;
                 }
@@ -277,7 +226,7 @@ angular
 
         function getGenericFilterRequest(queryParams) {
             queryParams = queryParams || {
-                query: {},
+                'query': {}
             };
 
             if ($scope.genericFilterOptions[0].value) {
@@ -290,32 +239,29 @@ angular
 
         function getSearchRequest(queryParams) {
             queryParams = queryParams || {
-                query: {},
+                'query': {}
             };
 
             if ($scope.searchText !== '') {
-                queryParams.query.$or = [
-                    {
-                        name: {
-                            $regex: $scope.searchText,
-                            $options: 'i',
-                        },
-                    },
-                    {
-                        creator: {
-                            $regex: $scope.searchText,
-                            $options: 'i',
-                        },
-                    },
-                ];
+                queryParams.query.$or = [{
+                    name: {
+                        $regex: $scope.searchText,
+                        $options: 'i'
+                    }
+                }, {
+                    creator: {
+                        $regex: $scope.searchText,
+                        $options: 'i'
+                    }
+                }];
             }
             return queryParams;
         }
 
         function getRequest() {
             var queryParams = {
-                    query: {},
-                },
+                'query': {}
+            },
                 sortParams = getSortRequest();
             queryParams = getComponentFilterRequest(queryParams);
             queryParams = getGenericFilterRequest(queryParams);
@@ -339,7 +285,7 @@ angular
         $scope.sortOptions = [
             'explore-sortby-recent',
             'explore-sortby-views',
-            'explore-sortby-downloads',
+            'explore-sortby-downloads'
         ];
         $scope.genericFilters = [];
         $scope.filterParams = {};
@@ -357,171 +303,129 @@ angular
             // },
             {
                 option: 'bq',
-                value: false,
-            },
+                value: false
+            }
         ];
         $scope.boardFilters = '';
-        $scope.boardsFilterOptions = [
-            {
-                option: 'bqZUM',
-                value: false,
-            },
-            {
-                option: 'FreaduinoUNO',
-                value: false,
-            },
-            {
-                option: 'bqZUM20',
-                value: false,
-            },
-            {
-                option: 'ArduinoUNO',
-                value: false,
-            },
-            {
-                option: 'Zowi',
-                value: false,
-            },
-            {
-                option: 'Evolution',
-                value: false,
-            },
-            {
-                option: 'Evolution20',
-                value: false,
-            },
-            {
-                option: 'mBot',
-                board: 'mcore',
-                value: false,
-            },
-            {
-                option: 'mRanger',
-                board: 'meauriga',
-                value: false,
-            },
-            {
-                option: 'starter Kit',
-                board: 'meorion',
-                value: false,
-            },
-            {
-                option: 'Echidna',
-                value: false,
-            },
-        ];
+        $scope.boardsFilterOptions = [{
+            option: 'bqZUM',
+            value: false
+        }, {
+            option: 'FreaduinoUNO',
+            value: false
+        }, {
+            option: 'bqZUM20',
+            value: false
+        }, {
+            option: 'ArduinoUNO',
+            value: false
+        }, {
+            option: 'Zowi',
+            value: false
+        }, {
+            option: 'Evolution',
+            value: false
+        }, {
+            option: 'mBot',
+            board: 'mcore',
+            value: false
+        }, {
+            option: 'mRanger',
+            board: 'meauriga',
+            value: false
+        }, {
+            option: 'starter Kit',
+            board: 'meorion',
+            value: false
+        }, {
+            option: 'Echidna',
+            value: false
+        }];
         $scope.componentsFilters = [];
-        $scope.componentsFilterOptions = [
-            {
-                option: 'without-components',
-                value: false,
-            },
-            {
-                option: 'us',
-                value: false,
-            },
-            {
-                option: 'us3',
-                value: false,
-            },
-            {
-                option: 'bt',
-                value: false,
-            },
-            {
-                option: 'button',
-                value: false,
-            },
-            {
-                option: 'buttons',
-                value: false,
-            },
-            {
-                option: 'irs',
-                value: false,
-            },
-            {
-                option: 'joystick',
-                value: false,
-            },
-            {
-                option: 'lcd',
-                value: false,
-            },
-            {
-                option: 'lcd_generic',
-                value: false,
-            },
-            {
-                option: 'lcdebotics',
-                value: false,
-            },
-            {
-                option: 'led',
-                value: false,
-            },
-            {
-                option: 'ldrs',
-                value: false,
-            },
-            {
-                option: 'pot',
-                value: false,
-            },
-            {
-                option: 'sp',
-                value: false,
-            },
-            {
-                option: 'servo',
-                value: false,
-            },
-            {
-                option: 'servocont',
-                value: false,
-            },
-            {
-                option: 'buzz',
-                value: false,
-            },
-            {
-                option: 'RGBled',
-                value: false,
-            },
-            {
-                option: 'neoRGBled',
-                value: false,
-            },
-            {
-                option: 'sound',
-                value: false,
-            },
-            {
-                option: 'rtc',
-                value: false,
-            },
-            {
-                option: 'hts221',
-                value: false,
-            },
-            {
-                option: 'encoder',
-                value: false,
-            },
-            {
-                option: 'limitswitch',
-                value: false,
-            },
-            {
-                option: 'bitbloqconnect',
-                value: false,
-            },
-        ];
+        $scope.componentsFilterOptions = [{
+            option: 'without-components',
+            value: false
+        }, {
+            option: 'us',
+            value: false
+        }, {
+            option: 'us3',
+            value: false
+        }, {
+            option: 'bt',
+            value: false
+        }, {
+            option: 'button',
+            value: false
+        }, {
+            option: 'buttons',
+            value: false
+        }, {
+            option: 'irs',
+            value: false
+        }, {
+            option: 'joystick',
+            value: false
+        }, {
+            option: 'lcd',
+            value: false
+        },{
+            option: 'lcd_generic',
+            value: false
+        },{
+            option: 'lcdebotics',
+            value: false
+        }, {
+            option: 'led',
+            value: false
+        }, {
+            option: 'ldrs',
+            value: false
+        }, {
+            option: 'pot',
+            value: false
+        }, {
+            option: 'sp',
+            value: false
+        }, {
+            option: 'servo',
+            value: false
+        }, {
+            option: 'servocont',
+            value: false
+        }, {
+            option: 'buzz',
+            value: false
+        }, {
+            option: 'RGBled',
+            value: false
+        }, {
+            option: 'neoRGBled',
+            value: false
+        }, {
+            option: 'sound',
+            value: false
+        }, {
+            option: 'rtc',
+            value: false
+        }, {
+            option: 'hts221',
+            value: false
+        }, {
+            option: 'encoder',
+            value: false
+        }, {
+            option: 'limitswitch',
+            value: false
+        }, {
+            option: 'bitbloqconnect',
+            value: false
+        }];
 
         $scope.pagination = {
-            explora: {
-                current: 1,
-            },
+            'explora': {
+                'current': 1
+            }
         };
 
         /*  angular.element('.explore-view').bind('scroll', function(evt) {
@@ -530,13 +434,13 @@ angular
                   $scope.$apply();
               }
           });*/
-        $scope.getPublicPaginated = function(page) {
+        $scope.getPublicPaginated = function (page) {
             $scope.getPublicProjects(page);
         };
 
         $scope.itemsPerPage = 20;
 
-        $scope.$watch('searchText', function(newValue, oldValue) {
+        $scope.$watch('searchText', function (newValue, oldValue) {
             if (newValue !== oldValue) {
                 if (newValue) {
                     $scope.filterParams.search = newValue;
