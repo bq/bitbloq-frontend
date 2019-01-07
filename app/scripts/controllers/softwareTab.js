@@ -1050,6 +1050,23 @@ angular.module('bitbloqApp')
                     advancedBloqs: 'advancedEvolution'
                 }
             },
+            evolution20: {
+                id: 'allEvolutionBloqs',
+                basicTab: 'evolution',
+                advancedTab: 'advancedEvolution',
+                counter: 0,
+                model: null,
+                showCondition: function () {
+                    return $scope.currentProject.hardware && $scope.currentProject.hardware.robot === 'evolution20';
+                },
+                icon: '#robot',
+                literal: 'make-swtoolbox-evolution',
+                dataElement: 'toolbox-evolution',
+                properties: {
+                    basicBloqs: 'evolution',
+                    advancedBloqs: 'advancedEvolution'
+                }
+            },
             mbotV2: {
                 id: 'allMBotBloqs',
                 basicTab: 'mbotV2',

@@ -212,7 +212,7 @@ angular.module('bitbloqApp')
             };
 
             if ($scope.boardFilters) {
-                if ($scope.boardFilters === 'Evolution' || $scope.boardFilters === 'Zowi' || $scope.boardFilters === 'mBot' || $scope.boardFilters === 'mRanger') {
+                if ($scope.boardFilters === 'Evolution' || $scope.boardFilters === 'Evolution20' || $scope.boardFilters === 'Zowi' || $scope.boardFilters === 'mBot' || $scope.boardFilters === 'mRanger') {
                     queryParams.query['hardware.robot'] = $scope.boardFilters.toLowerCase();
                 } else if ($scope.boardFilters === 'Echidna') {
                     queryParams.query['hardware.board'] = { '$in': ['echidna-ArduinoUNO', 'echidna-bqZUM', 'echidna-FreaduinoUNO'] };
@@ -326,6 +326,9 @@ angular.module('bitbloqApp')
             option: 'Evolution',
             value: false
         }, {
+            option: 'Evolution20',
+            value: false
+        }, {
             option: 'mBot',
             board: 'mcore',
             value: false
@@ -369,10 +372,10 @@ angular.module('bitbloqApp')
         }, {
             option: 'lcd',
             value: false
-        },{
+        }, {
             option: 'lcd_generic',
             value: false
-        },{
+        }, {
             option: 'lcdebotics',
             value: false
         }, {
