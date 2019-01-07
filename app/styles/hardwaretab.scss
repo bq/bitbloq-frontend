@@ -283,50 +283,57 @@ $hw_toolbox: 210px;
         outline: 4px dashed $grey-light;
 
         &.zowi {
-            background-image: url("/images/robots/zowi.svg");
+            background-image: url('/images/robots/zowi.svg');
             background-color: transparent;
             height: 50%;
         }
 
         &.evolution {
-            background-image: url("/images/robots/evolution.svg");
+            background-image: url('/images/robots/evolution.svg');
+            background-color: transparent;
+            height: 50%;
+            width: 500px;
+        }
+
+        &.evolution20 {
+            background-image: url('/images/robots/evolution20.svg');
             background-color: transparent;
             height: 50%;
             width: 500px;
         }
 
         &.mbot {
-            background-image: url("/images/robots/mbot.svg");
+            background-image: url('/images/robots/mbot.svg');
             background-color: transparent;
             height: 50%;
         }
 
         &.rangerlandraider {
-            background-image: url("/images/robots/rangerlandraider.svg");
+            background-image: url('/images/robots/rangerlandraider.svg');
             background-color: transparent;
             height: 50%;
         }
 
         &.rangerraptor {
-            background-image: url("/images/robots/rangerraptor.svg");
+            background-image: url('/images/robots/rangerraptor.svg');
             background-color: transparent;
             height: 50%;
         }
 
         &.rangernervousbird {
-            background-image: url("/images/robots/rangernervousbird.svg");
+            background-image: url('/images/robots/rangernervousbird.svg');
             background-color: transparent;
             height: 50%;
         }
 
         &.startertank {
-            background-image: url("/images/robots/startertank.svg");
+            background-image: url('/images/robots/startertank.svg');
             background-color: transparent;
             height: 50%;
         }
 
         &.starterthreewheels {
-            background-image: url("/images/robots/starterthreewheels.svg");
+            background-image: url('/images/robots/starterthreewheels.svg');
             background-color: transparent;
             height: 50%;
         }
@@ -384,83 +391,94 @@ $hw_toolbox: 210px;
         }
         //Boards
         &.bqZUM {
-            background-image: url("/images/boards/bqZUM.svg"), url("/images/boards/bqZUM.png");
+            background-image: url('/images/boards/bqZUM.svg'),
+                url('/images/boards/bqZUM.png');
             background-color: transparent;
         }
         &.bqZUM20 {
-            background-image: url("/images/boards/bqZUM20.svg"), url("/images/boards/bqZUM20.png");
+            background-image: url('/images/boards/bqZUM20.svg'),
+                url('/images/boards/bqZUM20.png');
             background-color: transparent;
         }
         &.zumjunior {
-            background-image: url("/images/boards/zumjunior.svg"), url("/images/boards/zumjunior.png");
+            background-image: url('/images/boards/zumjunior.svg'),
+                url('/images/boards/zumjunior.png');
             background-color: transparent;
         }
 
         &.FreaduinoUNO {
-            background-image: url("/images/boards/FreaduinoUNO.svg"), url("/images/boards/FreaduinoUNO.png");
+            background-image: url('/images/boards/FreaduinoUNO.svg'),
+                url('/images/boards/FreaduinoUNO.png');
             background-color: transparent;
         }
 
         &.ArduinoUNO {
-            background-image: url("/images/boards/ArduinoUNO.svg"), url("/images/boards/ArduinoUNO.png");
+            background-image: url('/images/boards/ArduinoUNO.svg'),
+                url('/images/boards/ArduinoUNO.png');
             background-color: transparent;
         }
 
         &.ArduinoNano {
-            background-image: url("/images/boards/ArduinoUNO.png");
+            background-image: url('/images/boards/ArduinoUNO.png');
             background-color: transparent;
         }
 
         &.ArduinoLeonardo {
-            background-image: url("/images/boards/ArduinoUNO.png");
+            background-image: url('/images/boards/ArduinoUNO.png');
             background-color: transparent;
         }
 
         &.ArduinoMEGA2560 {
-            background-image: url("/images/boards/ArduinoMEGA2560.png");
+            background-image: url('/images/boards/ArduinoMEGA2560.png');
             background-color: transparent;
             width: 555px;
         }
 
         &.mcore {
-            background-image: url("/images/boards/mcore.svg"), url("/images/boards/mcore.png");
+            background-image: url('/images/boards/mcore.svg'),
+                url('/images/boards/mcore.png');
             background-color: transparent;
         }
 
         &.meorion {
-            background-image: url("/images/boards/meorion.png");
+            background-image: url('/images/boards/meorion.png');
             background-color: transparent;
         }
 
         &.meauriga {
-            background-image: url("/images/boards/meauriga.svg"), url("/images/boards/meauriga.png");
+            background-image: url('/images/boards/meauriga.svg'),
+                url('/images/boards/meauriga.png');
             background-color: transparent;
         }
 
         &.freakscar {
-            background-image: url("/images/boards/freakscar.svg");
+            background-image: url('/images/boards/freakscar.svg');
             background-color: transparent;
         }
         &.buildandcode {
-            background-image: url("/images/boards/buildandcode.svg"), url("/images/boards/buildandcode.png");
+            background-image: url('/images/boards/buildandcode.svg'),
+                url('/images/boards/buildandcode.png');
             width: 400px;
             height: 300px;
             background-color: transparent;
         }
         &.echidna-ArduinoUNO {
-            background-image: url("/images/boards/echidna-ArduinoUNO.svg"), url("/images/boards/echidna-ArduinoUNO.png");
+            background-image: url('/images/boards/echidna-ArduinoUNO.svg'),
+                url('/images/boards/echidna-ArduinoUNO.png');
             width: 400px;
             height: 300px;
             background-color: transparent;
         }
         &.echidna-bqZUM {
-            background-image: url("/images/boards/echidna-bqZUM.svg"), url("/images/boards/echidna-bqZUM.png");
+            background-image: url('/images/boards/echidna-bqZUM.svg'),
+                url('/images/boards/echidna-bqZUM.png');
             width: 400px;
             height: 300px;
             background-color: transparent;
         }
         &.echidna-FreaduinoUNO {
-            background-image: url("/images/boards/echidna-FreaduinoUNO.svg"), url("/images/boards/echidna-FreaduinoUNO.png");
+            background-image: url('/images/boards/echidna-FreaduinoUNO.svg'),
+                url('/images/boards/echidna-FreaduinoUNO.png');
             width: 400px;
             height: 300px;
             background-color: transparent;
@@ -469,7 +487,7 @@ $hw_toolbox: 210px;
 
     .component {
         position: absolute;
-        background-color: #EBEBEB;
+        background-color: #ebebeb;
         border-radius: 5px;
         cursor: pointer;
         box-shadow: rgb(170, 170, 170) 0 0 5px 1px;
@@ -559,7 +577,7 @@ $hw_toolbox: 210px;
         }
     }
 
-    [src = "/images/components/mkb_remote.svg"] {
+    [src='/images/components/mkb_remote.svg'] {
         position: absolute !important;
         top: 10% !important;
         left: 10% !important;
@@ -629,8 +647,8 @@ $hw_toolbox: 210px;
     }
 }
 
-.cursor-hand{
-  cursor: pointer;
+.cursor-hand {
+    cursor: pointer;
 }
 
 .robot-info {
@@ -651,7 +669,7 @@ $hw_toolbox: 210px;
     .robot-info__icon {
         display: inline-block;
         margin: 25px;
-        fill: #7CAD4B;
+        fill: #7cad4b;
         width: 24px;
         height: 24px;
         float: left;
