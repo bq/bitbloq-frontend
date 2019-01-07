@@ -263,11 +263,19 @@ $hw_toolbox: 210px;
         }
     }
 
-    .toolbox-freakscar {
-        background-color: #966F33;
+    .toolbox-evolution20 {
+        background-color: #7b0754;
 
         &.selected--tab .btn-svg .svg-icon {
-            fill: #966F33;
+            fill: #7b0754;
+        }
+    }
+
+    .toolbox-freakscar {
+        background-color: #966f33;
+
+        &.selected--tab .btn-svg .svg-icon {
+            fill: #966f33;
         }
     }
 
@@ -279,10 +287,10 @@ $hw_toolbox: 210px;
     .toolbox-rangerraptor,
     .toolbox-startertank,
     .toolbox-starterthreewheels {
-        background-color: #0059B4;
+        background-color: #0059b4;
 
         &.selected--tab .btn-svg .svg-icon {
-            fill: #0059B4;
+            fill: #0059b4;
         }
     }
 
