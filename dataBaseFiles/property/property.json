@@ -1431,8 +1431,8 @@
             "meauriga": "1.0.0",
             "meorion": "1.0.0"
         },
-        "web2boardVersion": "3.0.0",
-        "currentweb2boardVersion": "3.0.0",
+        "web2boardVersion": "3.5.0",
+        "currentweb2boardVersion": "3.5.0",
         "bannerClass": "",
         "bannerHTML": ""
     }
