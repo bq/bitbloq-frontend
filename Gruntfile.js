@@ -86,6 +86,18 @@ module.exports = function (grunt) {
                                 connect.static('./bower_components')
                             ),
                             connect().use(
+                                '/borndate',
+                                connect.static('./node_modules/@bitbloq/borndate/dist')
+                            ),
+                            connect().use(
+                                '/avrgirl',
+                                connect.static('./node_modules/avrgirl-arduino/dist')
+                            ),
+                            connect().use(
+                                '/libraries',
+                                connect.static('./app/res/libraries')
+                            ),
+                            connect().use(
                                 '/dataBaseFiles',
                                 connect.static('./dataBaseFiles')
                             ),
@@ -421,6 +433,21 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'bower_components/jspanel/source/fonts',
                     dest: 'dist/styles/fonts/',
+                    src: '*.*'
+                }, {
+                    expand: true,
+                    cwd: 'node_modules/@bitbloq/borndate/dist',
+                    dest: 'dist/borndate/',
+                    src: '*.*'
+                }, {
+                    expand: true,
+                    cwd: 'node_modules/avrgirl-arduino/dist',
+                    dest: 'dist/avrgirl/',
+                    src: '*.*'
+                }, {
+                    expand: true,
+                    cwd: 'app/res/libraries',
+                    dest: 'dist/libraries/',
                     src: '*.*'
                 }]
             }

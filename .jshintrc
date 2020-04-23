@@ -22,6 +22,8 @@
         "angular": false,
         "$": false,
         "chrome": false,
-        "moment": false
+        "moment": false,
+        "Borndate": false,
+        "AvrgirlArduino": false
     }
 }
