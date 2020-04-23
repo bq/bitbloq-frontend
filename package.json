@@ -97,6 +97,8 @@
     "getbloqsdev": "bower uninstall bloqs --save && bower install bloqs#dev --save && grunt getbloqs"
   },
   "dependencies": {
+    "@bitbloq/borndate": "0.0.20",
+    "avrgirl-arduino": "^4.2.2",
     "q": "^1.5.0"
   },
   "version": "v4.0.10"
