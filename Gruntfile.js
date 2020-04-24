@@ -87,7 +87,13 @@ module.exports = function (grunt) {
                             ),
                             connect().use(
                                 '/borndate',
-                                connect.static('./node_modules/@bitbloq/borndate/dist')
+                                connect.static('./node_modules/@bitbloq/borndate/dist', {
+                                  setHeaders: function(res, path) {
+                                    if (path.split('.').pop() === 'wasm') {
+                                      res.setHeader('Content-Type', 'application/wasm');
+                                    }
+                                  }
+                                })
                             ),
                             connect().use(
                                 '/avrgirl',

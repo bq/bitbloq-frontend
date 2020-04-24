@@ -1,21 +1,5 @@
 'use strict';
 
-var knownBoards = {
-    zumjunior: {
-        borndateBoard: 'zumjunior',
-        libraries: [
-            { zipURL: '/libraries/BQZUMJunior.zip', precompiled: true },
-            {
-                zipURL: '/libraries/BQZUMI2C7SegmentDisplay.zip',
-                precompiled: true
-            },
-            { zipURL: '/libraries/ArduinoEventsLib.zip', precompiled: true }
-        ],
-        vendorId: 4292,
-        productId: 60000
-    }
-};
-
 /**
  * @ngdoc service
  * @name bitbloqApp.borndate
@@ -26,13 +10,32 @@ var knownBoards = {
 angular
     .module('bitbloqApp')
     .factory('borndate', function(alertsService, web2board, $q, $translate) {
+        var knownBoards = {
+            zumjunior: {
+                borndateBoard: 'zumjunior',
+                libraries: [
+                    { zipURL: '/libraries/SoftwareSerial.zip', precompiled: true },
+                    { zipURL: '/libraries/BQZUMJunior.zip', precompiled: true },
+                    {
+                        zipURL: '/libraries/BQZUMI2C7SegmentDisplay.zip',
+                        precompiled: true
+                    },
+                    { zipURL: '/libraries/ArduinoEventsLib.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqSoftwareSerial.zip', precompiled: true }
+                ],
+                vendorId: 4292,
+                productId: 60000
+            }
+        };
+
         var exports = {
             compile: compile,
-            compileAndUpload: compileAndUpload
+            compileAndUpload: compileAndUpload,
+            knownBoards: knownBoards
         };
 
         var borndate = new Borndate.default({
-            filesRoot: 'https://unpkg.com/@bitbloq/borndate@0.0.20/dist'
+            filesRoot: window.location.origin + '/borndate'
         });
 
         function openPort(board) {

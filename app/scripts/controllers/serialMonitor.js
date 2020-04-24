@@ -9,7 +9,7 @@
  * Controller of the bitbloqApp
  */
 angular.module('bitbloqApp')
-    .controller('SerialMonitorCtrl', function($scope, _, web2boardV2, $translate, $timeout, $element, chromeAppApi, common, $rootScope, web2board, hardwareService, utils) {
+    .controller('SerialMonitorCtrl', function($scope, _, web2boardV2, $translate, $timeout, $element, browserSerial, common, $rootScope, web2board) {
         /*Private vars*/
         var serialHub = web2boardV2.api.SerialMonitorHub,
             textArea = $element.find('#serialData'),
@@ -63,7 +63,7 @@ angular.module('bitbloqApp')
         /*Public functions*/
         $scope.send = function() {
             if (common.useChromeExtension() || $scope.forceChromeExtension) {
-                chromeAppApi.sendSerialData($scope.serial.input);
+                browserSerial.sendSerialData($scope.serial.input);
             } else {
                 serialHub.server.write($scope.port, $scope.serial.input);
             }
@@ -79,7 +79,9 @@ angular.module('bitbloqApp')
         $scope.onBaudrateChanged = function(baudrate) {
             $scope.serial.baudrate = baudrate;
             if (common.useChromeExtension() || $scope.forceChromeExtension) {
-                chromeAppApi.changeBaudrate(baudrate);
+                browserSerial.close().then(function() {
+                  browserSerial.connect($scope.board, baudrate);
+                });
             } else {
                 serialHub.server.changeBaudrate($scope.port, baudrate);
             }
@@ -98,59 +100,10 @@ angular.module('bitbloqApp')
             $scope.serial.dataReceived = '';
         };
 
-        $scope.getPorts = function() {
-            chromeAppApi.getPorts().then(function(response) {
-                console.log('ports SerialMonitorCtrl', response);
-                $scope.ports = filterPortsByOS(response.ports);
-                hardwareService.itsHardwareLoaded().then(function() {
-                    utils.getPortsPrettyNames($scope.ports, hardwareService.hardware.boards);
-                    $scope.portNames = [];
-
-                    for (var i = 0; i < $scope.ports.length; i++) {
-                        $scope.portNames.push($scope.ports[i].portName);
-                    }
-
-                    var portWithUserSelectedBoard = utils.getPortByBoard($scope.ports, $scope.board);
-                    if (portWithUserSelectedBoard) {
-                        $scope.setPort(portWithUserSelectedBoard.portName);
-                    }
-                });
-
-            }).catch(function(error) {
-                console.log('error SerialMonitorCtrl', error);
-            });
-        };
-
-        $scope.setPort = function(portName) {
-            var port = _.find($scope.ports, {
-                portName: portName
-            });
-
-            $scope.selectedPort = port;
-
-            chromeAppApi.getSerialData($scope.selectedPort);
-        };
-
-        function filterPortsByOS(ports) {
-            var result = [];
-            if (common.os === 'Mac') {
-                for (var i = 0; i < ports.length; i++) {
-                    if (ports[i].comName.indexOf('/dev/cu') !== -1) {
-                        result.push(ports[i]);
-                    }
-                }
-            } else {
-                result = ports;
-            }
-            return result;
-        }
-
         /*Init functions*/
 
         if (common.useChromeExtension() || $scope.forceChromeExtension) {
-            console.log($scope.board);
-            $scope.showPorts = true;
-            $scope.getPorts();
+            browserSerial.connect($scope.board, $scope.serial.baudrate);
         } else {
             serialHub.server.subscribeToPort($scope.port);
 
@@ -180,7 +133,7 @@ angular.module('bitbloqApp')
         });
         $scope.$on('$destroy', function() {
             if (common.useChromeExtension() || $scope.forceChromeExtension) {
-                chromeAppApi.stopSerialCommunication();
+                browserSerial.close();
                 web2board.setInProcess(false);
             } else {
                 serialHub.server.unsubscribeFromPort($scope.port)
