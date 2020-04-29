@@ -11,7 +11,7 @@
 angular.module('bitbloqApp')
     .controller('BloqsprojectCtrl', function ($rootScope, $route, $scope, $log, $timeout, $routeParams, $document, $window, $location,
         $q, web2board, alertsService, ngDialog, _, projectApi, bloqs, bloqsUtils, utils, userApi, hw2Bloqs, borndate, commonModals,
-        projectService, hardwareConstants, chromeAppApi, $translate) {
+        projectService, hardwareConstants, browserSerial, $translate) {
 
         /*************************************************
          Project save / edit
@@ -1418,7 +1418,7 @@ angular.module('bitbloqApp')
 
         $scope.$on('$destroy', function () {
             $document.off('keydown', checkBackspaceKey);
-            chromeAppApi.stopSerialCommunication();
+            browserSerial.close();
             $window.onbeforeunload = null;
             _destroyWeb2boardEvents();
         });

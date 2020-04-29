@@ -107,6 +107,10 @@ module.exports = function (grunt) {
                                 '/dataBaseFiles',
                                 connect.static('./dataBaseFiles')
                             ),
+                            connect().use(
+                                '/serviceWorker.js',
+                                connect.static('./app/scripts/serviceWorker.js')
+                            ),
                             connect.static('app')
                         ];
                     }
@@ -450,6 +454,16 @@ module.exports = function (grunt) {
                     cwd: 'node_modules/avrgirl-arduino/dist',
                     dest: 'dist/avrgirl/',
                     src: '*.*'
+                }, {
+                    expand: true,
+                    cwd: 'app/res/libraries',
+                    dest: 'dist/libraries/',
+                    src: '*.*'
+                }, {
+                    expand: true,
+                    cwd: 'app/scripts',
+                    dest: 'dist/',
+                    src: 'serviceWorker.js'
                 }, {
                     expand: true,
                     cwd: 'app/res/libraries',
