@@ -362,4 +362,9 @@ angular
     })
     .run(function (amMoment, envData) {
         amMoment.changeLocale(envData.config.defaultLang);
+    })
+    .run(function () {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/serviceWorker.js');
+        }
     });

@@ -9,7 +9,7 @@
  */
 angular
     .module('bitbloqApp')
-    .factory('borndate', function(alertsService, web2board, $q, $translate) {
+    .factory('borndate', function(alertsService, web2board, $q, $translate, projectService) {
         var knownBoards = {
             zumjunior: {
                 borndateBoard: 'zumjunior',
@@ -21,10 +21,70 @@ angular
                         precompiled: true
                     },
                     { zipURL: '/libraries/ArduinoEventsLib.zip', precompiled: true },
-                    { zipURL: '/libraries/BitbloqSoftwareSerial.zip', precompiled: true }
+                    { zipURL: '/libraries/Servo.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqSoftwareSerial.zip', precompiled: true },
+                    { zipURL: '/libraries/BQZUMI2CTempSensor.zip', precompiled: true },
+                    { zipURL: '/libraries/BQZUMI2CALPSSensor.zip', precompiled: true },
+                    { zipURL: '/libraries/BQZUMI2CColorSensor.zip', precompiled: true }
                 ],
                 vendorId: 4292,
                 productId: 60000
+            },
+            zumcore2: {
+                borndateBoard: 'zumcore2',
+                libraries: [
+                    { zipURL: '/libraries/SoftwareSerial.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqSoftwareSerial.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqButtonPad.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqEncoder.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqJoystick.zip', precomipled: true },
+                    { zipURL: '/libraries/BitbloqLineFollower.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqLiquidCrystal.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqRGB.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqRTC.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqHTS221.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqUS.zip', precompiled: true },
+                    { zipURL: '/libraries/Servo.zip', precompiled: true },
+                    { zipURL: '/libraries/Adafruit_NeoPixel.zip', precompiled: true },
+                ]
+            },
+            bt328: {
+                borndateBoard: 'zumcore',
+                libraries: [
+                    { zipURL: '/libraries/SoftwareSerial.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqSoftwareSerial.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqButtonPad.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqEncoder.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqJoystick.zip', precomipled: true },
+                    { zipURL: '/libraries/BitbloqLineFollower.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqLiquidCrystal.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqRGB.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqRTC.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqHTS221.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqUS.zip', precompiled: true },
+                    { zipURL: '/libraries/Servo.zip', precompiled: true },
+                    { zipURL: '/libraries/Adafruit_NeoPixel.zip', precompiled: true },
+                ]
+            },
+            uno: {
+                borndateBoard: 'uno',
+                libraries: [
+                    { zipURL: '/libraries/SoftwareSerial.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqSoftwareSerial.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqButtonPad.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqEncoder.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqJoystick.zip', precomipled: true },
+                    { zipURL: '/libraries/BitbloqLineFollower.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqLiquidCrystal.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqRGB.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqRTC.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqHTS221.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqUS.zip', precompiled: true },
+                    { zipURL: '/libraries/Servo.zip', precompiled: true },
+                    { zipURL: '/libraries/Adafruit_NeoPixel.zip', precompiled: true },
+                    { zipURL: '/libraries/Wire.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqDCMotor.zip' }
+                ]
             }
         };
 
@@ -85,10 +145,46 @@ angular
             }
 
             var boardConfig = knownBoards[board.mcu];
+            var libraries = boardConfig.libraries;
+
+            if (projectService.project.hardware.robot === 'zowi') {
+                libraries = libraries.concat([
+                    { zipURL: '/libraries/BitbloqZowi.zip' },
+                    { zipURL: '/libraries/BitbloqOscillator.zip' },
+                    { zipURL: '/libraries/BitbloqLedMatrix.zip' },
+                    { zipURL: '/libraries/BitbloqBatteryReader.zip' },
+                    { zipURL: '/libraries/EEPROM.zip', precompiled: true }
+                ]);
+            }
+            if (projectService.project.hardware.robot === 'evolution' ||
+                projectService.project.hardware.robot === 'evolution20') {
+                libraries = libraries.concat([
+                    { zipURL: '/libraries/BitbloqEvolution.zip', precompiled: true },
+                    { zipURL: '/libraries/BitbloqOscillator.zip' },
+                ]);
+            }
+            if (projectService.project.hardware.board === 'mcore') {
+                libraries = libraries.concat([
+                    { zipURL: '/libraries/BitbloqMBotV2.zip' },
+                    { zipURL: '/libraries/BitbloqMStarter.zip' },
+                    { zipURL: '/libraries/BitbloqMPort.zip' },
+                    { zipURL: '/libraries/BitbloqMeRGBLED.zip' },
+                    { zipURL: '/libraries/BitbloqMIRControl.zip' },
+                    { zipURL: '/libraries/BitbloqIRRemote.zip' },
+                    { zipURL: '/libraries/BitbloqCompass.zip' },
+                    { zipURL: '/libraries/Bitbloq7SegmentDisplay.zip' },
+                    { zipURL: '/libraries/BitbloqMCore.zip' },
+                    { zipURL: '/libraries/BitbloqMeLEDMatrix.zip' },
+                    { zipURL: '/libraries/BitbloqMBotDeprecated.zip', precompiled: true },
+                    { zipURL: '/libraries/EEPROM.zip', precompiled: true }
+                ]).filter(function(lib) {
+                    return lib.zipURL !== '/libraries/Servo.zip';
+                });
+            }
             var compilePromise = borndate.compile(
                 boardConfig.borndateBoard,
                 [{ name: 'main.ino', content: code }],
-                boardConfig.libraries
+                libraries
             );
             return compilePromise;
         }

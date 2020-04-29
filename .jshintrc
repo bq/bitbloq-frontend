@@ -24,6 +24,8 @@
         "chrome": false,
         "moment": false,
         "Borndate": false,
-        "AvrgirlArduino": false
+        "AvrgirlArduino": false,
+        "self": false,
+        "caches": false
     }
 }

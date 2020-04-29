@@ -11,7 +11,7 @@
 angular.module('bitbloqApp')
     .controller('ExerciseCtrl', function ($rootScope, $route, $scope, $log, $timeout, $routeParams, $document, $window, $location,
         $q, web2board, alertsService, ngDialog, _, bloqs, bloqsUtils, utils, userApi, commonModals, hw2Bloqs, web2boardOnline,
-        exerciseService, hardwareConstants, chromeAppApi, centerModeApi, exerciseApi, hardwareService, $translate) {
+        exerciseService, hardwareConstants, browserSerial, centerModeApi, exerciseApi, hardwareService, $translate) {
 
         /*************************************************
          Exercise settings
@@ -599,7 +599,7 @@ angular.module('bitbloqApp')
 
         function confirmExit() {
             var closeMessage;
-            chromeAppApi.stopSerialCommunication();
+            browserSerial.close();
             utils.apply($scope);
 
             if (exerciseService.saveStatus === 1) {

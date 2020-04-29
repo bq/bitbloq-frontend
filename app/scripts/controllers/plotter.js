@@ -9,7 +9,7 @@
  * Plotter controller
  */
 angular.module('bitbloqApp')
-    .controller('PlotterCtrl', function($element, web2boardV2, web2board, $timeout, $scope, $translate, common, chromeAppApi, utils, hardwareService, $rootScope, _) {
+    .controller('PlotterCtrl', function($element, web2boardV2, web2board, $timeout, $scope, $translate, common, browserSerial, utils, hardwareService, $rootScope) {
 
         var serialHub = web2boardV2.api.SerialMonitorHub,
             dataParser = {
@@ -120,7 +120,9 @@ angular.module('bitbloqApp')
         $scope.onBaudrateChanged = function(baudrate) {
             $scope.serial.baudrate = baudrate;
             if (common.useChromeExtension()) {
-                chromeAppApi.changeBaudrate(baudrate);
+                browserSerial.close().then(function() {
+                  browserSerial.connect($scope.board, baudrate);
+                });
             } else {
                 serialHub.server.changeBaudrate($scope.port, baudrate);
             }
@@ -136,58 +138,10 @@ angular.module('bitbloqApp')
             $scope.data[0].values = [];
         };
 
-        $scope.getPorts = function() {
-            chromeAppApi.getPorts().then(function(response) {
-                console.log('ports SerialMonitorCtrl', response);
-                $scope.ports = filterPortsByOS(response.ports);
-                hardwareService.itsHardwareLoaded().then(function() {
-                    utils.getPortsPrettyNames($scope.ports, hardwareService.hardware.boards);
-                    $scope.portNames = [];
-
-                    for (var i = 0; i < $scope.ports.length; i++) {
-                        $scope.portNames.push($scope.ports[i].portName);
-                    }
-
-                    var portWithUserSelectedBoard = utils.getPortByBoard($scope.ports, $scope.board);
-                    if (portWithUserSelectedBoard) {
-                        $scope.setPort(portWithUserSelectedBoard.portName);
-                    }
-                });
-            }).catch(function(error) {
-                console.log('error SerialMonitorCtrl', error);
-            });
-        };
-
-        $scope.setPort = function(portName) {
-            var port = _.find($scope.ports, {
-                portName: portName
-            });
-
-            $scope.selectedPort = port;
-
-            chromeAppApi.getSerialData($scope.selectedPort);
-        };
-
-        function filterPortsByOS(ports) {
-            var result = [];
-            if (common.os === 'Mac') {
-                for (var i = 0; i < ports.length; i++) {
-                    if (ports[i].comName.indexOf('/dev/cu') !== -1) {
-                        result.push(ports[i]);
-                    }
-                }
-            } else {
-                result = ports;
-            }
-            return result;
-        }
-
         /*Init functions*/
 
-        if (common.useChromeExtension()) {
-            console.log($scope.board);
-            $scope.showPorts = true;
-            $scope.getPorts();
+        if (common.useChromeExtension() || $scope.forceChromeExtension) {
+            browserSerial.connect($scope.board, $scope.serial.baudrate);
         } else {
             serialHub.server.subscribeToPort($scope.port);
 
@@ -237,7 +191,7 @@ angular.module('bitbloqApp')
                 color: '#82ad3a'
             }];
             if (common.useChromeExtension()) {
-                chromeAppApi.stopSerialCommunication();
+                browserSerial.close();
                 web2board.setInProcess(false);
             } else {
                 serialHub.server.unsubscribeFromPort($scope.port)
