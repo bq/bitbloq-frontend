@@ -95,7 +95,7 @@ angular
         };
 
         var borndate = new Borndate.default({
-            filesRoot: window.location.origin + '/borndate'
+            filesRoot: 'https://unpkg.com/@bitbloq/borndate@0.0.20/dist'
         });
 
         function openPort(board) {
