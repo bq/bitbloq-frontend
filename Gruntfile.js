@@ -86,8 +86,30 @@ module.exports = function (grunt) {
                                 connect.static('./bower_components')
                             ),
                             connect().use(
+                                '/borndate',
+                                connect.static('./node_modules/@bitbloq/borndate/dist', {
+                                  setHeaders: function(res, path) {
+                                    if (path.split('.').pop() === 'wasm') {
+                                      res.setHeader('Content-Type', 'application/wasm');
+                                    }
+                                  }
+                                })
+                            ),
+                            connect().use(
+                                '/avrgirl',
+                                connect.static('./node_modules/avrgirl-arduino/dist')
+                            ),
+                            connect().use(
+                                '/libraries',
+                                connect.static('./app/res/libraries')
+                            ),
+                            connect().use(
                                 '/dataBaseFiles',
                                 connect.static('./dataBaseFiles')
+                            ),
+                            connect().use(
+                                '/serviceWorker.js',
+                                connect.static('./app/scripts/serviceWorker.js')
                             ),
                             connect.static('app')
                         ];
@@ -421,6 +443,31 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'bower_components/jspanel/source/fonts',
                     dest: 'dist/styles/fonts/',
+                    src: '*.*'
+                }, {
+                    expand: true,
+                    cwd: 'node_modules/@bitbloq/borndate/dist',
+                    dest: 'dist/borndate/',
+                    src: '*.*'
+                }, {
+                    expand: true,
+                    cwd: 'node_modules/avrgirl-arduino/dist',
+                    dest: 'dist/avrgirl/',
+                    src: '*.*'
+                }, {
+                    expand: true,
+                    cwd: 'app/res/libraries',
+                    dest: 'dist/libraries/',
+                    src: '*.*'
+                }, {
+                    expand: true,
+                    cwd: 'app/scripts',
+                    dest: 'dist/',
+                    src: 'serviceWorker.js'
+                }, {
+                    expand: true,
+                    cwd: 'app/res/libraries',
+                    dest: 'dist/libraries/',
                     src: '*.*'
                 }]
             }

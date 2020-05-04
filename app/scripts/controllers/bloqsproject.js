@@ -10,8 +10,8 @@
 
 angular.module('bitbloqApp')
     .controller('BloqsprojectCtrl', function ($rootScope, $route, $scope, $log, $timeout, $routeParams, $document, $window, $location,
-        $q, web2board, alertsService, ngDialog, _, projectApi, bloqs, bloqsUtils, utils, userApi, hw2Bloqs, web2boardOnline, commonModals,
-        projectService, hardwareConstants, chromeAppApi, $translate) {
+        $q, web2board, alertsService, ngDialog, _, projectApi, bloqs, bloqsUtils, utils, userApi, hw2Bloqs, borndate, commonModals,
+        projectService, hardwareConstants, browserSerial, $translate) {
 
         /*************************************************
          Project save / edit
@@ -545,13 +545,13 @@ angular.module('bitbloqApp')
                 });
             } else {
                 if ($scope.common.useChromeExtension()) {
-                    web2boardOnline.compile({
+                    borndate.compile({
                         board: projectService.getBoardMetaData(),
                         code: $scope.getPrettyCode()
                     });
                 } else {
                     if (projectService.project.hardware.board === 'freakscar') {
-                        web2boardOnline.compile({
+                        borndate.compile({
                             board: projectService.getBoardMetaData(),
                             code: $scope.getPrettyCode()
                         });
@@ -617,20 +617,20 @@ angular.module('bitbloqApp')
                         }
                         if ($scope.common.useChromeExtension()) {
                             if ($scope.thereIsSerialBlock($scope.getPrettyCode())) {
-                                web2boardOnline.compileAndUpload({
+                                borndate.compileAndUpload({
                                     board: projectService.getBoardMetaData(),
                                     code: $scope.getPrettyCode(generateSerialViewerBloqCode(projectService.project.hardware.components, $scope.getPrettyCode())),
                                     viewer: viewer
                                 });
                             } else if ($scope.thereIsTwitterBlock($scope.getPrettyCode())) {
-                                web2boardOnline.compileAndUpload({
+                                borndate.compileAndUpload({
                                     board: projectService.getBoardMetaData(),
                                     code: $scope.getPrettyCode(generateMobileTwitterCode(projectService.project.hardware.components, $scope.getPrettyCode())),
                                     viewer: viewer
                                 });
 
                             } else {
-                                web2boardOnline.compileAndUpload({
+                                borndate.compileAndUpload({
                                     board: projectService.getBoardMetaData(),
                                     code: $scope.getPrettyCode(code),
                                     viewer: viewer
@@ -639,7 +639,7 @@ angular.module('bitbloqApp')
 
                         } else {
                             if (projectService.project.hardware.board === 'freakscar') {
-                                web2boardOnline.compileAndUpload({
+                                borndate.compileAndUpload({
                                     board: projectService.getBoardMetaData(),
                                     code: $scope.getPrettyCode(code),
                                     viewer: viewer
@@ -1418,7 +1418,7 @@ angular.module('bitbloqApp')
 
         $scope.$on('$destroy', function () {
             $document.off('keydown', checkBackspaceKey);
-            chromeAppApi.stopSerialCommunication();
+            browserSerial.close();
             $window.onbeforeunload = null;
             _destroyWeb2boardEvents();
         });
