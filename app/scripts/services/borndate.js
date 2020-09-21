@@ -235,6 +235,15 @@ angular
                     ) {
                         cb();
                     };
+                    avrgirl.protocol.chip.verify = function(
+                        a,
+                        b,
+                        c,
+                        d,
+                        cb
+                    ) {
+                        cb();
+                    };
                     alertsService.add({
                         text: 'alert-web2board-compiling',
                         id: 'compile',
