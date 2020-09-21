@@ -46,7 +46,9 @@ angular
                     { zipURL: '/libraries/BitbloqUS.zip', precompiled: true },
                     { zipURL: '/libraries/Servo.zip', precompiled: true },
                     { zipURL: '/libraries/Adafruit_NeoPixel.zip', precompiled: true },
-                ]
+                ],
+                vendorId: 4292,
+                productId: 60000
             },
             bt328: {
                 borndateBoard: 'zumcore',
@@ -64,7 +66,9 @@ angular
                     { zipURL: '/libraries/BitbloqUS.zip', precompiled: true },
                     { zipURL: '/libraries/Servo.zip', precompiled: true },
                     { zipURL: '/libraries/Adafruit_NeoPixel.zip', precompiled: true },
-                ]
+                ],
+                vendorId: 1027,
+                productId: 24577
             },
             uno: {
                 borndateBoard: 'uno',
@@ -84,7 +88,9 @@ angular
                     { zipURL: '/libraries/Adafruit_NeoPixel.zip', precompiled: true },
                     { zipURL: '/libraries/Wire.zip', precompiled: true },
                     { zipURL: '/libraries/BitbloqDCMotor.zip' }
-                ]
+                ],
+                vendorId: 9025,
+                productId: 67
             }
         };
 
@@ -116,8 +122,7 @@ angular
                 connection.serialPort.requestOptions = {
                     filters: [
                         {
-                            usbVendorId: boardConfig.vendorId,
-                            usbProductId: boardConfig.productId
+                            usbVendorId: boardConfig.vendorId
                         }
                     ]
                 };
