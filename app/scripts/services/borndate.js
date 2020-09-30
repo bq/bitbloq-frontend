@@ -12,6 +12,7 @@ angular
     .factory('borndate', function(alertsService, web2board, $q, $translate, projectService) {
         var knownBoards = {
             zumjunior: {
+                avrgirlBoard: 'zumjunior',
                 borndateBoard: 'zumjunior',
                 libraries: [
                     { zipURL: '/libraries/SoftwareSerial.zip', precompiled: true },
@@ -31,6 +32,7 @@ angular
                 productId: 60000
             },
             zumcore2: {
+                avrgirlBoard: 'zumcore2',
                 borndateBoard: 'zumcore2',
                 libraries: [
                     { zipURL: '/libraries/SoftwareSerial.zip', precompiled: true },
@@ -51,6 +53,7 @@ angular
                 productId: 60000
             },
             bt328: {
+                avrgirlBoard: 'bqZum',
                 borndateBoard: 'zumcore',
                 libraries: [
                     { zipURL: '/libraries/SoftwareSerial.zip', precompiled: true },
@@ -71,6 +74,7 @@ angular
                 productId: 24577
             },
             uno: {
+                avrgirlBoard: 'uno',
                 borndateBoard: 'uno',
                 libraries: [
                     { zipURL: '/libraries/SoftwareSerial.zip', precompiled: true },
@@ -106,7 +110,8 @@ angular
 
         function openPort(board) {
             return $q(function(resolve, reject) {
-                var avrgirl = new AvrgirlArduino({ board: 'zumjunior' });
+                var boardConfig = knownBoards[board.mcu];
+                var avrgirl = new AvrgirlArduino({ board: boardConfig.avrgirlBoard });
                 var connection = avrgirl.connection;
                 var serialPortError = null;
 
@@ -116,8 +121,6 @@ angular
                 connection._init = function(cb) {
                     return cb(null);
                 };
-
-                var boardConfig = knownBoards[board.mcu];
 
                 connection.serialPort.requestOptions = {
                     filters: [
