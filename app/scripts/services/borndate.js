@@ -123,7 +123,7 @@ angular
                 };
 
                 connection.serialPort.requestOptions = {
-                    filters: boardConfig.vendorId.map((usbVendorId) => {
+                    filters: boardConfig.vendorId.map(function(usbVendorId) {
                       return { usbVendorId: usbVendorId };
                     }),
                   };
