@@ -28,8 +28,8 @@ angular
                     { zipURL: '/libraries/BQZUMI2CALPSSensor.zip', precompiled: true },
                     { zipURL: '/libraries/BQZUMI2CColorSensor.zip', precompiled: true }
                 ],
-                vendorId: 4292,
-                productId: 60000
+                vendorId: [4292],
+                productId: [60000]
             },
             zumcore2: {
                 avrgirlBoard: 'zumcore2',
@@ -49,8 +49,8 @@ angular
                     { zipURL: '/libraries/Servo.zip', precompiled: true },
                     { zipURL: '/libraries/Adafruit_NeoPixel.zip', precompiled: true },
                 ],
-                vendorId: 4292,
-                productId: 60000
+                vendorId: [4292],
+                productId: [60000]
             },
             bt328: {
                 avrgirlBoard: 'bqZum',
@@ -70,8 +70,8 @@ angular
                     { zipURL: '/libraries/Servo.zip', precompiled: true },
                     { zipURL: '/libraries/Adafruit_NeoPixel.zip', precompiled: true },
                 ],
-                vendorId: 1027,
-                productId: 24577
+                vendorId: [1027],
+                productId: [24577]
             },
             uno: {
                 avrgirlBoard: 'uno',
@@ -93,8 +93,8 @@ angular
                     { zipURL: '/libraries/Wire.zip', precompiled: true },
                     { zipURL: '/libraries/BitbloqDCMotor.zip' }
                 ],
-                vendorId: 9025,
-                productId: 67
+                vendorId: [9025,9025,10755],
+                productId: [67,1,67]
             }
         };
 
@@ -123,12 +123,10 @@ angular
                 };
 
                 connection.serialPort.requestOptions = {
-                    filters: [
-                        {
-                            usbVendorId: boardConfig.vendorId
-                        }
-                    ]
-                };
+                    filters: boardConfig.vendorId.map((usbVendorId) => {
+                      return { usbVendorId: usbVendorId };
+                    }),
+                  };
 
                 connection.serialPort.open(function(error) {
                     if (error) {
