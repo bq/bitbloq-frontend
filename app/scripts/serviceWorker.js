@@ -1,6 +1,6 @@
 'use strict';
 
-var BORNDATE_CACHE_NAME = 'borndate-unpkg-0.0.20';
+var BORNDATE_CACHE_NAME = 'borndate-unpkg-0.0.20a';
 
 self.addEventListener('fetch', function(event) {
     if (/borndate\/*/.test(event.request.url)) {
