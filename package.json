@@ -98,7 +98,7 @@
   },
   "dependencies": {
     "@bitbloq/borndate": "0.0.20",
-    "avrgirl-arduino": "^4.2.2",
+    "avrgirl-arduino": "git+https://github.com/Bitbloq/avrgirl-arduino.git#feature/fix-browser-serial",
     "q": "^1.5.0"
   },
   "version": "v4.0.10"
