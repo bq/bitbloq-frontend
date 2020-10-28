@@ -1,4 +1,6 @@
-"use strict";
+/* globals TextDecoderStream, TextEncoderStream */
+
+'use strict';
 
 /**
  * @ngdoc service
@@ -8,14 +10,8 @@
  * Service in the bitbloqApp.
  */
 angular
-    .module("bitbloqApp")
-    .service("browserSerial", function(borndate, $rootScope, $q) {
-        var exports = {
-            connect: connect,
-            sendSerialData: sendSerialData,
-            close: close
-        };
-
+    .module('bitbloqApp')
+    .service('browserSerial', function(borndate, $rootScope, $q) {
         var port;
         var reader;
         var writer;
@@ -44,7 +40,7 @@ angular
             portDefer.promise
                 .then(function(p) {
                     port = p;
-                    return port.open({ baudrate: baudrate });
+                    return port.open({ baudrate: baudrate, baudRate: baudrate });
                 })
                 .then(function() {
                     var decoder = new TextDecoderStream();
@@ -55,11 +51,11 @@ angular
                         if (args.done) {
                             return;
                         }
-                        $rootScope.$emit("serial", args.value);
+                        $rootScope.$emit('serial', args.value);
                         return reader.read().then(processText);
                     });
 
-                    const encoder = new TextEncoderStream();
+                    var encoder = new TextEncoderStream();
                     encoder.readable.pipeTo(port.writable);
                     writer = encoder.writable.getWriter();
                 });
@@ -95,5 +91,10 @@ angular
             return portDefer.promise;
         }
 
-        return exports;
+        return {
+            connect: connect,
+            sendSerialData: sendSerialData,
+            close: close
+        };
+
     });
