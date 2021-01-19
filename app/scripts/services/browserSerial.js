@@ -11,40 +11,75 @@
  */
 angular
     .module('bitbloqApp')
-    .service('browserSerial', function(borndate, $rootScope, $q) {
+    .service('browserSerial', function (
+        borndate,
+        $rootScope,
+        $q,
+        projectService
+    ) {
         var port;
         var reader;
         var writer;
 
         function connect(board, baudrate) {
-            var boardConfig = borndate.knownBoards[board.mcu];
+            var boardConfig = {};
+            if (projectService.project.codeProject) {
+                boardConfig = {
+                    vendorId: Object.keys(borndate.knownBoards).reduce(
+                        function (acc, board) {
+                            return acc.concat(
+                                borndate.knownBoards[board].vendorId
+                            );
+                        },
+                        []
+                    ),
+                    productId: Object.keys(borndate.knownBoards).reduce(
+                        function (acc, board) {
+                            return acc.concat(
+                                borndate.knownBoards[board].productId
+                            );
+                        },
+                        []
+                    ),
+                };
+            } else {
+                boardConfig = borndate.knownBoards[board.mcu];
+            }
             var portDefer = $q.defer();
 
-            navigator.serial.getPorts().then(function(ports) {
+            navigator.serial.getPorts().then(function (ports) {
                 if (ports && ports.length) {
                     portDefer.resolve(ports[0]);
                 } else {
                     navigator.serial
                         .requestPort({
-                            filters: [
-                                {
-                                    usbVendorId: boardConfig.vendorId,
-                                    usbProductId: boardConfig.productId
-                                }
-                            ]
+                            filters: boardConfig.vendorId.map(function (
+                                vendorId,
+                                i
+                            ) {
+                                return {
+                                    usbVendorId: vendorId,
+                                    usbProductId: boardConfig.productId[i],
+                                };
+                            }),
                         })
                         .then(portDefer.resolve);
                 }
             });
 
             portDefer.promise
-                .then(function(p) {
+                .then(function (p) {
                     port = p;
-                    return port.open({ baudrate: baudrate, baudRate: baudrate });
+                    return port.open({
+                        baudrate: baudrate,
+                        baudRate: baudrate,
+                    });
                 })
-                .then(function() {
+                .then(function () {
                     var decoder = new TextDecoderStream();
-                    port.readable.pipeTo(decoder.writable).catch(function() {});
+                    port.readable
+                        .pipeTo(decoder.writable)
+                        .catch(function () {});
                     reader = decoder.readable.getReader();
 
                     reader.read().then(function processText(args) {
@@ -70,20 +105,20 @@ angular
             var writerDefer = $q.defer();
             var portDefer = $q.defer();
 
-            reader.cancel().then(function() {
+            reader.cancel().then(function () {
                 reader = null;
                 readerDefer.resolve();
             });
-            writer.close().then(function() {
+            writer.close().then(function () {
                 writer = null;
                 writerDefer.resolve();
             });
 
             $q.all([readerDefer.promise, writerDefer.promise])
-                .then(function() {
+                .then(function () {
                     return port.close();
                 })
-                .then(function() {
+                .then(function () {
                     port = null;
                     portDefer.resolve();
                 });
@@ -94,7 +129,6 @@ angular
         return {
             connect: connect,
             sendSerialData: sendSerialData,
-            close: close
+            close: close,
         };
-
     });
