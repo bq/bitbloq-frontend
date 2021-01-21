@@ -918,3 +918,7 @@ $leftBarWidth: 70px;
         opacity: 1;
     }
 }
+
+.bloq.bloq--group.bloq-vars, .bloq.bloq--group.bloq-setup, .bloq.bloq--group.bloq-loop {
+  position: relative !important;
+}
