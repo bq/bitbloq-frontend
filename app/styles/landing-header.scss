@@ -18,6 +18,10 @@
         width: calc(100% - 14.6px);
     }
 
+    &.negativeMargin {
+          margin-bottom: -72px;
+    }
+
     .icon-wrapper {
         display: none;
     }

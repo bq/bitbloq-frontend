@@ -18,6 +18,7 @@ angular.module('bitbloqApp')
         $scope.isForgotPassword = false;
         $scope.isLessThan18 = false;
         $scope.checked = false;
+        $scope.translate = $translate;
 
         $scope.user = {
             username: '',

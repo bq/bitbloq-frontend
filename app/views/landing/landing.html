@@ -1,6 +1,8 @@
 <div data-element="landing" ng-class="{'landing--ru':translate.use() === 'ru-RU', 'landing--home--ru':translate.use() === 'de-DE'}" ng-click="closeMenu($event)" class="view view--landing view--landing--home">
     <aside id="banner-top" data-ng-if="common.properties.bannerHTML" ng-class="[common.properties.bannerClass]" data-ng-show="translate.use() === 'es-ES'" data-ng-include="'views/banners/campusverano2017.html'">
     </aside>
+    <div class="new-bitbloq-banner-wrap" data-ng-show="translate.use() === 'es-ES'" data-ng-include="'views/newBitbloqBanner.html'">
+    </div>
     <div ng-class="{'landing--header':true, 'opaque':windowScroll || menuVisible, 'fixed':windowScroll}" data-ng-include="'views/landing/landing-header.html'"></div>
     <div class="landing--masthead">
         <div class="max-width">
