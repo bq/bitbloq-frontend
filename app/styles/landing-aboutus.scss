@@ -4,14 +4,17 @@
     }
 
     .background-gray {
-        position        : fixed;
         top             : 3px;
-        width           : 98.7%;
+        width           : 100%;
         height          : 70px;
         background-color: $black-light;
         z-index         : 1;
     }
 
+    .background-gray.scrolled {
+        position        : fixed;
+        width           : 98.7%;
+    }
     .landing--masthead {
         @include landingMasthead('../images/landing/aboutus_bg.jpg');
         height             : 700px;

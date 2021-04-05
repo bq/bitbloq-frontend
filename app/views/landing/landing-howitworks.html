@@ -1,5 +1,7 @@
 <div ng-class="{'landing--ru':translate.use() === 'ru-RU'}" ng-click="closeMenu($event)" class="view view--landing view--landing--howitworks">
-    <div ng-class="{'landing--header':true, 'opaque':windowScroll || menuVisible,'fixed':true}" data-ng-include="'views/landing/landing-header.html'"></div>
+    <div class="new-bitbloq-banner-wrap" data-ng-show="translate.use() === 'es-ES' && !windowScroll" data-ng-include="'views/newBitbloqBanner.html'">
+    </div>
+    <div ng-class="{'landing--header':true, 'opaque':windowScroll || menuVisible,'fixed':windowScroll, 'negativeMargin': !windowScroll}" data-ng-include="'views/landing/landing-header.html'"></div>
     <div class="landing--masthead">
         <h1 class="medium">{{ 'landing_howitworks_title' | translate }}</h1>
         <div class="masthead__buttons">

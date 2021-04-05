@@ -1,4 +1,6 @@
 <div class="form form--login" konami>
+    <div class="new-bitbloq-banner-wrap" data-ng-show="translate.use() === 'es-ES'" data-ng-include="'views/newBitbloqBanner.html'">
+    </div>
     <div ng-class="{'login-is-loading':common.isLoading}"></div>
     <div ng-show="!common.isLoading" ng-class="{'form--container':true}">
         <a href="#/">

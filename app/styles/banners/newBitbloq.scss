@@ -1,0 +1,100 @@
+.new-bitbloq-banner-wrap {
+    background-color: white;
+}
+
+.new-bitbloq-banner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .new-bitbloq-left {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .new-bitbloq-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .new-bitbloq-logo {
+        height: 40px;
+    }
+
+    .new-bitbloq-message {
+        flex: 1;
+        h3 {
+            font-size: 20px;
+            font-weight: 300;
+            text-align: center;
+        }
+        p {
+            font-size: 14px;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    }
+
+    .new-bitbloq-button {
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 12px 20px;
+        border-radius: 4px;
+        background-color: #82ad3a;
+        text-decoration: none;
+    }
+    @media only screen and (min-width: 568px) {
+        flex-direction: row;
+        .new-bitbloq-left {
+            align-items: flex-start;
+            margin-right: 20px;
+        }
+        .new-bitbloq-message {
+            flex: 1;
+            h3 {
+                font-size: 24px;
+                text-align: left;
+            }
+            p {
+                margin-bottom: 0px;
+                text-align: left;
+            }
+        }
+        .new-bitbloq-logo {
+            margin-right: 40px;
+        }
+    }
+    @media only screen and (min-width: 881px) {
+        .new-bitbloq-left {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+}
+
+.new-bitbloq-ruler {
+    height: 2px;
+    width: 100%;
+    background-color: #e0e0e0;
+    background-image: linear-gradient(
+        to right,
+        #82ad3a 20%,
+        #44b8af 20%,
+        #44b8af 40%,
+        #6d2077 40%,
+        #6d2077 60%,
+        #fe5000 60%,
+        #fe5000 80%,
+        #f6a000 80%
+    );
+    background-size: 200px;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+}
